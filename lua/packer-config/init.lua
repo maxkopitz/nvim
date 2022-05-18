@@ -7,14 +7,23 @@ return require'packer'.startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+
   use {
     'nvim-lualine/lualine.nvim'
   }
 
 
   use {'neoclide/coc.nvim', branch = 'release'}
+
   use {'nvim-orgmode/orgmode', config = function()
         require('orgmode').setup{}
   end
   }
+
+  use 'windwp/nvim-autopairs'
+  require('nvim-autopairs').setup{}
+
+  use 'chrisbra/Colorizer'
+
+  use { 'romgrk/barbar.nvim' }
 end)
