@@ -5,4 +5,3 @@ require("colors-config.nightfox")
 require("nvim-tree-config")
 require("lualine-config")
 require("orgmode-config")
-
