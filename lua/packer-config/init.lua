@@ -12,10 +12,12 @@ return require'packer'.startup(function()
 
   use {'neoclide/coc.nvim', branch = 'release'}
 
-  use 'windwp/nvim-autopairs'
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }  
   use 'chrisbra/Colorizer'
   use 'romgrk/barbar.nvim'
-  use 'windwp/nvim-autopairs'
 
 end)
 
