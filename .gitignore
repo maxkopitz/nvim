@@ -40,6 +40,10 @@ luac.out
 *.hex
 
 
+# Extra
+tags 
+.log
+.DS_Store
 plugin/*
 java-debug/
 vscode-java-test/
