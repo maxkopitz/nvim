@@ -57,7 +57,7 @@ packer.startup {
       config = function() require('nvim-autopairs').setup {} 
       end
     }  
-    use { 'chrisbra/Colorizer' }
+
     use { 
       'romgrk/barbar.nvim',
       requires = {'kyazdani42/nvim-web-devicons'}
