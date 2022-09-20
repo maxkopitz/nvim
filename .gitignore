@@ -45,5 +45,6 @@ tags
 .log
 .DS_Store
 **/plugin/
+**/pack/
 java-debug/
 vscode-java-test/
