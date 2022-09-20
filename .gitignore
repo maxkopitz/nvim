@@ -44,6 +44,6 @@ luac.out
 tags 
 .log
 .DS_Store
-**plugin/
+**/plugin/
 java-debug/
 vscode-java-test/
