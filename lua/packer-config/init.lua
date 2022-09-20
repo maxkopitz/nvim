@@ -1,21 +1,29 @@
 local fn = vim.fn
 
--- Automatically install packer.nvim
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system {
-    'git',
-    'clone',
-    '--:depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
+vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
+
+local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
+
+local fresh_install = false
+
+-- Auto-install packer in case it hasn't been installed.
+if fn.glob(packer_dir) == "" then
+  fresh_install = true
+
+  -- Now we need to install packer.nvim first.
+  local packer_repo = "https://github.com/wbthomason/packer.nvim"
+  local install_cmd = string.format("!git clone --depth=1 %s %s", packer_repo, packer_dir)
+
+  vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
+  vim.cmd(install_cmd)
 end
 
-vim.cmd [[packadd packer.nvim]]
+vim.cmd("packadd packer.nvim")
 
-return require'packer'.startup {
+local packer = require("packer");
+local packer_util = require("packer.util")
+
+packer.startup {
   function(use) 
     use { 'wbthomason/packer.nvim',  opt = true }
 
@@ -55,9 +63,13 @@ return require'packer'.startup {
       requires = {'kyazdani42/nvim-web-devicons'}
     } 
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
-          requires = { {'nvim-lua/plenary.nvim'} }
+      cmd = "Telescope",         
+      requires = { {'nvim-lua/plenary.nvim'} }
 }
 
   end
 }
 
+if fresh_install then
+  packer.sync()
+end 
