@@ -1,14 +1,15 @@
 local fn = vim.fn
 
+-- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
 vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
 
 local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
 
-local fresh_install = false
+local first_install = false
 
 -- Auto-install packer in case it hasn't been installed.
 if fn.glob(packer_dir) == "" then
-  fresh_install = true
+  first_install = true
 
   -- Now we need to install packer.nvim first.
   local packer_repo = "https://github.com/wbthomason/packer.nvim"
@@ -29,7 +30,6 @@ packer.startup {
 
     use { 'lewis6991/impatient.nvim'} 
 
-    use {'glepnir/dashboard-nvim'}
 
     use { 'kyazdani42/nvim-web-devicons' } 
 
@@ -62,14 +62,18 @@ packer.startup {
       'romgrk/barbar.nvim',
       requires = {'kyazdani42/nvim-web-devicons'}
     } 
+
+    use {'glepnir/dashboard-nvim'}
+
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
       cmd = "Telescope",         
       requires = { {'nvim-lua/plenary.nvim'} }
+
 }
 
   end
 }
 
-if fresh_install then
+if first_install then
   packer.sync()
 end 
