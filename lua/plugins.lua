@@ -30,15 +30,19 @@ packer.startup {
 
     use { 'lewis6991/impatient.nvim'} 
 
-
     use { 'kyazdani42/nvim-web-devicons' } 
 
     use { "EdenEast/nightfox.nvim" } -- Packer
 
-    use { 'kyazdani42/nvim-tree.lua' }
+    use { 
+      "kyazdani42/nvim-tree.lua",
+      requires = { "kyazdani42/nvim-web-devicons" },
+      config = [[require('config.nvim-tree')]],
+    }
 
     use {
       'nvim-treesitter/nvim-treesitter',
+      config = [[require('config.treesitter')]],
       run = ':TSUpdate',
       requires = {
         'windwp/nvim-ts-autotag', -- Automatically end & rename tags
@@ -48,7 +52,10 @@ packer.startup {
       },
     }
 
-    use { 'nvim-lualine/lualine.nvim' }
+    use { 
+      'nvim-lualine/lualine.nvim', 
+      config = [[require('config.lualine')]]
+    }
 
     use { 'neoclide/coc.nvim', branch = 'release' }
 
@@ -59,17 +66,24 @@ packer.startup {
     }  
 
     use { 
-      'romgrk/barbar.nvim',
-      requires = {'kyazdani42/nvim-web-devicons'}
+      'akinsho/bufferline.nvim',
+      event = "VimEnter",
+      requires = {'kyazdani42/nvim-web-devicons'},
+      config = [[require('config.bufferline')]]
     } 
 
-    use {'glepnir/dashboard-nvim'}
+    use {
+      'glepnir/dashboard-nvim',
+      event = "VimEnter",
+      config = [[require('config.dashboard')]]
+    }
 
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
       cmd = "Telescope",         
       requires = { {'nvim-lua/plenary.nvim'} }
+    }
 
-}
+    -- use {'rcarriga/nvim-notify'} 
 
   end
 }
