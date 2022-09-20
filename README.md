@@ -1,6 +1,8 @@
 <div align="center">
   <h1>Nvim Config</h1>
   <img src="https://img.shields.io/github/languages/code-size/maxkopitz/nvim-config" alt="Repository code size" />
+  <img src="https://img.shields.io/github/issues/maxkopitz/nvim-config" alt="Respository count of issues open" />
+  <img src="https://img.shields.io/github/stars/maxkopitz/nvim-config" alt="Repository count of stars" />
 </div>
 
 # About
@@ -10,9 +12,9 @@ The contents of this repo is my Nvim config.
 Todo, making my setup portable to MacOS, Linux, and Windows.
 
 # Installed Plugins and Features
-+ [Packer.nvim](https://github.com/wbthomason/packer.nvim).
-+ "Tabs, as understood by any other editor" [barbar.nvim](https://github.com/romgrk/barbar.nvim).
-+ "Fancy Fastest Async Start Screen Plugin of Neovim [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
++ Plugin Manager [Packer.nvim](https://github.com/wbthomason/packer.nvim).
++ Tabs, as understood by any other editor [barbar.nvim](https://github.com/romgrk/barbar.nvim).
++ Fancy Fastest Async Start Screen Plugin of Neovim [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
 + lualine
 + nvim-tree
 + treesitter
