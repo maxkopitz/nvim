@@ -1,7 +1,8 @@
 local keymap = vim.keymap
 local api = vim.api
 
-
+-->Save key strokes, no longer need shift to enter command mode <--
+keymap.set({ "n", "x" }, ";", ":")
 --> nvim tree keymap.setpings <--
 keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
 keymap.set('n', '<leader>f', ':NvimTreeFocus<CR>')
@@ -67,3 +68,10 @@ keymap.set("n", "<Right>", "<C-W>l")
 keymap.set("n", "<Up>", "<C-W>k")
 keymap.set("n", "<Down>", "<C-W>j")
 
+--> Use Esc to quit builtin terminal <--
+keymap.set("t", "<Esc>", [[<c-\><c-n>]])
+
+--> Go to start and end of current line in insert mode <--
+
+keymap.set("i", "<C-A>", "<HOME>")
+keymap.set("i", "<C-E>", "<END>")
