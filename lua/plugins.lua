@@ -134,7 +134,23 @@ packer.startup {
       -- .tmux.conf syntax highlighting and setting check
       use { "tmux-plugins/vim-tmux", ft = { "tmux" } }
     end
-  end
+
+    --> Git commands <--
+    -- TODO: 
+    use { 
+      'tpope/vi`m-fugitive', 
+      event = 'User InGitRepo', 
+      config = [[require('config.fugitive')]] 
+   }
+
+   use { "rbong/vim-flog", requires = "tpope/vim-fugitive", cmd = { "Flog" } }
+
+   use { "christoomey/vim-conflicted", requires = "tpope/vim-fugitive", cmd = { "Conflicted" } }
+  end,
+  config = {
+    max_jobs = 16,
+    compile_path = packer_util.join_paths(fn.stdpath("data"), "site", "lua", "packer_compiled.lua"),
+  },
 }
 
 if first_install then

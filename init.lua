@@ -1,9 +1,33 @@
 --> My personal Nvim configuration <--
 --> Email: mlkopitz@umich.edu <--
 
--- Packer config
-require("plugins")
+local api = vim.api
+local utils = require('utils')
 
--- Configurations  
-require("settings") -- Vim config
-require("mappings") -- Key mappings
+
+--> Checks for correct nvim veriosn <--
+local expected_ver = '0.7.2'
+local nvim_ver = utils.get_nvim_version()
+
+if nvim_ver ~= expected_ver then 
+  local msg = string.format("Unsupported nvim version: expect %s, but got %s instead!", expected_ver, nvim_ver)
+  api.nvim_err_writeln(msg)
+  return
+end
+
+
+local core_conf_files = {
+  "globals.lua", -- some global settings
+  "settings.lua", -- setting options in nvim
+  "mappings.lua", -- all the user-defined mappings
+  "autocommands.vim",
+}
+
+for _, name in ipairs(core_conf_files) do
+  local path = string.format("%s/core/%s", vim.fn.stdpath("config"), name)
+  local source_cmd = "source " .. path
+  vim.cmd(source_cmd)
+end
+
+--> Packer config <--
+require("plugins")
