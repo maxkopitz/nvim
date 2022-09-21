@@ -32,9 +32,23 @@ nvim_tree.setup {
       error = "",
     },
   },
+  actions = {
+
+  },
   trash = {
     cmd = "trash",
     require_confirm = true,
-  }
+  },
+  log = {
+    enable = false,
+    truncate = false,
+    types = {
+      all = false,
+      copy_paste = false,
+      diagnostics = false,
+      git = false,
+      profile = false,
+    },
+  },
 }
 
