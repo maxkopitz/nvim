@@ -1,8 +1,25 @@
 <div align="center" style="color: red">
   <h1>Nvim Config</h1>
-  <img src="https://img.shields.io/github/languages/code-size/maxkopitz/nvim-config" alt="Repository code size" />
-  <img src="https://img.shields.io/github/issues/maxkopitz/nvim-config" alt="Respository count of issues open" />
-  <img src="https://img.shields.io/github/stars/maxkopitz/nvim-config" alt="Repository count of stars" />
+  <a>
+    <img 
+      src="https://img.shields.io/github/languages/code-size/maxkopitz/nvim-config" 
+      alt="Repository code size" />
+  </a>
+  <a href="https://github.com/maxkopitz/nvim-config/">
+    <img 
+      src="https://img.shields.io/github/issues/maxkopitz/nvim-config" 
+      alt="Respository count of issues open" />
+  </a>
+  <a>
+    <img 
+      src="https://img.shields.io/github/stars/maxkopitz/nvim-config" 
+      alt="Repository count of stars" />
+  </a>
+  <a href="https://github.com/neovim/neovim/releases/tag/stable">
+      <img 
+        src="https://img.shields.io/badge/Neovim-0.7.2-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" 
+        alt="Neovim minimum version"/>
+    </a>
 </div>
 
 # About 
@@ -31,6 +48,7 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - View and search LSP symbols [Vista.vim](https://github.com/liuchengxu/vista.vim).
 - Neoscroll [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim).
 - util for tmux conf [tmux.vim](https://github.com/tmux-plugins/vim-tmux).
+- Git fugititive [vim-fugitive](https://github.com/tpope/vim-fugitive).
 
 # Key Mappings
 | Shortcut | Mode | Description |
