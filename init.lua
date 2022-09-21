@@ -21,6 +21,7 @@ local core_conf_files = {
   "settings.lua", -- setting options in nvim
   "mappings.lua", -- all the user-defined mappings
   "autocommands.vim",
+--  'colorschemes.lua',
 }
 
 for _, name in ipairs(core_conf_files) do
