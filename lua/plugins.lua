@@ -1,4 +1,5 @@
 local fn = vim.fn
+local utils = require("utils")
 
 -- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
 vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
@@ -83,8 +84,37 @@ packer.startup {
       requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    -- use {'rcarriga/nvim-notify'} 
 
+    --> notification plugin <--
+    use {
+      "rcarriga/nvim-notify",
+      event = "BufEnter",
+      config = function()
+        vim.defer_fn(function()
+          require("config.nvim-notify")
+        end, 2000)
+      end,
+    }
+
+    if utils.executable('ctags') then
+      use {'liuchengxu/vista.vim', cmd ='Vista'}
+    end
+
+    use {
+      'jdhao/better-escape.vim', 
+      event = 'InsertEnter'
+    }
+
+    use {
+      'folke/which-key.nvim',
+      config = function()
+        require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+        }
+        end
+    }
   end
 }
 

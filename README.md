@@ -27,6 +27,8 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - Autopair plugin [nvim-autoapirs](https://github.com/windwp/nvim-autopairs).
 - Fuzzy finder [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
 - Pretty Notify [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- Better escaping [better-escape.vim](https://github.com/nvim-zh/better-escape.vim)  
+- View and search LSP symbols [Vista.vim](https://github.com/liuchengxu/vista.vim)
 
 # Key Mappings
 

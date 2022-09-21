@@ -28,3 +28,6 @@ map("n", "<C-p>", ":BufferLinePick<CR>", opts)
 map("n", "<leader>bb", ":BufferLineOrderByBufferNumber<CR>", opts)
 map("n", "<leader>bd", ":BufferLineOrderByDirectory<CR>", opts)
 map("n", "<leader>bl", ":BufferLineOrderByLanguage<CR>", opts)
+
+--> Vista mappings <--
+map("n", "<leader>v", ":Vista coc<CR>", opts)

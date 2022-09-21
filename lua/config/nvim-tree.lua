@@ -3,6 +3,9 @@ local nvim_tree = require("nvim-tree")
 
 nvim_tree.setup {
   auto_reload_on_write = true,
+  sort_by = "name",
+  open_on_tab = false,
+  open_on_setup = false,
   view = {
     width = 30,
     height = 30,
