@@ -27,13 +27,15 @@ local packer_util = require("packer.util")
 
 packer.startup {
   function(use) 
+    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
+
     use { 'wbthomason/packer.nvim',  opt = true }
 
-    use { 'lewis6991/impatient.nvim'} 
+    --> Themes <--
+    use { "EdenEast/nightfox.nvim"} 
+    use { "sainnhe/gruvbox-material"}
+    use { 'kyazdani42/nvim-web-devicons'} 
 
-    use { 'kyazdani42/nvim-web-devicons' } 
-
-    use { "EdenEast/nightfox.nvim" } -- Packer
 
     use { 
       "kyazdani42/nvim-tree.lua",
@@ -97,7 +99,9 @@ packer.startup {
     }
 
     if utils.executable('ctags') then
-      use {'liuchengxu/vista.vim', cmd ='Vista'}
+      use {
+        'liuchengxu/vista.vim', 
+          cmd ='Vista'}
     end
 
 
@@ -138,7 +142,7 @@ packer.startup {
     --> Git commands <--
     -- TODO: 
     use { 
-      'tpope/vi`m-fugitive', 
+      'tpope/vim-fugitive', 
       event = 'User InGitRepo', 
       config = [[require('config.fugitive')]] 
    }
