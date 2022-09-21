@@ -100,11 +100,14 @@ packer.startup {
       use {'liuchengxu/vista.vim', cmd ='Vista'}
     end
 
+
+    --> Better escaping <--
     use {
       'jdhao/better-escape.vim', 
       event = 'InsertEnter'
     }
 
+    --> Which key, know your keymappings <--
     use {
       'folke/which-key.nvim',
       config = function()
@@ -115,6 +118,22 @@ packer.startup {
         }
         end
     }
+
+    use {
+      'karb94/neoscroll.nvim',
+      event = 'VimEnter',
+      config = function()
+        vim.defer_fn(function()
+          require('config.neoscroll')
+        end, 2000)
+      end,
+    }
+    
+    --> For only linux and MacOS <--
+    if utils.executable("tmux") then
+      -- .tmux.conf syntax highlighting and setting check
+      use { "tmux-plugins/vim-tmux", ft = { "tmux" } }
+    end
   end
 }
 

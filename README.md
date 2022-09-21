@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/stars/maxkopitz/nvim-config" alt="Repository count of stars" />
 </div>
 
-# About
+# About 
 
 The contents of this repo is my Nvim config.
 
@@ -26,12 +26,13 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - Make your Neovim as smart as VSCODE [coc.nvim](https://github.com/neoclide/coc.nvim).
 - Autopair plugin [nvim-autoapirs](https://github.com/windwp/nvim-autopairs).
 - Fuzzy finder [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
-- Pretty Notify [nvim-notify](https://github.com/rcarriga/nvim-notify)
-- Better escaping [better-escape.vim](https://github.com/nvim-zh/better-escape.vim)  
-- View and search LSP symbols [Vista.vim](https://github.com/liuchengxu/vista.vim)
+- Pretty Notify [nvim-notify](https://github.com/rcarriga/nvim-notify).
+- Better escaping [better-escape.vim](https://github.com/nvim-zh/better-escape.vim).
+- View and search LSP symbols [Vista.vim](https://github.com/liuchengxu/vista.vim).
+- Neoscroll [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim).
+- util for tmux conf [tmux.vim](https://github.com/tmux-plugins/vim-tmux).
 
 # Key Mappings
-
 | Shortcut | Mode | Description |
 | -------- | ---- | ----------- |
 |          |      |             |
