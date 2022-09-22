@@ -5,7 +5,6 @@ local api = vim.api
 keymap.set({ "n", "x" }, ";", ":")
 --> nvim tree keymap.setpings <--
 keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
-keymap.set('n', '<leader>f', ':NvimTreeFocus<CR>')
 
 --> BufferLine keymap.setpings <--
 keymap.set("n", "<Tab>1", ":BufferLineGoToBuffer 1<CR>")

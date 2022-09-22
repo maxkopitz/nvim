@@ -40,7 +40,6 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - Speed up loading Lua Modules [impatient.nvim](https://github.com/lewis6991/impatient.nvim).
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons).
-- Make your Neovim as smart as VSCODE [coc.nvim](https://github.com/neoclide/coc.nvim).
 - Autopair plugin [nvim-autoapirs](https://github.com/windwp/nvim-autopairs).
 - Fuzzy finder [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
 - Pretty Notify [nvim-notify](https://github.com/rcarriga/nvim-notify).
@@ -49,6 +48,15 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - Neoscroll [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim).
 - util for tmux conf [tmux.vim](https://github.com/tmux-plugins/vim-tmux).
 - Git fugititive [vim-fugitive](https://github.com/tpope/vim-fugitive).
+- Get around fast [hoop.nvim](https://github.com/phaazon/hop.nvim).
+- Auto complete engine [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
+- [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp).
+- [cmp-path](https://github.com/hrsh7th/cmp-path).
+- [cmp-buffer](https://github.com/hrsh7th/cmp-buffer).
+- [cmp-omni](https://github.com/hrsh7th/cmp-omni).
+- [cmp-nvim-ultisnips](https://github.com/quangnguyen30192/cmp-nvim-ultisnips).
+- [cmp-emoji](https://github.com/hrsh7th/cmp-emoji).
+- vscode-like pictograms to LSP [lsp-kind](https://github.com/onsails/lspkind.nvim).
 
 # Key Mappings
 | Shortcut | Mode | Description |

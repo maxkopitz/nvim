@@ -4,7 +4,6 @@
 local api = vim.api
 local utils = require('utils')
 
-
 --> Checks for correct nvim veriosn <--
 local expected_ver = '0.7.2'
 local nvim_ver = utils.get_nvim_version()
@@ -14,14 +13,15 @@ if nvim_ver ~= expected_ver then
   api.nvim_err_writeln(msg)
   return
 end
-
+  
 
 local core_conf_files = {
-  "globals.lua", -- some global settings
-  "settings.lua", -- setting options in nvim
-  "mappings.lua", -- all the user-defined mappings
-  "autocommands.vim",
---  'colorschemes.lua',
+  'globals.lua', -- some global settings
+  'settings.lua', -- setting options in nvim
+  'options.vim',
+  'mappings.lua', -- all the user-defined mappings
+  'autocommands.vim',
+  'plugins.vim',
 }
 
 for _, name in ipairs(core_conf_files) do
@@ -29,6 +29,3 @@ for _, name in ipairs(core_conf_files) do
   local source_cmd = "source " .. path
   vim.cmd(source_cmd)
 end
-
---> Packer config <--
-require("plugins")

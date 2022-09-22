@@ -27,12 +27,42 @@ local packer_util = require('packer.util')
 
 packer.startup {
   function(use) 
-    use { 
-      'lewis6991/impatient.nvim', 
-      config = [[require('impatient')]] 
-    }
+    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
 
     use { 'wbthomason/packer.nvim',  opt = true }
+
+    --> Auto complete <--
+    use { 
+      'onsails/lspkind-nvim', 
+      event = 'VimEnter' 
+    }
+    -- auto-completion engine
+    use { 
+      'hrsh7th/nvim-cmp', 
+      after = 'lspkind-nvim', 
+      config = [[require('config.nvim-cmp')]] 
+    }
+
+    -- nvim-cmp completion sources
+    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
+    use { 
+      'quangnguyen30192/cmp-nvim-ultisnips', 
+      after = { 'nvim-cmp', 'ultisnips' } 
+    }
+    if vim.g.is_mac then
+      use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
+    end
+
+    -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
+    use { 
+      'neovim/nvim-lspconfig', 
+      after = 'cmp-nvim-lsp', 
+      config = [[require('config.lsp')]] 
+    }
+
 
     --> Themes <--
     use { 'EdenEast/nightfox.nvim'} 
@@ -47,28 +77,33 @@ packer.startup {
     }
 
     --> nvim-treesitter : Interface for tree-sitter in nvim <--
-    use {
+     use {
       'nvim-treesitter/nvim-treesitter',
       config = [[require('config.treesitter')]],
       run = ':TSUpdate',
       requires = {
         'windwp/nvim-ts-autotag', -- Automatically end & rename tags
-        -- Dynamically set commentstring based on cursor location in file
+       --  Dynamically set commentstring based on cursor location in file
         'JoosepAlviste/nvim-ts-context-commentstring',
         'nvim-treesitter/playground',
       },
+    }
+
+    -- Super fast buffer jump
+    use {
+      'phaazon/hop.nvim',
+      event = 'VimEnter',
+      config = function()
+        vim.defer_fn(function()
+          require('config.nvim_hop')
+        end, 2000)
+      end,
     }
 
     --> lualine : nvim statusline written in lua <--
     use { 
       'nvim-lualine/lualine.nvim', 
       config = [[require('config.lualine')]]
-    }
-
-    --> coc : auto complete <--
-    use { 
-      'neoclide/coc.nvim', 
-      branch = 'release' 
     }
 
     --> nvim-autoapirs : autopair plugin <--
@@ -96,11 +131,9 @@ packer.startup {
     --> telescope.nvim <--
     use {
       'nvim-telescope/telescope.nvim', 
-      tag = '0.1.0',
       cmd = 'Telescope',         
       requires = { {'nvim-lua/plenary.nvim'} }
     }
-
 
     --> notification plugin <--
     use {
@@ -139,6 +172,11 @@ packer.startup {
         end
     }
 
+    -- Snippet engine and snippet template
+    use { 'SirVer/ultisnips', event = 'InsertEnter' }
+    use { 'honza/vim-snippets', after = 'ultisnips' }
+
+    --> neoscroll : betterscrolling <--
     use {
       'karb94/neoscroll.nvim',
       event = 'VimEnter',
@@ -153,6 +191,7 @@ packer.startup {
     if utils.executable('tmux') then
       -- .tmux.conf syntax highlighting and setting check
       use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
+      vim.notify("found");
     end
 
     --> Git commands <--
@@ -185,4 +224,11 @@ packer.startup {
 
 if first_install then
   packer.sync()
-end 
+else
+  local status, _ = pcall(require, "packer_compiled")
+  if not status then
+    local msg = "File packer_compiled.lua not found: run PackerSync to fix!"
+    vim.notify(msg, vim.log.levels.ERROR, { title = "nvim-config" })
+  end
+end
+
