@@ -191,27 +191,76 @@ packer.startup {
     if utils.executable('tmux') then
       -- .tmux.conf syntax highlighting and setting check
       use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
-      vim.notify("found");
     end
 
     --> Git commands <--
-    -- TODO: 
     use { 
       'tpope/vim-fugitive', 
       event = 'User InGitRepo', 
       config = [[require('config.fugitive')]] 
-   }
+    }
   
-   use { 
-     'rbong/vim-flog', 
-     requires = 'tpope/vim-fugitive', 
-     cmd = { 'Flog' } 
-   }
+    --> Git commands <--
+    use { 
+      'rbong/vim-flog', 
+      requires = 'tpope/vim-fugitive', 
+      cmd = { 'Flog' } 
+    }
 
-   use { 
+    --> Git commands <--
+    use { 
      'christoomey/vim-conflicted', 
      requires = 'tpope/vim-fugitive', 
      cmd = { 'Conflicted' } }
+
+    -- Show git change (change, delete, add) signs in vim sign column
+    use { "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] }
+
+    -- Better git commit experience
+    use { "rhysd/committia.vim", opt = true, setup = [[vim.cmd('packadd committia.vim')]] }
+
+    --> nvim in the browser <--
+    if vim.g.is_win or vim.g.is_mac then
+      use {
+        "glacambre/firenvim",
+        run = function()
+          fn["firenvim#install"](0)
+        end,
+        opt = true,
+        setup = [[vim.cmd('packadd firenvim')]],
+      }
+    end
+
+   -- Another markdown plugin
+    use { "plasticboy/vim-markdown", ft = { "markdown" } }
+
+    -- Faster footnote generation
+    use { "vim-pandoc/vim-markdownfootnotes", ft = { "markdown" } }
+
+    -- Vim tabular plugin for manipulate tabular, required by markdown plugins
+    use { "godlygeek/tabular", cmd = { "Tabularize" } }
+
+    -- Markdown JSON header highlight plugin
+    use { "elzr/vim-json", ft = { "json", "markdown" } }
+
+    -- Markdown previewing (only for Mac and Windows)
+    if vim.g.is_win or vim.g.is_mac then
+      use {
+        "iamcco/markdown-preview.nvim",
+        run = function()
+          fn["mkdp#util#install"]()
+        end,
+        ft = { "markdown" },
+      }
+    end
+
+    --> adds various text objects <--
+    use { "wellle/targets.vim", event = "VimEnter" }
+
+    
+    if vim.g.is_mac then
+      use { "rhysd/vim-grammarous", ft = { "markdown" } }
+    end
 
   end,
   config = {

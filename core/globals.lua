@@ -18,6 +18,8 @@ vim.g.loaded_node_provider = 0  -- Disable node provider
 vim.g.did_install_default_menus = 1  -- do not load menu
 vim.g.logging_level = "info"
 
+vim.cmd("colorscheme nightfox")
+
 ------------------------------------------------------------------------
 --                         builtin variables                          --
 ------------------------------------------------------------------------

@@ -17,8 +17,7 @@ end
 
 local core_conf_files = {
   'globals.lua', -- some global settings
-  'settings.lua', -- setting options in nvim
-  'options.vim',
+  'settings.vim',
   'mappings.lua', -- all the user-defined mappings
   'autocommands.vim',
   'plugins.vim',
