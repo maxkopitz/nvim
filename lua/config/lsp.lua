@@ -91,8 +91,12 @@ local capabilities = lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+--- BEGIN LANGUAGE SERVER DEFINTIONS --
+--
+--
+--
+---------------------------------------
 local lspconfig = require("lspconfig")
-
 if utils.executable("pylsp") then
   lspconfig.pylsp.setup {
     on_attach = custom_attach,
