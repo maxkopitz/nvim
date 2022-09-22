@@ -1,48 +1,52 @@
 local fn = vim.fn
-local utils = require("utils")
+local utils = require('utils')
 
 -- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
-vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
+vim.g.plugin_home = fn.stdpath('data') .. '/site/pack/packer'
 
-local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
+local packer_dir = vim.g.plugin_home .. '/opt/packer.nvim'
 
 local first_install = false
 
 -- Auto-install packer in case it hasn't been installed.
-if fn.glob(packer_dir) == "" then
+if fn.glob(packer_dir) == '' then
   first_install = true
 
   -- Now we need to install packer.nvim first.
-  local packer_repo = "https://github.com/wbthomason/packer.nvim"
-  local install_cmd = string.format("!git clone --depth=1 %s %s", packer_repo, packer_dir)
+  local packer_repo = 'https://github.com/wbthomason/packer.nvim'
+  local install_cmd = string.format('!git clone --depth=1 %s %s', packer_repo, packer_dir)
 
-  vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
+  vim.api.nvim_echo({ { 'Installing packer.nvim', 'Type' } }, true, {})
   vim.cmd(install_cmd)
 end
 
-vim.cmd("packadd packer.nvim")
+vim.cmd('packadd packer.nvim')
 
-local packer = require("packer");
-local packer_util = require("packer.util")
+local packer = require('packer');
+local packer_util = require('packer.util')
 
 packer.startup {
   function(use) 
-    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
+    use { 
+      'lewis6991/impatient.nvim', 
+      config = [[require('impatient')]] 
+    }
 
     use { 'wbthomason/packer.nvim',  opt = true }
 
     --> Themes <--
-    use { "EdenEast/nightfox.nvim"} 
-    use { "sainnhe/gruvbox-material"}
+    use { 'EdenEast/nightfox.nvim'} 
+    use { 'sainnhe/gruvbox-material'}
     use { 'kyazdani42/nvim-web-devicons'} 
 
-
+    --> nvim-tree : A file Explorer For Neovim <--
     use { 
-      "kyazdani42/nvim-tree.lua",
-      requires = { "kyazdani42/nvim-web-devicons" },
+      'kyazdani42/nvim-tree.lua',
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = [[require('config.nvim-tree')]],
     }
 
+    --> nvim-treesitter : Interface for tree-sitter in nvim <--
     use {
       'nvim-treesitter/nvim-treesitter',
       config = [[require('config.treesitter')]],
@@ -55,49 +59,61 @@ packer.startup {
       },
     }
 
+    --> lualine : nvim statusline written in lua <--
     use { 
       'nvim-lualine/lualine.nvim', 
       config = [[require('config.lualine')]]
     }
 
-    use { 'neoclide/coc.nvim', branch = 'release' }
+    --> coc : auto complete <--
+    use { 
+      'neoclide/coc.nvim', 
+      branch = 'release' 
+    }
 
+    --> nvim-autoapirs : autopair plugin <--
     use {
 	    'windwp/nvim-autopairs',
       config = function() require('nvim-autopairs').setup {} 
       end
     }  
 
+    --> bufferline.nvim : bufferline for nvim <--
     use { 
       'akinsho/bufferline.nvim',
-      event = "VimEnter",
+      event = 'VimEnter',
       requires = {'kyazdani42/nvim-web-devicons'},
       config = [[require('config.bufferline')]]
     } 
 
+    --> dashboard.nvim <--
     use {
       'glepnir/dashboard-nvim',
-      event = "VimEnter",
+      event = 'VimEnter',
       config = [[require('config.dashboard')]]
     }
 
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
-      cmd = "Telescope",         
+    --> telescope.nvim <--
+    use {
+      'nvim-telescope/telescope.nvim', 
+      tag = '0.1.0',
+      cmd = 'Telescope',         
       requires = { {'nvim-lua/plenary.nvim'} }
     }
 
 
     --> notification plugin <--
     use {
-      "rcarriga/nvim-notify",
-      event = "BufEnter",
+      'rcarriga/nvim-notify',
+      event = 'BufEnter',
       config = function()
         vim.defer_fn(function()
-          require("config.nvim-notify")
+          require('config.nvim-notify')
         end, 2000)
       end,
     }
 
+    --> vista.vim <--
     if utils.executable('ctags') then
       use {
         'liuchengxu/vista.vim', 
@@ -115,7 +131,7 @@ packer.startup {
     use {
       'folke/which-key.nvim',
       config = function()
-        require("which-key").setup {
+        require('which-key').setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
@@ -134,9 +150,9 @@ packer.startup {
     }
     
     --> For only linux and MacOS <--
-    if utils.executable("tmux") then
+    if utils.executable('tmux') then
       -- .tmux.conf syntax highlighting and setting check
-      use { "tmux-plugins/vim-tmux", ft = { "tmux" } }
+      use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
     end
 
     --> Git commands <--
@@ -146,14 +162,24 @@ packer.startup {
       event = 'User InGitRepo', 
       config = [[require('config.fugitive')]] 
    }
+  
+   use { 
+     'rbong/vim-flog', 
+     requires = 'tpope/vim-fugitive', 
+     cmd = { 'Flog' } 
+   }
 
-   use { "rbong/vim-flog", requires = "tpope/vim-fugitive", cmd = { "Flog" } }
+   use { 
+     'christoomey/vim-conflicted', 
+     requires = 'tpope/vim-fugitive', 
+     cmd = { 'Conflicted' } }
 
-   use { "christoomey/vim-conflicted", requires = "tpope/vim-fugitive", cmd = { "Conflicted" } }
   end,
   config = {
     max_jobs = 16,
-    compile_path = packer_util.join_paths(fn.stdpath("data"), "site", "lua", "packer_compiled.lua"),
+    compile_path = packer_util.join_paths(
+    fn.stdpath('data'), 
+    'site', 'lua', 'packer_compiled.lua'),
   },
 }
 
