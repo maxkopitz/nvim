@@ -58,6 +58,11 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [cmp-emoji](https://github.com/hrsh7th/cmp-emoji).
 - vscode-like pictograms to LSP [lsp-kind](https://github.com/onsails/lspkind.nvim).
 
+## Install LSP servers 
+- [lua-lanuage-server](https://github.com/sumneko/lua-language-server).
+- [vim-lanauge-server](https://github.com/iamcco/vim-language-server).
+- [bash-lanauage-server](https://github.com/bash-lsp/bash-language-server)
+- [clangd](https://clangd.llvm.org/installation.html).
 # Key Mappings
 | Shortcut | Mode | Description |
 | -------- | ---- | ----------- |
