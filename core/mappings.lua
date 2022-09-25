@@ -74,3 +74,22 @@ keymap.set("t", "<Esc>", [[<c-\><c-n>]])
 
 keymap.set("i", "<C-A>", "<HOME>")
 keymap.set("i", "<C-E>", "<END>")
+
+-- Navigation in the location and quickfix list
+keymap.set("n", "[l", "<cmd>lprevious<cr>zv", { silent = true, desc = "previous location item" })
+keymap.set("n", "]l", "<cmd>lnext<cr>zv", { silent = true, desc = "next location item" })
+
+keymap.set("n", "[L", "<cmd>lfirst<cr>zv", { silent = true, desc = "first location item" })
+keymap.set("n", "]L", "<cmd>llast<cr>zv", { silent = true, desc = "last location item" })
+
+keymap.set("n", "[q", "<cmd>cprevious<cr>zv", { silent = true, desc = "previous qf item" })
+keymap.set("n", "]q", "<cmd>cnext<cr>zv", { silent = true, desc = "next qf item" })
+
+keymap.set("n", "[Q", "<cmd>cfirst<cr>zv", { silent = true, desc = "first qf item" })
+keymap.set("n", "]Q", "<cmd>clast<cr>zv", { silent = true, desc = "last qf item" })
+
+-- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
+keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
+  silent = true,
+  desc = "close qf and location list",
+})

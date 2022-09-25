@@ -3,9 +3,13 @@ local nvim_tree = require("nvim-tree")
 
 nvim_tree.setup {
   auto_reload_on_write = true,
+  disable_netrw = false,
+  hijack_cursor = false,
   sort_by = "name",
+  open_on_setup = false,
   open_on_tab = false,
   open_on_setup = false,
+  update_cwd = false,
   view = {
     width = 30,
     hide_root_folder = false,
@@ -21,6 +25,28 @@ nvim_tree.setup {
       },
     },
   },
+  renderer = {
+    indent_markers = {
+      enable = true,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
+    icons = {
+      webdev_colors = true,
+    },
+  },
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  update_focused_file = {
+    enable = false,
+    update_cwd = false,
+    ignore_list = {},
+  },
   diagnostics = {
     enable = false,
     show_on_dirs = false,
@@ -31,7 +57,13 @@ nvim_tree.setup {
       error = "",
     },
   },
+  git = {
+    enable = ture,
+    ignore = true,
+    timeout = 400,
+  },
   actions = {
+    use_system_clipboard = true,
 
   },
   trash = {

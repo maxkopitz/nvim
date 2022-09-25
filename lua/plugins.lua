@@ -27,7 +27,7 @@ local packer_util = require('packer.util')
 
 packer.startup {
   function(use) 
-    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
+    use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
 
     use { 'wbthomason/packer.nvim',  opt = true }
 
@@ -52,6 +52,7 @@ packer.startup {
       'quangnguyen30192/cmp-nvim-ultisnips', 
       after = { 'nvim-cmp', 'ultisnips' } 
     }
+    
     if vim.g.is_mac then
       use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
     end
@@ -63,10 +64,18 @@ packer.startup {
       config = [[require('config.lsp')]] 
     }
 
-
     --> Themes <--
     use { 'EdenEast/nightfox.nvim'} 
-    use { 'sainnhe/gruvbox-material'}
+    use { 'navarasu/onedark.nvim', opt = true }
+    use { 'sainnhe/edge', opt = true }
+    use { 'sainnhe/sonokai', opt = true }
+    use { 'sainnhe/gruvbox-material', opt = true }
+    use { 'shaunsingh/nord.nvim', opt = true }
+    use { 'NTBBloodbath/doom-one.nvim', opt = true }
+    use { 'sainnhe/everforest', opt = true }
+    use { 'rebelot/kanagawa.nvim', opt = true }
+    use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
+
     use { 'kyazdani42/nvim-web-devicons'} 
 
     --> nvim-tree : A file Explorer For Neovim <--
@@ -128,12 +137,7 @@ packer.startup {
       config = [[require('config.dashboard')]]
     }
 
-    --> telescope.nvim <--
-    use {
-      'nvim-telescope/telescope.nvim', 
-      cmd = 'Telescope',         
-      requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    
 
     --> notification plugin <--
     use {
@@ -152,7 +156,6 @@ packer.startup {
         'liuchengxu/vista.vim', 
           cmd ='Vista'}
     end
-
 
     --> Better escaping <--
     use {
@@ -214,17 +217,17 @@ packer.startup {
      cmd = { 'Conflicted' } }
 
     -- Show git change (change, delete, add) signs in vim sign column
-    use { "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] }
+    use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
     -- Better git commit experience
-    use { "rhysd/committia.vim", opt = true, setup = [[vim.cmd('packadd committia.vim')]] }
+    use { 'rhysd/committia.vim', opt = true, setup = [[vim.cmd('packadd committia.vim')]] }
 
     --> nvim in the browser <--
     if vim.g.is_win or vim.g.is_mac then
       use {
-        "glacambre/firenvim",
+        'glacambre/firenvim',
         run = function()
-          fn["firenvim#install"](0)
+          fn['firenvim#install'](0)
         end,
         opt = true,
         setup = [[vim.cmd('packadd firenvim')]],
@@ -232,36 +235,81 @@ packer.startup {
     end
 
    -- Another markdown plugin
-    use { "plasticboy/vim-markdown", ft = { "markdown" } }
+    use { 'plasticboy/vim-markdown', ft = { 'markdown' } }
 
     -- Faster footnote generation
-    use { "vim-pandoc/vim-markdownfootnotes", ft = { "markdown" } }
+    use { 'vim-pandoc/vim-markdownfootnotes', ft = { 'markdown' } }
 
     -- Vim tabular plugin for manipulate tabular, required by markdown plugins
-    use { "godlygeek/tabular", cmd = { "Tabularize" } }
+    use { 'godlygeek/tabular', cmd = { 'Tabularize' } }
 
     -- Markdown JSON header highlight plugin
-    use { "elzr/vim-json", ft = { "json", "markdown" } }
+    use { 'elzr/vim-json', ft = { 'json', 'markdown' } }
 
     -- Markdown previewing (only for Mac and Windows)
     if vim.g.is_win or vim.g.is_mac then
       use {
-        "iamcco/markdown-preview.nvim",
+        'iamcco/markdown-preview.nvim',
         run = function()
-          fn["mkdp#util#install"]()
+          fn['mkdp#util#install']()
         end,
-        ft = { "markdown" },
+        ft = { 'markdown' },
       }
     end
 
     --> adds various text objects <--
-    use { "wellle/targets.vim", event = "VimEnter" }
+    use { 'wellle/targets.vim', event = 'VimEnter' }
 
     
     if vim.g.is_mac then
-      use { "rhysd/vim-grammarous", ft = { "markdown" } }
+      use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
     end
 
+    --> Auto format tools <--
+    use { 'sbdchd/neoformat', cmd = { 'Neoformat' } }
+
+    --> The missing auto-completion for cmdline! <--
+    use { 
+      'gelguy/wilder.nvim', 
+      opt = true, 
+      setup = [[vim.cmd('packadd wilder.nvim')]] 
+    }
+    
+    --> Standalone UI for nvim-lsp progress. Eye candy for the impatient. <--
+    use { 
+      'j-hui/fidget.nvim', 
+      after = 'nvim-lspconfig', 
+      config = [[require('config.fidget-nvim')]] 
+    }
+
+    --> Highlight URLs inside vim <--
+    use { "itchyny/vim-highlighturl", event = "VimEnter" }
+
+    use { "kevinhwang91/nvim-bqf", ft = "qf", config = [[require('config.bqf')]] }
+
+    -- File search, tag search and more
+    if vim.g.is_win then
+      use { "Yggdroot/LeaderF", cmd = "Leaderf" }
+    else
+      use { "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension" }
+    end
+    
+    --> telescope.nvim <--
+    use {
+      'nvim-telescope/telescope.nvim', 
+      cmd = 'Telescope',         
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+        -- search emoji and other symbols
+    use { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" }
+
+    -- For Windows and Mac, we can open an URL in the browser. For Linux, it may
+    -- not be possible since we maybe in a server which disables GUI.
+    if vim.g.is_win or vim.g.is_mac then
+      -- open URL in browser
+      use { "tyru/open-browser.vim", event = "VimEnter" }
+    end
+    
   end,
   config = {
     max_jobs = 16,
@@ -274,10 +322,10 @@ packer.startup {
 if first_install then
   packer.sync()
 else
-  local status, _ = pcall(require, "packer_compiled")
+  local status, _ = pcall(require, 'packer_compiled')
   if not status then
-    local msg = "File packer_compiled.lua not found: run PackerSync to fix!"
-    vim.notify(msg, vim.log.levels.ERROR, { title = "nvim-config" })
+    local msg = 'File packer_compiled.lua not found: run PackerSync to fix!'
+    vim.notify(msg, vim.log.levels.ERROR, { title = 'nvim-config' })
   end
 end
 

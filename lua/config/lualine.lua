@@ -123,14 +123,6 @@ require('lualine').setup {
         "diagnostics",
         sources = { "nvim_diagnostic" },
       },
-      {
-        trailing_space,
-        color = "WarningMsg",
-      },
-      {
-        mixed_indent,
-        color = "WarningMsg",
-      },
     }
   },
 

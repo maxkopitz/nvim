@@ -40,6 +40,8 @@ set termguicolors
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-color-in-the-terminal
 set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20
 
+set signcolumn=auto:2
+
 " diff options
 set diffopt=
 set diffopt+=vertical  " show diff in vertical position
@@ -56,6 +58,9 @@ set ignorecase smartcase
 
 " Break line at predefined characters
 set linebreak
+
+" Character to show before the lines that have been soft-wrapped
+set showbreak=↪
 
 " Use mouse to select and resize windows, etc.
 set mouse=nic  " Enable mouse in several mode
@@ -83,4 +88,31 @@ set noshowmode
 
 " List all matches and complete till longest common string
 set wildmode=list:longest
+
+" Clipboard settings, always use clipboard for all delete, yank, change, put
+" operation, see https://stackoverflow.com/q/30691466/6064933
+if !empty(provider#clipboard#Executable())
+  set clipboard+=unnamedplus
+endif
+
+" Do not show search match count on bottom right (seriously, I would strain my
+" neck looking at it). Using plugins like vim-anzu or nvim-hlslens is a better
+" choice, IMHO.
+set shortmess+=S
+
+" Disable showing intro message (:intro)
+set shortmess+=I
+
+" Virtual edit is useful for visual block edit
+set virtualedit=block  
+
+" Text after this column number is not highlighted
+set synmaxcol=200  
+set nostartofline
+
+" Executable program to use for grep command 
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat=%f:%l:%c:%m
+endif
 
