@@ -75,6 +75,7 @@ packer.startup {
     use { 'sainnhe/everforest', opt = true }
     use { 'rebelot/kanagawa.nvim', opt = true }
     use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
+    use { 'tomasiser/vim-code-dark', opt = true}
 
     use { 'kyazdani42/nvim-web-devicons'} 
 

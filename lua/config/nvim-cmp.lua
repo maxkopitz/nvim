@@ -48,6 +48,8 @@ cmp.setup {
   formatting = {
     format = lspkind.cmp_format {
       mode = "symbol_text",
+      maxwidth = 50,
+      ellipsis_char = '...',
       menu = {
         nvim_lsp = "[LSP]",
         ultisnips = "[US]",

@@ -1,6 +1,5 @@
 --> My personal Nvim configuration <--
 --> Email: mlkopitz@umich.edu <--
-
 local api = vim.api
 local utils = require('utils')
 
@@ -13,7 +12,6 @@ if nvim_ver ~= expected_ver then
   api.nvim_err_writeln(msg)
   return
 end
-  
 
 local core_conf_files = {
   'globals.lua', -- some global settings
