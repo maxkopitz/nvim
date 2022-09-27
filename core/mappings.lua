@@ -13,7 +13,7 @@ keymap.set("n", "<Tab>3", ":BufferLineGoToBuffer 3<CR>")
 keymap.set("n", "<Tab>4", ":BufferLineGoToBuffer 4<CR>")
 keymap.set("n", "<Tab>5", ":BufferLineGoToBuffer 5<CR>")
 keymap.set("n", "<Tab>6", ":BufferLineGoToBuffer 6<CR>")
-keymap.set("n", "<Tab>7", ":BufferLineGoToBufer 7<CR>")
+keymap.set("n", "<Tab>7", ":BufferLineGoToBuffer 7<CR>")
 keymap.set("n", "<Tab>8", ":BufferLineGoToBuffer 8<CR>")
 keymap.set("n", "<Tab>9", ":BufferLineGoToBuffer 9<CR>")
 
