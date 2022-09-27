@@ -310,6 +310,13 @@ packer.startup {
       -- open URL in browser
       use { "tyru/open-browser.vim", event = "VimEnter" }
     end
+
+    --> persistant terminals <--
+    use {
+      "akinsho/toggleterm.nvim", 
+      tag = '*', 
+      config = [[require('config.toggleterm')]]
+    }
     
   end,
   config = {
