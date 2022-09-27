@@ -1,4 +1,4 @@
-<div align="center" style="color: red">
+<div align="center" d">
   <h1>Nvim Config</h1>
   <a>
     <img 
@@ -32,16 +32,15 @@ The contents of this repo is my Nvim config.
 
 Todo, making my setup portable to MacOS, Linux, and Windows.
 
-
-# Installed Plugins and Features
+# Installed Plugins 
 
 - Plugin Manager [Packer.nvim](https://github.com/wbthomason/packer.nvim).
+- Speed up loading Lua Modules [impatient.nvim](https://github.com/lewis6991/impatient.nvim).
 - Tabs, as understood by any other editor [barbar.nvim](https://github.com/akinsho/bufferline.nvim).
 - Fancy Fastest Async Start Screen Plugin of Neovim [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
 - NeoVim statusline [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
 - File Explorer For Neovim [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua).
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
-- Speed up loading Lua Modules [impatient.nvim](https://github.com/lewis6991/impatient.nvim).
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons).
 - Autopair plugin [nvim-autoapirs](https://github.com/windwp/nvim-autopairs).
 - Fuzzy finder [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
@@ -67,11 +66,31 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [bash-lanauage-server](https://github.com/bash-lsp/bash-language-server)
 - [clangd](https://clangd.llvm.org/installation.html).
 # Key Mappings
-## 
-| Shortcut | Mode | Description |
-| -------- | ---- | ----------- |
-|          |      |             |
-|          |      |             |
+``` lua 
+-- Edit leader in core/globals.lua:45
+vim.g.mapleader =  ',' -- My leader key
+```
+## General mappings 
+| Shortcut       | Mode(s) | Action |
+| --------       | ----    | -----  |
+| `;`            | Normal  | Maps `;` to `:`, no longer need to press shift to enter command mode. |
+| `<Tab><1-9>`   | Normal  | Switch to buffer 1-9 |
+| `<leader>gs`   | Normal  | Displays `git status`  |
+| `<leader>gw`   | Normal  | `git add` current buffer | 
+| `<leader>gc`   | Normal  | Run `git commit`   |
+| `<leader>gpl`  | Normal  | Run `git pull`     |
+| `<leader>gpu`  | Normal  | Run `git push`     |
+| `<leader>Q`    | Normal  |  Quits nvim    |
+| `<leader>w`    | Normal  | Saves buffer   | 
+| `<leader>q`    | Normal  | Saves file if modified and quit | 
+| `\d`           | Normal  | Deletes buffer, without closing window |
+| `<Left>`       | Normal  | Switch window left | 
+| `<Right>`      | Normal  | Switch window right | 
+| `<Up>`         | Normal  | Switch window up | 
+| `<Down>`       | Normal  | Switch window down | 
+| `<C-A>`        | Insert  | Go to start of current line |
+| `<C-E>`        | Insert  | Go to end of current line |
+| `jk`           | Insert  | Return to Normal mode | 
 
 # Contributing 
 Create a PR. 

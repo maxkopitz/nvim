@@ -62,13 +62,10 @@ keymap.set("n", [[\d]], "<cmd>bprevious <bar> bdelete #<cr>", {
 })
 
 --> Switch windows <--
-keymap.set("n", "<left>", "<c-w>h")
+keymap.set("n", "<Left>", "<c-w>h")
 keymap.set("n", "<Right>", "<C-W>l")
 keymap.set("n", "<Up>", "<C-W>k")
 keymap.set("n", "<Down>", "<C-W>j")
-
---> Use Esc to quit builtin terminal <--
-keymap.set("t", "<Esc>", [[<c-\><c-n>]])
 
 --> Go to start and end of current line in insert mode <--
 
