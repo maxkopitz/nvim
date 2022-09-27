@@ -26,9 +26,12 @@
 
 The contents of this repo is my Nvim config.
 
-# Install and Setup
+# Requirements
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+# Installation 
 
 Todo, making my setup portable to MacOS, Linux, and Windows.
+
 
 # Installed Plugins and Features
 
@@ -64,7 +67,15 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [bash-lanauage-server](https://github.com/bash-lsp/bash-language-server)
 - [clangd](https://clangd.llvm.org/installation.html).
 # Key Mappings
+## 
 | Shortcut | Mode | Description |
 | -------- | ---- | ----------- |
 |          |      |             |
 |          |      |             |
+
+# Contributing 
+Create a PR. 
+
+Feel free to email me at <mlkopitz@umich.edu>
+
+# Inspirations 
