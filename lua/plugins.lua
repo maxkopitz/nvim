@@ -284,15 +284,22 @@ packer.startup {
     }
 
     --> Highlight URLs inside vim <--
-    use { "itchyny/vim-highlighturl", event = "VimEnter" }
+    use { 
+      'itchyny/vim-highlighturl', 
+      event = 'VimEnter' 
+    }
 
-    use { "kevinhwang91/nvim-bqf", ft = "qf", config = [[require('config.bqf')]] }
+    use { 
+      'kevinhwang91/nvim-bqf', 
+      ft = 'qf', 
+      config = [[require('config.bqf')]] 
+    }
 
     -- File search, tag search and more
     if vim.g.is_win then
-      use { "Yggdroot/LeaderF", cmd = "Leaderf" }
+      use { 'Yggdroot/LeaderF', cmd = 'Leaderf' }
     else
-      use { "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension" }
+      use { 'Yggdroot/LeaderF', cmd = 'Leaderf', run = ':LeaderfInstallCExtension' }
     end
     
     --> telescope.nvim <--
@@ -302,25 +309,25 @@ packer.startup {
       requires = { {'nvim-lua/plenary.nvim'} }
     }
         -- search emoji and other symbols
-    use { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" }
+    use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
 
     -- For Windows and Mac, we can open an URL in the browser. For Linux, it may
     -- not be possible since we maybe in a server which disables GUI.
     if vim.g.is_win or vim.g.is_mac then
       -- open URL in browser
-      use { "tyru/open-browser.vim", event = "VimEnter" }
+      use { 'tyru/open-browser.vim', event = 'VimEnter' }
     end
 
     --> persistant terminals <--
     use {
-      "akinsho/toggleterm.nvim", 
+      'akinsho/toggleterm.nvim', 
       tag = '*', 
       config = [[require('config.toggleterm')]]
     }
 
     -- Only use these plugin on Windows and Mac and when LaTeX is installed
-    if vim.g.is_win or vim.g.is_mac and utils.executable("latex") then
-      use { "lervag/vimtex", ft = { "tex" } }
+    if vim.g.is_win or vim.g.is_mac and utils.executable('latex') then
+      use { 'lervag/vimtex', ft = { 'tex' } }
     end
     
   end,
