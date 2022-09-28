@@ -90,11 +90,30 @@ local function mixed_indent()
   end
 end
 
+local custom_auto = require "lualine.themes.auto"
+custom_auto.terminal.a.bg = "#1e90ff"
+custom_auto.normal.a.bg = "#131313"
+custom_auto.normal.a.fg = "#6d7275"
+custom_auto.normal.c.fg = "#E2E5DC"
+custom_auto.normal.c.bg = "#131313"
+custom_auto.insert.c.fg = "#51A266"
+custom_auto.command.a.bg = "#1e90ff"
+custom_auto.command.b.fg = "#1e90ff"
+custom_auto.replace.a.bg = "#C83434"
+custom_auto.visual.a.bg = "#725191"
+custom_auto.visual.b.fg = "#1e90ff"
+
 --> Lualine config <--
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto'
+    theme = 'auto',
+    theme = custom_auto,
+    component_separators = { left = "⦚", right = " ⦚" },
+    section_separators = { left = " ", right = " " },
+    disabled_filetypes = {},
+    always_divide_middle = false,
+    globalstatus = true,
   },
   sections = {
     lualine_a = {'mode'},
