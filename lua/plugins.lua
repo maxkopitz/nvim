@@ -330,6 +330,14 @@ packer.startup {
       use { 'lervag/vimtex', ft = { 'tex' } }
     end
     
+    -- Comment plugin
+    use { "tpope/vim-commentary", event = "VimEnter" }
+
+    -- Multiple cursor plugin like Sublime Text?
+    -- use 'mg979/vim-visual-multi'
+
+    -- Autosave files on certain events
+    use { "907th/vim-auto-save", event = "InsertEnter" }
   end,
   config = {
     max_jobs = 16,
