@@ -91,6 +91,7 @@ vim.g.mapleader =  ',' -- My leader key
 | `<C-A>`        | Insert  | Go to start of current line |
 | `<C-E>`        | Insert  | Go to end of current line |
 | `jk`           | Insert  | Return to Normal mode | 
+| `<leader>\`    | Normal  | Splits current buffer |
 
 # Contributing 
 Create a PR. 

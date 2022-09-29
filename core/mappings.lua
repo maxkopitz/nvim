@@ -18,7 +18,7 @@ keymap.set("n", "<Tab>8", ":BufferLineGoToBuffer 8<CR>")
 keymap.set("n", "<Tab>9", ":BufferLineGoToBuffer 9<CR>")
 
 --> Vista keymap.setpings <--
-keymap.set("n", "<leader>v", ":Vista coc<CR>")
+keymap.set("n", "<leader>v", ":Vista nvim_lsp<CR>")
 
 --> Git fugitive <--
 keymap.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
@@ -90,3 +90,6 @@ keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
   silent = true,
   desc = "close qf and location list",
 })
+
+-- Split window 
+keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", { silent = true, desc = "split current buffer"})
