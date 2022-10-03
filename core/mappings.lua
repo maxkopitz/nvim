@@ -93,3 +93,6 @@ keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
 
 -- Split window 
 keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", {silent = true, desc = "Split screen"})
+
+-- LeaderF 
+

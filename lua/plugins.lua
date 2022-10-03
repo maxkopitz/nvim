@@ -259,41 +259,44 @@ packer.startup {
 
     --> The missing auto-completion for cmdline! <--
     use { 
-      'gelguy/wilder.nvim', 
-      opt = true, 
-      setup = [[vim.cmd('packadd wilder.nvim')]] 
+      'gelguy/wilder.nvim',
+      opt = true,
+      setup = [[vim.cmd('packadd wilder.nvim')]]
     }
-    
     --> Standalone UI for nvim-lsp progress. Eye candy for the impatient. <--
-    use { 
-      'j-hui/fidget.nvim', 
-      after = 'nvim-lspconfig', 
-      config = [[require('config.fidget-nvim')]] 
+    use {
+      'j-hui/fidget.nvim',
+      after = 'nvim-lspconfig',
+      config = [[require('config.fidget-nvim')]]
     }
 
     --> Highlight URLs inside vim <--
-    use { 
-      'itchyny/vim-highlighturl', 
-      event = 'VimEnter' 
+    use {
+      'itchyny/vim-highlighturl',
+      event = 'VimEnter'
     }
 
-    use { 
-      'kevinhwang91/nvim-bqf', 
-      ft = 'qf', 
-      config = [[require('config.bqf')]] 
+    use {
+      'kevinhwang91/nvim-bqf',
+      ft = 'qf',
+      config = [[require('config.bqf')]]
     }
 
     -- File search, tag search and more
     if vim.g.is_win then
       use { 'Yggdroot/LeaderF', cmd = 'Leaderf' }
     else
-      use { 'Yggdroot/LeaderF', cmd = 'Leaderf', run = ':LeaderfInstallCExtension' }
+      use {
+        'Yggdroot/LeaderF',
+        event = 'VimEnter',
+        cmd = 'Leaderf',
+        run = ':LeaderfInstallCExtension',
+      }
     end
-    
     --> telescope.nvim <--
     use {
-      'nvim-telescope/telescope.nvim', 
-      cmd = 'Telescope',         
+      'nvim-telescope/telescope.nvim',
+      cmd = 'Telescope',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
         -- search emoji and other symbols
@@ -308,8 +311,8 @@ packer.startup {
 
     --> persistant terminals <--
     use {
-      'akinsho/toggleterm.nvim', 
-      tag = '*', 
+      'akinsho/toggleterm.nvim',
+      tag = '*',
       config = [[require('config.toggleterm')]]
     }
 
@@ -317,7 +320,6 @@ packer.startup {
     if vim.g.is_win or vim.g.is_mac and utils.executable('latex') then
       use { 'lervag/vimtex', ft = { 'tex' } }
     end
-    
     -- Comment plugin
     use { "tpope/vim-commentary", event = "VimEnter" }
 
@@ -328,7 +330,6 @@ packer.startup {
     use { "907th/vim-auto-save", event = "InsertEnter" }
 
     use {"alvan/vim-closetag"}
-    
     -- Show match number and index for searching
     use {
       "kevinhwang91/nvim-hlslens",
@@ -340,7 +341,7 @@ packer.startup {
   config = {
     max_jobs = 16,
     compile_path = packer_util.join_paths(
-    fn.stdpath('data'), 
+    fn.stdpath('data'),
     'site', 'lua', 'packer_compiled.lua'),
   },
 }

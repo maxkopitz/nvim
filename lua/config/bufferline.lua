@@ -4,7 +4,14 @@ require('bufferline').setup  {
     tab_size = 10,
     max_name_length = 18,
     max_prefix_length = 15,
-    diagnostics = false,
+    diagnostics = "nvim_lsp",
+    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+      if context.buffer:current() then
+        return ''
+      end
+
+    return ''
+    end,
     always_show_bufferline = true,
     offsets = {
       {
@@ -16,6 +23,7 @@ require('bufferline').setup  {
       {
         filetype = "Vista",
         text = "Vista",
+        hightlight = "Directory",
         separator = true,
       }
     }

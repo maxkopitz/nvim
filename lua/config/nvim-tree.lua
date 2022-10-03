@@ -58,7 +58,7 @@ nvim_tree.setup {
     },
   },
   git = {
-    enable = ture,
+    enable = true,
     ignore = true,
     timeout = 400,
   },
