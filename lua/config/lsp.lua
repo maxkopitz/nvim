@@ -129,7 +129,25 @@ end
 -- else
 --   vim.notify("pyright not found!", vim.log.levels.WARN, {title = 'Nvim-config'})
 -- end
+--Enable (broadcasting) snippet capability for completion
+--
 
+--> HTML Language server <--
+lspconfig.html.setup {
+  capabilities = capabilities,
+}
+
+--> CSS Language Server <-- 
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.eslint.setup{}
+
+--> CSS Modue Language Server <-- 
+-- TODO npm install -g cssmodules-language-server
+
+--> C/C++ Language Server <--
 if utils.executable("clangd") then
   lspconfig.clangd.setup {
     on_attach = custom_attach,
@@ -143,7 +161,7 @@ else
   vim.notify("clangd not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
--- set up vim-language-server
+--> set up vim-language-server <--
 if utils.executable("vim-language-server") then
   lspconfig.vimls.setup {
     on_attach = custom_attach,
@@ -156,7 +174,7 @@ else
   vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
--- set up bash-language-server
+--> bash-language-server <--
 if utils.executable("bash-language-server") then
   lspconfig.bashls.setup {
     on_attach = custom_attach,
