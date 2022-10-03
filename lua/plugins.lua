@@ -223,18 +223,6 @@ packer.startup {
     -- Better git commit experience
     use { 'rhysd/committia.vim', opt = true, setup = [[vim.cmd('packadd committia.vim')]] }
 
-    --> nvim in the browser <--
-    if vim.g.is_win or vim.g.is_mac then
-      use {
-        'glacambre/firenvim',
-        run = function()
-          fn['firenvim#install'](0)
-        end,
-        opt = true,
-        setup = [[vim.cmd('packadd firenvim')]],
-      }
-    end
-
    -- Another markdown plugin
     use { 'plasticboy/vim-markdown', ft = { 'markdown' } }
 
