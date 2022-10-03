@@ -340,6 +340,14 @@ packer.startup {
     use { "907th/vim-auto-save", event = "InsertEnter" }
 
     use {"alvan/vim-closetag"}
+    
+    -- Show match number and index for searching
+    use {
+      "kevinhwang91/nvim-hlslens",
+      branch = "main",
+      keys = { { "n", "*" }, { "n", "#" }, { "n", "n" }, { "n", "N" } },
+      config = [[require('config.hlslens')]],
+    }
   end,
   config = {
     max_jobs = 16,
