@@ -338,6 +338,8 @@ packer.startup {
 
     -- Autosave files on certain events
     use { "907th/vim-auto-save", event = "InsertEnter" }
+
+    use {"alvan/vim-closetag"}
   end,
   config = {
     max_jobs = 16,
