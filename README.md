@@ -59,6 +59,7 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [cmp-nvim-ultisnips](https://github.com/quangnguyen30192/cmp-nvim-ultisnips).
 - [cmp-emoji](https://github.com/hrsh7th/cmp-emoji).
 - vscode-like pictograms to LSP [lsp-kind](https://github.com/onsails/lspkind.nvim).
+- [nvim-hls](https://github.com/kevinhwang91/nvim-hlslens#minimal-configuration)
 
 ## Installed LSP servers 
 - [lua-lanuage-server](https://github.com/sumneko/lua-language-server).

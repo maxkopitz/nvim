@@ -41,7 +41,7 @@ let g:vista_echo_cursor = 0
 " Stay in current window when vista window is opened
 let g:vista_stay_on_open = 0
 
-nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
+nnoremap <silent> <space>t :<C-U>Vista!!<CR>
 
 """""""""""""""""""""""""""""" neoformat settings """""""""""""""""""""""
 let g:neoformat_enabled_python = ['black', 'yapf']
@@ -255,6 +255,10 @@ endif
 
 " Only fuzzy-search files names
 let g:Lf_DefaultMode = 'FullPath'
+
+let g:Lf_WindowPosition = 'popup'
+
+let g:Lf_PreviewInPopup = 1
 
 " Popup window settings
 let w = float2nr(&columns * 0.8)
