@@ -71,7 +71,7 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 -- Edit leader in core/globals.lua:45
 vim.g.mapleader =  ',' -- My leader key
 ```
-## General mappings 
+### General mappings 
 | Shortcut       | Mode(s) | Action |
 | --------       | ----    | -----  |
 | `;`            | Normal  | Maps `;` to `:`, no longer need to press shift to enter command mode. |
@@ -93,6 +93,24 @@ vim.g.mapleader =  ',' -- My leader key
 | `<C-E>`        | Insert  | Go to end of current line |
 | `jk`           | Insert  | Return to Normal mode | 
 | `<leader>\`    | Normal  | Splits current buffer |
+
+### LSP Mappings 
+```lua
+-- Can be found in lua/config/lsp.lua
+```
+| Shortcut       | Mode(s) | Action |
+| --------       | ----    | -----  |
+| `gd`           | Noraml  | Go to definition (LSP) |
+| `<C-]`         | Normal  | Signature help | 
+| `<space>rn`    | Normal  | Variable rename | 
+| `gr`           | Normal  | Show references | 
+| `[d`           | Normal  | Previous diagnositc | 
+| `]d`           | Normal  | Next diagnostic | 
+| `<space>q`     | Normal  | Puts diagnostic to qf  |
+| `<space>ca`    | Normal  | LSP code action | 
+| `<space>wa`    | Normal  | Add workspace folder |
+| `<space>wr`    | Normal  | Remove workspace folder |
+| `<space>wl`    | Normal  | List workspace folder |
 
 # Contributing 
 Create a PR. 
