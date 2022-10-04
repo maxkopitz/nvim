@@ -15,10 +15,9 @@ local custom_attach = function(client, bufnr)
   end
 
   map("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
-  map("n", "<C-]>", vim.lsp.buf.definition)
   map("n", "K", vim.lsp.buf.hover)
   map("n", "<C-k>", vim.lsp.buf.signature_help)
-  map("n", "<space>rn", vim.lsp.buf.rename, { desc = "varialbe rename" })
+  map("n", "<space>rn", vim.lsp.buf.rename, { desc = "variable rename" })
   map("n", "gr", vim.lsp.buf.references, { desc = "show references" })
   map("n", "[d", vim.diagnostic.goto_prev, { desc = "previous diagnostic" })
   map("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
