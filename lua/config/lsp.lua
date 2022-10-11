@@ -147,6 +147,7 @@ lspconfig.eslint.setup {}
 
 --> C/C++ Language Server <--
 if utils.executable("clangd") then
+  -- require("clangd_extensions").setup()
   lspconfig.clangd.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
@@ -177,6 +178,12 @@ if utils.executable("bash-language-server") then
   lspconfig.bashls.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
+  }
+end
+
+if utils.executable("gopls") then
+  lspconfig.gopls.setup {
+    cmd = {'gopls','--remote=auto'},
   }
 end
 
