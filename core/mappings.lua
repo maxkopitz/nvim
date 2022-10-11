@@ -34,16 +34,15 @@ keymap.set("n", "<leader>ev", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
   desc = "open init.lua",
 })
 
-keymap.set("n", "<leader>sv", "", {
-  silent = true,
-  desc = "reload init.lua",
-  callback = function()
-    vim.cmd([[
-      update $MYVIMRC
-      source $MYVIMRC
-    ]])
-    vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
-  end,
+keymap.set("n", "<leader>sv", function()
+  vim.cmd([[
+    update $MYVIMRC
+    source $MYVIMRC
+  ]])
+  vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
+  end, {
+    silent = true,
+    desc = {"reload init.lua"}
 })
 
 --> Quit all opened buffers <-- 
