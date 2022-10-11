@@ -26,21 +26,21 @@ local packer = require('packer');
 local packer_util = require('packer.util')
 
 packer.startup {
-  function(use) 
+  function(use)
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
 
     use { 'wbthomason/packer.nvim',  opt = true }
 
     --> Auto complete <--
-    use { 
-      'onsails/lspkind-nvim', 
-      event = 'VimEnter' 
+    use {
+      'onsails/lspkind-nvim',
+      event = 'VimEnter'
     }
     -- auto-completion engine
-    use { 
-      'hrsh7th/nvim-cmp', 
-      after = 'lspkind-nvim', 
-      config = [[require('config.nvim-cmp')]] 
+    use {
+      'hrsh7th/nvim-cmp',
+      after = 'lspkind-nvim',
+      config = [[require('config.nvim-cmp')]]
     }
 
     -- nvim-cmp completion sources
@@ -48,24 +48,30 @@ packer.startup {
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
-    use { 
-      'quangnguyen30192/cmp-nvim-ultisnips', 
-      after = { 'nvim-cmp', 'ultisnips' } 
+    use {
+      'quangnguyen30192/cmp-nvim-ultisnips',
+      after = { 'nvim-cmp', 'ultisnips' }
     }
-    
+
     if vim.g.is_mac then
       use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
     end
 
+    use {
+      'p00f/clangd_extensions.nvim',
+      after= 'nvim-cmp',
+      config = [[require('config.lsp')]]
+    }
+
     -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
-    use { 
-      'neovim/nvim-lspconfig', 
-      after = 'cmp-nvim-lsp', 
-      config = [[require('config.lsp')]] 
+    use {
+      'neovim/nvim-lspconfig',
+      after = 'cmp-nvim-lsp',
+      config = [[require('config.lsp')]]
     }
 
     --> Themes <--
-    use { 'EdenEast/nightfox.nvim'} 
+    use { 'EdenEast/nightfox.nvim'}
     use { 'navarasu/onedark.nvim', opt = true }
     use { 'sainnhe/edge', opt = true }
     use { 'sainnhe/sonokai', opt = true }
@@ -77,10 +83,10 @@ packer.startup {
     use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
     use { 'tomasiser/vim-code-dark', opt = true}
 
-    use { 'kyazdani42/nvim-web-devicons'} 
+    use { 'kyazdani42/nvim-web-devicons'}
 
     --> nvim-tree : A file Explorer For Neovim <--
-    use { 
+    use {
       'kyazdani42/nvim-tree.lua',
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = [[require('config.nvim-tree')]],
@@ -190,7 +196,7 @@ packer.startup {
         end, 2000)
       end,
     }
-    
+
     --> For only linux and MacOS <--
     if utils.executable('tmux') then
       -- .tmux.conf syntax highlighting and setting check
@@ -198,23 +204,23 @@ packer.startup {
     end
 
     --> Git commands <--
-    use { 
-      'tpope/vim-fugitive', 
-      event = 'User InGitRepo', 
-      config = [[require('config.fugitive')]] 
-    }
-  
-    --> Git commands <--
-    use { 
-      'rbong/vim-flog', 
-      requires = 'tpope/vim-fugitive', 
-      cmd = { 'Flog' } 
+    use {
+      'tpope/vim-fugitive',
+      event = 'User InGitRepo',
+      config = [[require('config.fugitive')]]
     }
 
     --> Git commands <--
-    use { 
-     'christoomey/vim-conflicted', 
-     requires = 'tpope/vim-fugitive', 
+    use {
+      'rbong/vim-flog',
+      requires = 'tpope/vim-fugitive',
+      cmd = { 'Flog' }
+    }
+
+    --> Git commands <--
+    use {
+     'christoomey/vim-conflicted',
+     requires = 'tpope/vim-fugitive',
      cmd = { 'Conflicted' } }
 
     -- Show git change (change, delete, add) signs in vim sign column
@@ -249,7 +255,6 @@ packer.startup {
     --> adds various text objects <--
     use { 'wellle/targets.vim', event = 'VimEnter' }
 
-    
     if vim.g.is_mac then
       use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
     end
@@ -258,7 +263,7 @@ packer.startup {
     use { 'sbdchd/neoformat', cmd = { 'Neoformat' } }
 
     --> The missing auto-completion for cmdline! <--
-    use { 
+    use {
       'gelguy/wilder.nvim',
       opt = true,
       setup = [[vim.cmd('packadd wilder.nvim')]]
@@ -288,7 +293,6 @@ packer.startup {
     else
       use {
         'Yggdroot/LeaderF',
-        event = 'VimEnter',
         cmd = 'Leaderf',
         run = ':LeaderfInstallCExtension',
       }
@@ -337,6 +341,7 @@ packer.startup {
       keys = { { "n", "*" }, { "n", "#" }, { "n", "n" }, { "n", "N" } },
       config = [[require('config.hlslens')]],
     }
+
   end,
   config = {
     max_jobs = 16,
