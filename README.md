@@ -61,7 +61,7 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - vscode-like pictograms to LSP [lsp-kind](https://github.com/onsails/lspkind.nvim).
 - [nvim-hls](https://github.com/kevinhwang91/nvim-hlslens#minimal-configuration)
 
-## Installed LSP servers 
+## Installed [LSP](https://microsoft.github.io/language-server-protocol/) servers 
 - [lua-lanuage-server](https://github.com/sumneko/lua-language-server).
 - [vim-lanauge-server](https://github.com/iamcco/vim-language-server).
 - [bash-lanauage-server](https://github.com/bash-lsp/bash-language-server)
