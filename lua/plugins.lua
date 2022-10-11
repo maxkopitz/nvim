@@ -29,7 +29,7 @@ packer.startup {
   function(use)
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
 
-    use { 'wbthomason/packer.nvim',  opt = true }
+    use { 'wbthomason/packer.nvim', opt = true }
 
     --> Auto complete <--
     use {
@@ -59,7 +59,7 @@ packer.startup {
 
     use {
       'p00f/clangd_extensions.nvim',
-      after= 'nvim-cmp',
+      after = 'nvim-cmp',
       config = [[require('config.lsp')]]
     }
 
@@ -71,7 +71,7 @@ packer.startup {
     }
 
     --> Themes <--
-    use { 'EdenEast/nightfox.nvim'}
+    use { 'EdenEast/nightfox.nvim' }
     use { 'navarasu/onedark.nvim', opt = true }
     use { 'sainnhe/edge', opt = true }
     use { 'sainnhe/sonokai', opt = true }
@@ -81,9 +81,9 @@ packer.startup {
     use { 'sainnhe/everforest', opt = true }
     use { 'rebelot/kanagawa.nvim', opt = true }
     use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
-    use { 'tomasiser/vim-code-dark', opt = true}
+    use { 'tomasiser/vim-code-dark', opt = true }
 
-    use { 'kyazdani42/nvim-web-devicons'}
+    use { 'kyazdani42/nvim-web-devicons' }
 
     --> nvim-tree : A file Explorer For Neovim <--
     use {
@@ -93,13 +93,13 @@ packer.startup {
     }
 
     --> nvim-treesitter : Interface for tree-sitter in nvim <--
-     use {
+    use {
       'nvim-treesitter/nvim-treesitter',
       config = [[require('config.treesitter')]],
       run = ':TSUpdate',
       requires = {
         'windwp/nvim-ts-autotag', -- Automatically end & rename tags
-       --  Dynamically set commentstring based on cursor location in file
+        --  Dynamically set commentstring based on cursor location in file
         'JoosepAlviste/nvim-ts-context-commentstring',
         'nvim-treesitter/playground',
       },
@@ -117,25 +117,25 @@ packer.startup {
     }
 
     --> lualine : nvim statusline written in lua <--
-    use { 
-      'nvim-lualine/lualine.nvim', 
+    use {
+      'nvim-lualine/lualine.nvim',
       config = [[require('config.lualine')]]
     }
 
     --> nvim-autoapirs : autopair plugin <--
     use {
-	    'windwp/nvim-autopairs',
-      config = function() require('nvim-autopairs').setup {} 
+      'windwp/nvim-autopairs',
+      config = function() require('nvim-autopairs').setup {}
       end
-    }  
+    }
 
     --> bufferline.nvim : bufferline for nvim <--
-    use { 
+    use {
       'akinsho/bufferline.nvim',
       event = 'VimEnter',
-      requires = {'kyazdani42/nvim-web-devicons'},
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = [[require('config.bufferline')]]
-    } 
+    }
 
     --> dashboard.nvim <--
     use {
@@ -144,7 +144,7 @@ packer.startup {
       config = [[require('config.dashboard')]]
     }
 
-    
+
 
     --> notification plugin <--
     use {
@@ -160,13 +160,14 @@ packer.startup {
     --> vista.vim <--
     if utils.executable('ctags') then
       use {
-        'liuchengxu/vista.vim', 
-          cmd ='Vista'}
+        'liuchengxu/vista.vim',
+        cmd = 'Vista'
+      }
     end
 
     --> Better escaping <--
     use {
-      'jdhao/better-escape.vim', 
+      'jdhao/better-escape.vim',
       event = 'InsertEnter'
     }
 
@@ -175,11 +176,11 @@ packer.startup {
       'folke/which-key.nvim',
       config = function()
         require('which-key').setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
         }
-        end
+      end
     }
 
     -- Snippet engine and snippet template
@@ -219,24 +220,41 @@ packer.startup {
 
     --> Git commands <--
     use {
-     'christoomey/vim-conflicted',
-     requires = 'tpope/vim-fugitive',
-     cmd = { 'Conflicted' } }
+      'christoomey/vim-conflicted',
+      requires = 'tpope/vim-fugitive',
+      cmd = { 'Conflicted' }
+    }
 
     -- Show git change (change, delete, add) signs in vim sign column
-    use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = [[require('config.gitsigns')]]
+    }
 
     -- Better git commit experience
-    use { 'rhysd/committia.vim', opt = true, setup = [[vim.cmd('packadd committia.vim')]] }
+    use {
+      'rhysd/committia.vim',
+      opt = true,
+      setup = [[vim.cmd('packadd committia.vim')]]
+    }
 
-   -- Another markdown plugin
-    use { 'plasticboy/vim-markdown', ft = { 'markdown' } }
+    -- Another markdown plugin
+    use {
+      'plasticboy/vim-markdown',
+      ft = { 'markdown' }
+    }
 
     -- Faster footnote generation
-    use { 'vim-pandoc/vim-markdownfootnotes', ft = { 'markdown' } }
+    use {
+      'vim-pandoc/vim-markdownfootnotes',
+      ft = { 'markdown' }
+    }
 
     -- Vim tabular plugin for manipulate tabular, required by markdown plugins
-    use { 'godlygeek/tabular', cmd = { 'Tabularize' } }
+    use {
+      'godlygeek/tabular',
+      cmd = { 'Tabularize' }
+    }
 
     -- Markdown JSON header highlight plugin
     use { 'elzr/vim-json', ft = { 'json', 'markdown' } }
@@ -301,9 +319,9 @@ packer.startup {
     use {
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = { { 'nvim-lua/plenary.nvim' } }
     }
-        -- search emoji and other symbols
+    -- search emoji and other symbols
     use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
 
     -- For Windows and Mac, we can open an URL in the browser. For Linux, it may
@@ -333,7 +351,7 @@ packer.startup {
     -- Autosave files on certain events
     use { "907th/vim-auto-save", event = "InsertEnter" }
 
-    use {"alvan/vim-closetag"}
+    use { "alvan/vim-closetag" }
     -- Show match number and index for searching
     use {
       "kevinhwang91/nvim-hlslens",
@@ -346,8 +364,8 @@ packer.startup {
   config = {
     max_jobs = 16,
     compile_path = packer_util.join_paths(
-    fn.stdpath('data'),
-    'site', 'lua', 'packer_compiled.lua'),
+      fn.stdpath('data'),
+      'site', 'lua', 'packer_compiled.lua'),
   },
 }
 
@@ -360,4 +378,3 @@ else
     vim.notify(msg, vim.log.levels.ERROR, { title = 'nvim-config' })
   end
 end
-

@@ -53,10 +53,6 @@ vim.g.loaded_sql_completion = 1
 -- Do not load tohtml.vim
 vim.g.loaded_2html_plugin = 1
 
--- use filetype.lua instead of filetype.vim
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
-
 -- Enable highlighting for lua HERE doc inside vim script
 vim.g.vimsyn_embed = 'l'
 

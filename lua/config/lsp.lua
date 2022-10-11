@@ -32,11 +32,8 @@ local custom_attach = function(client, bufnr)
   end, { desc = "list workspace folder" })
 
   -- Set some key bindings conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    map("n", "<space>f", vim.lsp.buf.formatting_sync, { desc = "format code" })
-  end
-  if client.resolved_capabilities.document_range_formatting then
-    map("x", "<space>f", vim.lsp.buf.range_formatting, { desc = "range format" })
+  if client.server_capabilities.documentFormattingProvider then
+    map("n", "<space>f", vim.lsp.buf.format, { desc = "format code" })
   end
 
   api.nvim_create_autocmd("CursorHold", {
@@ -66,7 +63,7 @@ local custom_attach = function(client, bufnr)
   })
 
   -- The blow command will highlight the current variable and its usages in the buffer.
-  if client.resolved_capabilities.document_highlight then
+  if client.resolved_capabilities.documentHighlightProvider then
     vim.cmd([[
       hi! link LspReferenceRead Visual
       hi! link LspReferenceText Visual
@@ -183,7 +180,7 @@ end
 
 if utils.executable("gopls") then
   lspconfig.gopls.setup {
-    cmd = {'gopls','--remote=auto'},
+    cmd = { 'gopls', '--remote=auto' },
   }
 end
 
