@@ -1,5 +1,6 @@
 local keymap = vim.keymap
 local api = vim.api
+local uv = vim.loop
 
 -->Save key strokes, no longer need shift to enter command mode <--
 keymap.set({ "n", "x" }, ";", ":")
@@ -95,3 +96,16 @@ keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", {silent = true, desc = "Split
 
 -- LeaderF 
 
+-- Blink cursour https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/
+local timer = uv.new_timer();
+local blink = function()
+  local cnt, blink_times = 0, 8
+  timer:start(0, 100, vim.schedule_wrap(function()
+    vim.cmd('set cursorcolumn! cursorline!')
+
+    cnt = cnt + 1
+    if cnt == blink_times then timer:stop() end
+  end))
+end
+
+keymap.set('n', '<leader>cb', blink)
