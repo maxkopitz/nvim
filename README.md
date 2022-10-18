@@ -17,7 +17,7 @@
   </a>
   <a href="https://github.com/neovim/neovim/releases/tag/stable">
       <img 
-        src="https://img.shields.io/badge/Neovim-0.7.2-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" 
+        src="https://img.shields.io/badge/Neovim-0.8.0-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" 
         alt="Neovim minimum version"/>
     </a>
 </div>
