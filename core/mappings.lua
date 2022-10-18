@@ -5,7 +5,7 @@ local uv = vim.loop
 -->Save key strokes, no longer need shift to enter command mode <--
 keymap.set({ "n", "x" }, ";", ":")
 --> nvim tree keymap.setpings <--
-keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
+keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>")
 
 --> BufferLine keymap.setpings <--
 keymap.set("n", "<Tab>1", ":BufferLineGoToBuffer 1<CR>")
@@ -31,22 +31,22 @@ keymap.set("n", "<leader>gpu", "<cmd>15 split|term git push<cr>", { desc = "Git 
 
 --> Edit and reload nvim config file quickly
 keymap.set("n", "<leader>ev", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
-  silent = true,
-  desc = "open init.lua",
+	silent = true,
+	desc = "open init.lua",
 })
 
 keymap.set("n", "<leader>sv", function()
-  vim.cmd([[
+	vim.cmd([[
     update $MYVIMRC
     source $MYVIMRC
   ]])
-  vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
-  end, {
-    silent = true,
-    desc = {"reload init.lua"}
+	vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
+end, {
+	silent = true,
+	desc = { "reload init.lua" },
 })
 
---> Quit all opened buffers <-- 
+--> Quit all opened buffers <--
 keymap.set("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc = "quit nvim" })
 
 --> Shortcut for faster save and quit <--
@@ -57,8 +57,8 @@ keymap.set("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current
 
 --> Delete a buffer, without closing the window, see https://stackoverflow.com/q/4465095/6064933 <--
 keymap.set("n", [[\d]], "<cmd>bprevious <bar> bdelete #<cr>", {
-  silent = true,
-  desc = "delete buffer",
+	silent = true,
+	desc = "delete buffer",
 })
 
 --> Switch windows <--
@@ -87,25 +87,31 @@ keymap.set("n", "]Q", "<cmd>clast<cr>zv", { silent = true, desc = "last qf item"
 
 -- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
 keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
-  silent = true,
-  desc = "close qf and location list",
+	silent = true,
+	desc = "close qf and location list",
 })
 
--- Split window 
-keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", {silent = true, desc = "Split screen"})
+-- Split window
+keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", { silent = true, desc = "Split screen" })
 
--- LeaderF 
+-- LeaderF
 
 -- Blink cursour https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/
-local timer = uv.new_timer();
+local timer = uv.new_timer()
 local blink = function()
-  local cnt, blink_times = 0, 8
-  timer:start(0, 100, vim.schedule_wrap(function()
-    vim.cmd('set cursorcolumn! cursorline!')
+	local cnt, blink_times = 0, 8
+	timer:start(
+		0,
+		100,
+		vim.schedule_wrap(function()
+			vim.cmd("set cursorcolumn! cursorline!")
 
-    cnt = cnt + 1
-    if cnt == blink_times then timer:stop() end
-  end))
+			cnt = cnt + 1
+			if cnt == blink_times then
+				timer:stop()
+			end
+		end)
+	)
 end
 
-keymap.set('n', '<leader>cb', blink)
+keymap.set("n", "<leader>cb", blink)
