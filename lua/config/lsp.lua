@@ -68,12 +68,25 @@ local custom_attach = function(client, bufnr)
       hi! link LspReferenceRead Visual
       hi! link LspReferenceText Visual
       hi! link LspReferenceWrite Visual
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
     ]])
+
+    local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+
+    api.nvim_create_autocmd("CursorHold" , {
+      group = gid,
+      buffer = bufnr,
+      callback = function ()
+        lsp.buf.document_highlight()
+      end
+    })
+
+    api.nvim_create_autocmd("CursorMoved" , {
+      group = gid,
+      buffer = bufnr,
+      callback = function ()
+        lsp.buf.clear_references()
+      end
+    })
   end
 
   if vim.g.logging_level == "debug" then
@@ -83,7 +96,7 @@ local custom_attach = function(client, bufnr)
 end
 
 local capabilities = lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 --- BEGIN LANGUAGE SERVER DEFINTIONS --
@@ -130,14 +143,18 @@ end
 --> HTML Language server <--
 lspconfig.html.setup {
   capabilities = capabilities,
+  on_attach = custom_attach,
 }
 
 --> CSS Language Server <--
 lspconfig.cssls.setup {
   capabilities = capabilities,
+  on_attach = custom_attach,
 }
 
-lspconfig.eslint.setup {}
+lspconfig.eslint.setup {
+  on_attach = custom_attach,
+}
 
 --> CSS Modue Language Server <--
 -- TODO npm install -g cssmodules-language-server
@@ -181,6 +198,7 @@ end
 if utils.executable("gopls") then
   lspconfig.gopls.setup {
     cmd = { 'gopls', '--remote=auto' },
+    on_attach = custom_attach,
   }
 end
 
