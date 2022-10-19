@@ -57,9 +57,7 @@ vim.g.loaded_2html_plugin = 1
 vim.g.vimsyn_embed = "l"
 
 -- Use English as main language
-if not vim.g.is_mac then
-	vim.cmd([[language en_US.UTF-8]])
-end
+vim.cmd([[language en_US.UTF-8]])
 
 -- Do not load zipPlugin.vim, gzip.vim and tarPlugin.vim (all these plugins are
 -- related to checking files inside compressed files)
