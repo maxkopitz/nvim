@@ -1,18 +1,3 @@
-" Do not use smart case in command line mode, extracted from https://vi.stackexchange.com/a/16511/15292.
-augroup dynamic_smartcase
-  autocmd!
-  autocmd CmdLineEnter : set nosmartcase
-  autocmd CmdLineLeave : set smartcase
-augroup END
-
-augroup term_settings
-  autocmd!
-  " Do not use number and relative number for terminal inside nvim
-  autocmd TermOpen * setlocal norelativenumber nonumber
-  " Go to insert mode by default to start typing command
-  autocmd TermOpen * startinsert
-augroup END
-
 " More accurate syntax highlighting? (see `:h syn-sync`)
 augroup accurate_syn_highlight
   autocmd!
@@ -91,12 +76,6 @@ endfunction
 augroup git_repo_check
   autocmd!
   autocmd VimEnter,DirChanged * call utils#Inside_git_repo()
-augroup END
- 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
 
 " ref: https://vi.stackexchange.com/a/169/15292
