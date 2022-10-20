@@ -11,5 +11,4 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
     disable = { 'help' }
 	},
-	disable = { "help" },
 })
