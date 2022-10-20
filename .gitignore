@@ -47,3 +47,4 @@ tags
 **pack/
 java-debug/
 vscode-java-test/
+.nvim/session
