@@ -22,6 +22,7 @@ workspaces.setup({
       -- load any saved session from current directory
       function()
         sessions.load(nil, { silent = true })
+        print("Opened workspace")
       end,
     }
   },

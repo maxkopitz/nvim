@@ -72,7 +72,7 @@ keymap.set("n", "<Down>", "<C-W>j")
 keymap.set("i", "<C-A>", "<HOME>")
 keymap.set("i", "<C-E>", "<END>")
 
--- Navigation in the location and quickfix list
+--> Navigation in the location and quickfix list
 keymap.set("n", "[l", "<cmd>lprevious<cr>zv", { silent = true, desc = "previous location item" })
 keymap.set("n", "]l", "<cmd>lnext<cr>zv", { silent = true, desc = "next location item" })
 
@@ -85,18 +85,17 @@ keymap.set("n", "]q", "<cmd>cnext<cr>zv", { silent = true, desc = "next qf item"
 keymap.set("n", "[Q", "<cmd>cfirst<cr>zv", { silent = true, desc = "first qf item" })
 keymap.set("n", "]Q", "<cmd>clast<cr>zv", { silent = true, desc = "last qf item" })
 
--- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
+--> Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190 <--
 keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
 	silent = true,
 	desc = "close qf and location list",
 })
 
--- Split window
+--> Split window
 keymap.set("n", [[<leader>\]], "<cmd>vsplit <cr>", { silent = true, desc = "Split screen" })
 
--- LeaderF
-
--- Blink cursour https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/
+--> Blink cursour <--
+--> https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/ <--
 local timer = uv.new_timer()
 local blink = function()
 	local cnt, blink_times = 0, 8
@@ -115,3 +114,7 @@ local blink = function()
 end
 
 keymap.set("n", "<leader>cb", blink)
+
+--> Sessions Key Binds <--
+keymap.set("n", "<leader>ss", "<cmd>SessionsSave <cr>", { silent = true, desc = "Session save" })
+keymap.set("n", "<leader>sl", "<cmd>SessionsLoad <cr>", { silent = true, desc = "Session load" })
