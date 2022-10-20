@@ -9,25 +9,26 @@ vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
 --- true: if this is a fresh install of packer
 --- false: if packer has been installed
 local function packer_ensure_install()
-  -- Where to install packer.nvim -- the package manager (we make it opt)
-  local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
+	-- Where to install packer.nvim -- the package manager (we make it opt)
+	local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
 
-  if fn.glob(packer_dir) ~= "" then
-    return false
-  end
+	if fn.glob(packer_dir) ~= "" then
+		return false
+	end
 
-  -- Auto-install packer in case it hasn't been installed.
-  vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
+	-- Auto-install packer in case it hasn't been installed.
+	vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
 
-  local packer_repo = "https://github.com/wbthomason/packer.nvim"
-  local install_cmd = string.format("!git clone --depth=1 %s %s", packer_repo, packer_dir)
-  vim.cmd(install_cmd)
+	local packer_repo = "https://github.com/wbthomason/packer.nvim"
+	local install_cmd = string.format("!git clone --depth=1 %s %s", packer_repo, packer_dir)
+	vim.cmd(install_cmd)
 
-  return true
+	return true
 end
 
 local fresh_install = packer_ensure_install()
 
+--> Load packer.nvim <--
 vim.cmd("packadd packer.nvim")
 
 local packer = require("packer")
@@ -91,7 +92,7 @@ packer.startup({
 		use({ "catppuccin/nvim", as = "catppuccin", opt = true })
 		use({ "tomasiser/vim-code-dark", opt = true })
 
-		use({ "kyazdani42/nvim-web-devicons" })
+		use({ "kyazdani42/nvim-web-devicons", event = "VimEnter" })
 
 		--> nvim-tree : A file Explorer For Neovim <--
 		use({
@@ -101,17 +102,14 @@ packer.startup({
 		})
 
 		--> nvim-treesitter : Interface for tree-sitter in nvim <--
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			config = [[require('config.treesitter')]],
-			run = ":TSUpdate",
-			requires = {
-				"windwp/nvim-ts-autotag", -- Automatically end & rename tags
-				--  Dynamically set commentstring based on cursor location in file
-				"JoosepAlviste/nvim-ts-context-commentstring",
-				"nvim-treesitter/playground",
-			},
-		})
+		if vim.g.is_mac then
+			use({
+				"nvim-treesitter/nvim-treesitter",
+				event = "BufEnter",
+				run = ":TSUpdate",
+				config = [[require('config.treesitter')]],
+			})
+		end
 
 		-- Super fast buffer jump
 		use({
@@ -182,11 +180,9 @@ packer.startup({
 		use({
 			"folke/which-key.nvim",
 			config = function()
-				require("which-key").setup({
-					-- your configuration comes here
-					-- or leave it empty to use the default settings
-					-- refer to the configuration section below
-				})
+				vim.defer_fn(function()
+					require("config.which-key")
+				end, 2000)
 			end,
 		})
 
@@ -210,6 +206,8 @@ packer.startup({
 			-- .tmux.conf syntax highlighting and setting check
 			use({ "tmux-plugins/vim-tmux", ft = { "tmux" } })
 		end
+
+		use({ "ii14/emmylua-nvim", ft = "lua" })
 
 		--> Git commands <--
 		use({
@@ -267,7 +265,7 @@ packer.startup({
 		if vim.g.is_win or vim.g.is_mac then
 			use({
 				"iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
+				run = "cd app && npm install",
 				ft = { "markdown" },
 			})
 		end
@@ -347,13 +345,11 @@ packer.startup({
 		-- Comment plugin
 		use({ "tpope/vim-commentary", event = "VimEnter" })
 
-		-- Multiple cursor plugin like Sublime Text?
-		-- use 'mg979/vim-visual-multi'
-
 		-- Autosave files on certain events
 		use({ "907th/vim-auto-save", event = "InsertEnter" })
 
 		use({ "alvan/vim-closetag" })
+
 		-- Show match number and index for searching
 		use({
 			"kevinhwang91/nvim-hlslens",
@@ -361,6 +357,12 @@ packer.startup({
 			keys = { { "n", "*" }, { "n", "#" }, { "n", "n" }, { "n", "N" } },
 			config = [[require('config.hlslens')]],
 		})
+
+		--> Show undo history visually <--
+		use({ "simnalamburt/vim-mundo", cmd = { "MundoToggle", "MundoShow" } })
+
+		--> A Vim text editor plugin to swap delimited items <--
+		use({ "machakann/vim-swap", event = "VimEnter" })
 	end,
 	config = {
 		max_jobs = 16,
