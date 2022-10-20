@@ -92,7 +92,7 @@ packer.startup({
 		use({ "catppuccin/nvim", as = "catppuccin", opt = true })
 		use({ "tomasiser/vim-code-dark", opt = true })
 
-		use({ "kyazdani42/nvim-web-devicons", event = "VimEnter" })
+		use({ "kyazdani42/nvim-web-devicons"})
 
 		--> nvim-tree : A file Explorer For Neovim <--
 		use({
@@ -315,11 +315,13 @@ packer.startup({
 				run = ":LeaderfInstallCExtension",
 			})
 		end
+
 		--> telescope.nvim <--
 		use({
 			"nvim-telescope/telescope.nvim",
 			cmd = "Telescope",
 			requires = { { "nvim-lua/plenary.nvim" } },
+			config = [[require('config.telescope')]],
 		})
 		-- search emoji and other symbols
 		use({ "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" })
@@ -363,6 +365,21 @@ packer.startup({
 
 		--> A Vim text editor plugin to swap delimited items <--
 		use({ "machakann/vim-swap", event = "VimEnter" })
+
+    --> Stylu 
+    use({"ckipp01/stylua-nvim", run = "cargo install stylua"})
+
+
+    --> Session and workspace management 
+    use({
+      "natecraddock/workspaces.nvim",
+      config = [[require('config.workspaces')]]
+    })
+
+    use({
+      "natecraddock/sessions.nvim",
+      config = [[require('config.workspaces')]]
+     })
 	end,
 	config = {
 		max_jobs = 16,
