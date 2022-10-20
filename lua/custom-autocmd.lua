@@ -91,20 +91,27 @@ api.nvim_create_autocmd("CmdLineLeave", {
 -- Number toggle 
 api.nvim_create_augroup("numbertoggle", { clear = true })
 
--- " autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif, TODO if &nu in lua
 api.nvim_create_autocmd({"BufEnter", "FocusGained", "InsertLeave", "WinEnter"}, {
   pattern = "*",
   group = "numbertoggle",
   callback = function()
-    vim.cmd("set rnu")
+    vim.cmd("if &nu | set rnu | endif")
   end,
 })
 
--- " autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 api.nvim_create_autocmd({"BufLeave", "FocusLost", "InsertEnter", "WinLeave"}, {
   pattern = "*",
   group = "numbertoggle",
   callback = function()
-    vim.cmd("set nornu")
+    vim.cmd("if &nu | set nornu | endif")
+  end,
+})
+
+-- Git repo check
+api.nvim_create_autocmd({"VimEnter", "DirChanged"}, {
+  pattern = "*",
+  group = api.nvim_create_augroup("git_repo_check", { clear = true }),
+  callback = function()
+    vim.cmd("call utils#Inside_git_repo()")
   end,
 })

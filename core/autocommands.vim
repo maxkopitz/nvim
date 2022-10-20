@@ -47,10 +47,10 @@ function! s:custom_highlight() abort
   highlight MatchParen cterm=bold,underline gui=bold,underline
 endfunction
 
-augroup auto_close_win
-  autocmd!
-  autocmd BufEnter * call s:quit_current_win()
-augroup END
+" augroup auto_close_win
+  " autocmd!
+  " autocmd BufEnter * call s:quit_current_win()
+" augroup END
 
 " Quit Nvim if we have only one window, and its filetype match our pattern.
 function! s:quit_current_win() abort
@@ -72,11 +72,6 @@ function! s:quit_current_win() abort
     qall
   endif
 endfunction
-
-augroup git_repo_check
-  autocmd!
-  autocmd VimEnter,DirChanged * call utils#Inside_git_repo()
-augroup END
 
 " ref: https://vi.stackexchange.com/a/169/15292
 function! s:handle_large_file() abort
