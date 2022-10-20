@@ -107,7 +107,6 @@ custom_auto.visual.b.fg = "#1e90ff"
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
 		theme = custom_auto,
 		component_separators = { left = "⦚", right = " ⦚" },
 		section_separators = { left = " ", right = " " },
