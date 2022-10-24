@@ -96,10 +96,10 @@ options.signcolumn = "auto:2"
 -- diffots = diffopt .. "context:3,"  -- context for diff
 
 -- change fillchars for folding, vertical split, end of buffer, and message separator
-options.fillchars = "fold:\\ ,vert:\\│,eob:\\ ,msgsep:‾"
+--options.fillchars = "fold:\\ ,vert:\\│,eob:\\ ,msgsep:‾"
 
 -- Executable program to use for grep command 
 if utils.executable("rg") then
-  options.grepprg = "rg --vimgrep --no-heading --smart-case"
+  options.grepprg = "rg\\ --vimgrep\\ --no-heading\\ --smart-case"
   options.grepformat = "%f:%l:%c:%m"
 end
