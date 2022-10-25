@@ -63,4 +63,22 @@ function M.add_pack(name)
 	return status
 end
 
+function M.Get_titlestr()
+  local title_str = ''
+  if v.g.is_linux then
+    title_str = vim.fn.hostname() .. '  '
+  end 
+
+  return title_str
+end
+
+-- TODO
+function M.Inside_git_repo()
+  local res = vim.fn.system('git rev-parse --is-inside-work-tree')
+  if res == true then 
+    return true
+  else 
+    return false
+  end
+end
 return M
