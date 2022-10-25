@@ -61,6 +61,12 @@ nvim_tree.setup({
 		ignore = false,
 		timeout = 400,
 	},
+  filters = {
+    custom = {
+      "^.git$",
+      ".DS_STORE",
+    },
+  },
 	actions = {
 		use_system_clipboard = true,
 	},
