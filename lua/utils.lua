@@ -65,9 +65,9 @@ end
 
 function M.Get_titlestr()
   local title_str = ''
-  if v.g.is_linux then
+  if vim.g.is_linux then
     title_str = vim.fn.hostname() .. '  '
-  end 
+  end
 
   return title_str
 end
@@ -75,9 +75,9 @@ end
 -- TODO
 function M.Inside_git_repo()
   local res = vim.fn.system('git rev-parse --is-inside-work-tree')
-  if res == true then 
+  if res then
     return true
-  else 
+  else
     return false
   end
 end
