@@ -2,11 +2,7 @@ local bufferline = require("bufferline")
 bufferline.setup({
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
-    numbers = "none", --[[ | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string, ]]
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+    numbers = "both", --[[ | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string, ]]
     indicator = {
       icon = "▎", -- this should be omitted if indicator style is not 'icon'
       style = "icon", --[[  | 'underline' | 'none', ]]
@@ -22,9 +18,9 @@ bufferline.setup({
     tab_size = 18,
     diagnostics = "nvim_lsp", --[[ | "nvim_lsp" | "coc", ]]
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
-      if context.buffer:current() then 
+      if context.buffer:current() then
           return ""
-      end 
+      end
 			    return ""
     end,
     offsets = { { filetype = "NvimTree", text = "Filetype", padding = 1 } },
@@ -41,21 +37,5 @@ bufferline.setup({
     separator_style = "thick", --[[  "slant" | "thick" | "thin" | { "any", "any" }, ]]
     enforce_regular_tabs = false, --[[  | true, ]]
     always_show_bufferline = true, --[[   | false, ]]
-    -- hover = {
-    --   enabled = true,
-    --   delay = 200,
-    --   reveal = { "close" },
-    -- },
-    -- sort_by = "insert_after_current"
-    --   | "insert_at_end"
-    --   | "id"
-    --   | "extension"
-    --   | "relative_directory"
-    --   | "directory"
-    --   | "tabs"
-    --   | function(buffer_a, buffer_b)
-    --     -- add custom logic
-    --     return buffer_a.modified > buffer_b.modified
-    --   end,
   },
 })

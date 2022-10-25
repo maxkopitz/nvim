@@ -1,94 +1,80 @@
-local diff = function()
-	local git_status = vim.b.gitsigns_status_dict
-	if git_status == nil then
-		return "cant find"
-	end
-
-	local modify_num = git_status.changed
-	local remove_num = git_status.removed
-	local add_num = git_status.added
-
-	local info = { added = add_num, modified = modify_num, removed = remove_num }
-	-- vim.pretty_print(info)
-	return info
-end
-local fn = vim.fn
-
-local function spell()
-	if vim.o.spell then
-		return string.format("[SPELL]")
-	end
-
-	return ""
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+  return
 end
 
-local function ime_state()
-	if vim.g.is_mac then
-		-- ref: https://github.com/vim-airline/vim-airline/blob/master/autoload/airline/extensions/xkblayout.vim#L11
-		local layout = fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
-		if layout == "0" then
-			return "[CN]"
-		end
-	end
-
-	return ""
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
 end
 
-local function trailing_space()
-	if not vim.o.modifiable then
-		return ""
-	end
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  sections = { "error", "warn" },
+  symbols = { error = " ", warn = " " },
+  update_in_insert = false,
+  always_visible = true,
+}
 
-	local line_num = nil
+local diff = {
+  "diff",
+  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  cond = hide_in_width,
+}
 
-	for i = 1, fn.line("$") do
-		local linetext = fn.getline(i)
-		-- To prevent invalid escape error, we wrap the regex string with `[[]]`.
-		local idx = fn.match(linetext, [[\v\s+$]])
+local filetype = {
+  "filetype",
+  icons_enabled = true,
+}
 
-		if idx ~= -1 then
-			line_num = i
-			break
-		end
-	end
+local branch = {
+  "branch",
+  icons_enabled = true,
+  icon = "",
+}
 
-	local msg = ""
-	if line_num ~= nil then
-		msg = string.format("[%d]trailing", line_num)
-	end
+local location = {
+  "location",
+  padding = 1,
+}
 
-	return msg
+-- cool function for progress
+local progress = function()
+  local current_line = vim.fn.line(".")
+  local total_lines = vim.fn.line("$")
+  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+  local line_ratio = current_line / total_lines
+  local index = math.ceil(line_ratio * #chars)
+  return chars[index]
 end
 
-local function mixed_indent()
-	if not vim.o.modifiable then
-		return ""
-	end
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+local spacing = {
+  function()
+    return "%="
+  end,
+}
 
-	local space_pat = [[\v^ +]]
-	local tab_pat = [[\v^\t+]]
-	local space_indent = fn.search(space_pat, "nwc")
-	local tab_indent = fn.search(tab_pat, "nwc")
-	local mixed = (space_indent > 0 and tab_indent > 0)
-	local mixed_same_line
-	if not mixed then
-		mixed_same_line = fn.search([[\v^(\t+ | +\t)]], "nwc")
-		mixed = mixed_same_line > 0
-	end
-	if not mixed then
-		return ""
-	end
-	if mixed_same_line ~= nil and mixed_same_line > 0 then
-		return "MI:" .. mixed_same_line
-	end
-	local space_indent_cnt = fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
-	local tab_indent_cnt = fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
-	if space_indent_cnt > tab_indent_cnt then
-		return "MI:" .. tab_indent
-	else
-		return "MI:" .. space_indent
-	end
-end
+local lsp_info = {
+  function()
+    local msg = "No Active Lsp"
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return msg
+    end
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        return client.name
+      end
+    end
+    return msg
+  end,
+  icon = "  LSP:",
+  color = { fg = "#56B6C2", gui = "bold" },
+}
 
 local custom_auto = require("lualine.themes.auto")
 custom_auto.terminal.a.bg = "#1e90ff"
@@ -103,55 +89,32 @@ custom_auto.replace.a.bg = "#C83434"
 custom_auto.visual.a.bg = "#725191"
 custom_auto.visual.b.fg = "#1e90ff"
 
---> Lualine config <--
-require("lualine").setup({
-	options = {
-		icons_enabled = true,
-		theme = custom_auto,
-		component_separators = { left = "⦚", right = " ⦚" },
-		section_separators = { left = " ", right = " " },
-		disabled_filetypes = {},
-		always_divide_middle = false,
-		globalstatus = true,
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = {
-			"branch",
-			"diff",
-		},
-		lualine_c = {
-			"filename",
-		},
-		lualine_x = {
-			"encoding",
-			{
-				"fileformat",
-				symbols = {
-					unix = "unix",
-					dos = "win",
-					mac = "mac",
-				},
-			},
-			"filetype",
-		},
-		lualine_y = { "progress" },
-		lualine_z = {
-			"location",
-			{
-				"diagnostics",
-				sources = { "nvim_diagnostic" },
-			},
-		},
-	},
-
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	extensions = { "nvim-tree", "fugitive" },
+lualine.setup({
+  options = {
+    icons_enabled = true,
+    theme = custom_auto,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+    always_divide_middle = false,
+		globalstatus = false,
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { branch, diff, diagnostics },
+    lualine_c = { "filename", spacing, lsp_info },
+    lualine_x = { "encoding", "fileformat", filetype },
+    lualine_y = { location },
+    lualine_z = { progress },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
+  },
+  tabline = {},
+  extensions = {},
 })
