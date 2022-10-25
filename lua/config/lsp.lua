@@ -105,7 +105,9 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 --
 --
 ---------------------------------------
+
 local lspconfig = require 'lspconfig'
+
 if utils.executable 'pylsp' then
   lspconfig.pylsp.setup {
     on_attach = custom_attach,
@@ -130,39 +132,34 @@ else
   vim.notify('pylsp not found!', vim.log.levels.WARN, { title = 'Nvim-config' })
 end
 
--- if utils.executable('pyright') then
---   lspconfig.pyright.setup{
---     on_attach = custom_attach,
---     capabilities = capabilities
---   }
--- else
---   vim.notify("pyright not found!", vim.log.levels.WARN, {title = 'Nvim-config'})
--- end
---Enable (broadcasting) snippet capability for completion
---
 
---> HTML Language server <--
-lspconfig.html.setup {
-  capabilities = capabilities,
-  on_attach = custom_attach,
-}
+-- Assuming this covers all vscode-langserers-extracted
+if utils.executable 'vscode-html-language-server' then
+  --> HTML Language server <--
+  lspconfig.html.setup {
+    capabilities = capabilities,
+    on_attach = custom_attach,
+  }
 
---> CSS Language Server <--
-lspconfig.cssls.setup {
-  capabilities = capabilities,
-  on_attach = custom_attach,
-}
+  --> CSS Language Server <--
+  lspconfig.cssls.setup {
+    capabilities = capabilities,
+    on_attach = custom_attach,
+  }
 
-lspconfig.eslint.setup {
-  on_attach = custom_attach,
-}
+  lspconfig.eslint.setup {
+    on_attach = custom_attach,
+  }
+end
 
+if utils.executable 'typescript-language-server' then
+  lspconfig.tsserver.setup {}
+end
 --> CSS Modue Language Server <--
 -- TODO npm install -g cssmodules-language-server
 
 --> C/C++ Language Server <--
 if utils.executable 'clangd' then
-  -- require("clangd_extensions").setup()
   lspconfig.clangd.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
