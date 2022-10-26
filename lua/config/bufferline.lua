@@ -23,7 +23,31 @@ bufferline.setup {
       end
       return ''
     end,
-    offsets = { { filetype = 'NvimTree', text = 'Filetype', padding = 1 } },
+    offsets = { 
+       { 
+         filetype = 'NvimTree', 
+         text = 'Filetype', 
+         padding = 1 
+       },
+         filetype = "vista",
+         text = 'Vista',
+         padding = 1
+    },
+    custom_filter = function(bufnr)
+      -- if the result is false, this buffer will be shown, otherwise, this
+      -- buffer will be hidden.
+
+      -- filter out filetypes you don't want to see
+      local exclude_ft = { "qf", "fugitive", "git" }
+      local cur_ft = vim.bo[bufnr].filetype
+      local should_filter = vim.tbl_contains(exclude_ft, cur_ft)
+
+      if should_filter then
+        return false
+      end
+
+      return true
+    end,
     color_icons = true, --[[  | false, -- whether or not to add the filetype icon highlights ]]
     show_buffer_icons = true, --[[  | false, -- disable filetype icons for buffers ]]
     show_buffer_close_icons = true, --[[ true | false, ]]
