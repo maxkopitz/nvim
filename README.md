@@ -68,20 +68,18 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - [clangd](https://clangd.llvm.org/installation.html).
 # Key Mappings
 ``` lua 
--- Edit leader in core/globals.lua:45
+-- Edit leader in lua/core/globals.lua:45
 vim.g.mapleader =  ',' -- My leader key
 ```
-### General mappings 
-| Shortcut       | Mode(s) | Action |
+### General Mappings 
+```lua
+-- Can be found in lua/core/mappings.lua
+```
+
+| Shortcut       | Mode(s) | Description |
 | --------       | ----    | -----  |
 | `;`            | Normal  | Maps `;` to `:`, no longer need to press shift to enter command mode. |
-| `<Tab><1-9>`   | Normal  | Switch to buffer 1-9 |
-| `<leader>gs`   | Normal  | Displays `git status`  |
-| `<leader>gw`   | Normal  | `git add` current buffer | 
-| `<leader>gc`   | Normal  | Run `git commit`   |
-| `<leader>gpl`  | Normal  | Run `git pull`     |
-| `<leader>gpu`  | Normal  | Run `git push`     |
-| `<leader>Q`    | Normal  |  Quits nvim    |
+| `<leader>Q`    | Normal  | Quits nvim    |
 | `<leader>w`    | Normal  | Saves buffer   | 
 | `<leader>q`    | Normal  | Saves file if modified and quit | 
 | `\d`           | Normal  | Deletes buffer, without closing window |
@@ -93,12 +91,111 @@ vim.g.mapleader =  ',' -- My leader key
 | `<C-E>`        | Insert  | Go to end of current line |
 | `jk`           | Insert  | Return to Normal mode | 
 | `<leader>\`    | Normal  | Splits current buffer |
+| `<leader>sv`   | Normal  | Reload nvim config |
+| `<leader>cb`   | Normal  | Blinks cursor, use if lost |
+
+### Bufferline mappings 
+```lua
+-- Can be found in lua/core/mappings.lua
+```
+| Shortcut      | Mode(s) | Description |
+| --------      | ----    | -----  |
+| `<Tab>bb`     | Normal  | Pick a buffer to switch |
+| `<Tab>bc`     | Normal  | Pick a buffer to close |
+| `<Tab>bn`     | Normal  | Move to next buffer | 
+| `<Tab>bp`     | Normal  | Move to previous buffer  |
+| `<Tab>t`      | Normal  | Create a new tab |
+| `<Tab>n`      | Normal  | Move to next tab |
+| `<Tab>p`      | Normal  | Move to previous tab|
+| `<Tab>c`      | Normal  | Close current tab |
+| `<Tab><1-9>`  | Normal  | Switch to buffer 1-9 |
+
+### Quick Fix Mappings
+```lua
+-- Can be found in lua/core/mappings.lua
+```
+
+| Shortcut | Mode(s) | Description |
+| -------- | ----    | -----  |
+| `[l`     | Normal  | Previous location item |
+| `]l`     | Normal  | Next location item |
+| `[L`     | Normal  | First location item |
+| `]L`     | Normal  | Last location item |
+| `[g`     | Normal  | Previous qf item |
+| `]g`     | Normal  | Next qf item |
+| `[Q`     | Normal  | First qf item |
+| `]Q`     | Normal  | Last qf item |
+| `\x`     | Normal  | Close qf and location list |
+
+### Vista mappings 
+```lua
+-- Can be found in lua/core/mappings.lua
+```
+| Shortcut    | Mode(s) | Description |
+| --------    | ----    | -----  |
+| '<leader>v' | Normal  | Opens vista
+
+### Fugitive Mappings 
+```lua
+-- Can be found in lua/config/fugitive.lua
+```
+
+| Shortcut | Mode(s) | Description |
+| -------- | ----    | -----  |
+| `<leader>gs`   | Normal  | Displays `git status`  |
+| `<leader>gw`   | Normal  | `git add` current buffer | 
+| `<leader>gc`   | Normal  | Run `git commit`   |
+| `<leader>gd`   | Normal  | Run `git diff`     | 
+| `<leader>gpl`  | Normal  | Run `git pull`     |
+| `<leader>gpu`  | Normal  | Run `git push`     |
+
+ ### LeaderF Mappings 
+```lua
+-- Can be found in core/plugins.vim
+```
+| Shortcut     | Mode(s) | Description |
+| --------     | ----    | -----  |
+| `<leader>ff` | Normal  | Search files | 
+| `<leader>ff` | Normal  | Grep project files | 
+| `<leader>fh` | Normal  | Search vim help files | 
+| `<leader>ft` | Normal  | Search tags in current buffers| 
+| `<leader>fb` | Normal  | Switch buffer | 
+| `<leader>fr` | Normal  | Search recent files | 
+| `<leader>fr` | Normal  | Search current buffer line | 
+| `<C-N>`      | LeaderF | Move the cursor downward in the result window| 
+| `<C-P>`      | LeaderF | Move the cursor upward in the result window|
+
+ ### Open-browser Mappings 
+```lua
+-- Can be found in core/plugins.vim
+```
+| Shortcut     | Mode(s) | Description |
+| --------     | ----    | -----  |
+| `<leader>ob` | Normal  | Open URL in browser |
+
+ ### Vista Mappings 
+```lua
+-- Can be found in core/plugins.vim
+```
+| Shortcut    | Mode(s) | Description |
+| --------    | ----    | -----  |
+| `<Space>t`  | Normal  | Toggles vista|
+
+ ### Markdown-preview Mappings 
+```lua
+-- Can be found in core/plugins.vim
+```
+| Shortcut   | Mode(s) | Description |
+| --------   | ----    | -----  |
+| `<M-m>`    | Normal  | Markdown-preview |
+| `<M-S-m>`  | Normal  | Stop markdown-preview|
+
 
 ### LSP Mappings 
 ```lua
 -- Can be found in lua/config/lsp.lua
 ```
-| Shortcut       | Mode(s) | Action |
+| Shortcut       | Mode(s) | Description |
 | --------       | ----    | -----  |
 | `gd`           | Noraml  | Go to definition (LSP) |
 | `<C-]`         | Normal  | Signature help | 
@@ -111,6 +208,7 @@ vim.g.mapleader =  ',' -- My leader key
 | `<space>wa`    | Normal  | Add workspace folder |
 | `<space>wr`    | Normal  | Remove workspace folder |
 | `<space>wl`    | Normal  | List workspace folder |
+| `<space>f`     | Normal  | Fromat code | 
 
 # Contributing 
 Create a PR. 
