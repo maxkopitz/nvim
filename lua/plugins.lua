@@ -293,6 +293,7 @@ packer.startup {
       opt = true,
       setup = [[vim.cmd('packadd wilder.nvim')]],
     }
+
     --> Standalone UI for nvim-lsp progress. Eye candy for the impatient. <--
     use {
       'j-hui/fidget.nvim',
