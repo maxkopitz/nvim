@@ -243,6 +243,13 @@ packer.startup {
       setup = [[vim.cmd('packadd committia.vim')]],
     }
 
+    use {
+      'ruifm/gitlinker.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      event = 'User InGitRepo',
+      config = [[require('config.git-linker')]],
+    }
+
     -- Another markdown plugin
     use {
       'plasticboy/vim-markdown',
