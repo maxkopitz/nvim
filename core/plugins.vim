@@ -256,9 +256,9 @@ endif
 " Only fuzzy-search files names
 let g:Lf_DefaultMode = 'FullPath'
 
-let g:Lf_WindowPosition = 'popup'
+" let g:Lf_WindowPosition = 'popup'
 
-let g:Lf_PreviewInPopup = 1
+" let g:Lf_PreviewInPopup = 1
 
 " Popup window settings
 let w = float2nr(&columns * 0.8)
@@ -280,12 +280,38 @@ let g:Lf_DefaultExternalTool = "rg"
 " show dot files
 let g:Lf_ShowHidden = 1
 
-" shortuts
-let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+" Disable default mapping
+let g:Lf_ShortcutF = ""
+let g:Lf_ShortcutB = ""
+
+" set up working directory for git repository
+let g:Lf_WorkingDirectoryMode = 'a'
+
+" Search files in popup window 
+nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
+
+" Grep project files in popup window
+nnoremap <silent> <leader>fg :<C-U>Leaderf rg --no-messages --popup<CR>
+
+" Search vim help files
+nnoremap <silent> <leader>fh :<C-U>Leaderf help --popup<CR>
+
+" Search tags in current buffer
+nnoremap <silent> <leader>ft :<C-U>Leaderf bufTag --popup<CR>
+
+" Switch buffers
+nnoremap <silent> <leader>fb :<C-U>Leaderf buffer --popup<CR>
+
+" Search recent files
+nnoremap <silent> <leader>fr :<C-U>Leaderf mru --popup --absolute-path<CR>
+
+nnoremap <silent> <leader>fl :<C-U>Leaderf line --popup)<CR>
+
+let g:Lf_PopupColorscheme = 'gruvbox_material'
+
+" Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
+" items.
+let g:Lf_CommandMap = {'<C-J>': ['<C-N>'], '<C-K>': ['<C-P>']}
 
 """"""""""""""""""""""""""""open-browser.vim settings"""""""""""""""""""
 if g:is_win || g:is_mac
