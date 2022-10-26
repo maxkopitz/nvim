@@ -31,18 +31,6 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 
 let g:Lf_PopupColorscheme = 'gruvbox_material'
 
-""""""""""""""""""""""""""" vista settings """"""""""""""""""""""""""""""""""
-let g:vista#renderer#icons = {
-      \ 'member': '',
-      \ }
-
-" Do not echo message on command line
-let g:vista_echo_cursor = 0
-" Stay in current window when vista window is opened
-let g:vista_stay_on_open = 0
-
-nnoremap <silent> <space>t :<C-U>Vista!!<CR>
-
 """""""""""""""""""""""""""""" neoformat settings """""""""""""""""""""""
 let g:neoformat_enabled_python = ['black', 'yapf']
 let g:neoformat_cpp_clangformat = {
@@ -95,42 +83,6 @@ if g:is_mac
     autocmd FileType markdown nmap <buffer> <leader>x <Plug>(grammarous-close-info-window)
     autocmd FileType markdown nmap <buffer> <c-n> <Plug>(grammarous-move-to-next-error)
     autocmd FileType markdown nmap <buffer> <c-p> <Plug>(grammarous-move-to-previous-error)
-  augroup END
-endif
-
-""""""""""""""""""""""""""""""firenvim settings""""""""""""""""""""""""""""""
-if exists('g:started_by_firenvim') && g:started_by_firenvim
-  if g:is_mac
-    set guifont=Iosevka\ Nerd\ Font:h18
-  else
-    set guifont=Consolas
-  endif
-
-  " general config for firenvim
-  let g:firenvim_config = {
-      \ 'globalSettings': {
-          \ 'alt': 'all',
-      \  },
-      \ 'localSettings': {
-          \ '.*': {
-              \ 'cmdline': 'neovim',
-              \ 'priority': 0,
-              \ 'selector': 'textarea',
-              \ 'takeover': 'never',
-          \ },
-      \ }
-  \ }
-
-  function! s:setup_firenvim() abort
-    set noruler noshowcmd
-    set laststatus=0 showtabline=0
-  endfunction
-
-  augroup firenvim
-    autocmd!
-    autocmd FileType text call s:setup_firenvim()
-    autocmd BufNewFile github.com_*.txt set filetype=markdown
-    autocmd BufNewFile stackoverflow.com_*.txt set filetype=markdown
   augroup END
 endif
 
