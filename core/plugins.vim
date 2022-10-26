@@ -305,7 +305,7 @@ nnoremap <silent> <leader>fb :<C-U>Leaderf buffer --popup<CR>
 " Search recent files
 nnoremap <silent> <leader>fr :<C-U>Leaderf mru --popup --absolute-path<CR>
 
-nnoremap <silent> <leader>fl :<C-U>Leaderf line --popup)<CR>
+nnoremap <silent> <leader>fl :<C-U>Leaderf line --popup<CR>
 
 let g:Lf_PopupColorscheme = 'gruvbox_material'
 
@@ -384,3 +384,15 @@ if ( g:is_win || g:is_mac ) && executable('latex')
     endfunction
   endif
 endif
+
+""""""""""""""""""""""""""" vista settings """"""""""""""""""""""""""""""""""
+let g:vista#renderer#icons = {
+      \ 'member': '',
+      \ }
+let g:vista_default_executive = 'nvim_lsp'
+" Do not echo message on command line
+let g:vista_echo_cursor = 0
+" Stay in current window when vista window is opened
+let g:vista_stay_on_open = 0
+
+nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
