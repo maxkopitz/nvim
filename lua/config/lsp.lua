@@ -2,6 +2,7 @@ local fn = vim.fn
 local api = vim.api
 local keymap = vim.keymap
 local lsp = vim.lsp
+local diagnostic = vim.diagnostic
 
 local utils = require 'utils'
 
@@ -14,26 +15,26 @@ local custom_attach = function(client, bufnr)
     keymap.set(mode, l, r, opts)
   end
 
-  map('n', 'gd', vim.lsp.buf.definition, { desc = 'go to definition' })
-  map('n', 'K', vim.lsp.buf.hover)
-  map('n', '<C-k>', vim.lsp.buf.signature_help)
+  map('n', 'gd', lsp.buf.definition, { desc = 'go to definition' })
+  map('n', 'K', lsp.buf.hover)
+  map('n', '<C-k>', lsp.buf.signature_help)
   map('n', '<space>rn', vim.lsp.buf.rename, { desc = 'variable rename' })
-  map('n', 'gr', vim.lsp.buf.references, { desc = 'show references' })
-  map('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous diagnostic' })
-  map('n', ']d', vim.diagnostic.goto_next, { desc = 'next diagnostic' })
+  map('n', 'gr', lsp.buf.references, { desc = 'show references' })
+  map('n', '[d', diagnostic.goto_prev, { desc = 'previous diagnostic' })
+  map('n', ']d', diagnostic.goto_next, { desc = 'next diagnostic' })
   map('n', '<space>q', function()
-    vim.diagnostic.setqflist { open = true }
+    diagnostic.setqflist { open = true }
   end, { desc = 'put diagnostic to qf' })
-  map('n', '<space>ca', vim.lsp.buf.code_action, { desc = 'LSP code action' })
-  map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { desc = 'add workspace folder' })
-  map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { desc = 'remove workspace folder' })
+  map('n', '<space>ca', lsp.buf.code_action, { desc = 'LSP code action' })
+  map('n', '<space>wa', lsp.buf.add_workspace_folder, { desc = 'add workspace folder' })
+  map('n', '<space>wr', lsp.buf.remove_workspace_folder, { desc = 'remove workspace folder' })
   map('n', '<space>wl', function()
-    inspect(vim.lsp.buf.list_workspace_folders())
+    inspect(lsp.buf.list_workspace_folders())
   end, { desc = 'list workspace folder' })
 
   -- Set some key bindings conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
-    map('n', '<space>f', vim.lsp.buf.format, { desc = 'format code' })
+    map('n', '<space>f', lsp.buf.format, { desc = 'format code' })
   end
 
   api.nvim_create_autocmd('CursorHold', {
@@ -56,7 +57,7 @@ local custom_attach = function(client, bufnr)
         (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
         and #vim.diagnostic.get() > 0
       then
-        vim.diagnostic.open_float(nil, float_opts)
+        diagnostic.open_float(nil, float_opts)
       end
 
       vim.b.diagnostics_pos = cursor_pos
@@ -238,7 +239,7 @@ fn.sign_define('DiagnosticSignInformation', { text = '', texthl = 'Diagnostic
 fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 -- global config for diagnostic
-vim.diagnostic.config {
+diagnostic.config {
   underline = false,
   virtual_text = false,
   signs = true,
