@@ -8,6 +8,14 @@ keymap.set({ 'n', 'x' }, ';', ':')
 keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
 
 --> BufferLine keymap.setpings <--
+keymap.set('n', '<Tab>bb', ':BufferLinePick <CR>', { desc = 'Pick a buffer to open'})
+keymap.set('n', '<Tab>bc', ':BufferLinePickClose <CR>', { desc = 'Pick a buffer to close'})
+keymap.set('n', '<Tab>bn', ':BufferLineMoveNext <CR>', { desc = 'Move to next buffer'})
+keymap.set('n', '<Tab>bp', ':BufferLineMovePrev <CR>', { desc = 'Move to previous buffer'})
+keymap.set('n', '<Tab>t', ':tabnew <CR>', { desc = 'Create a new tab'})
+keymap.set('n', '<Tab>n', ':tabnext <CR>', { desc = 'Move to next tab'})
+keymap.set('n', '<Tab>p', ':tabprevious <CR>', { desc = 'Move to previous tab'})
+keymap.set('n', '<Tab>c', ':tabclose <CR>', { desc = 'Closes current tab'})
 keymap.set('n', '<Tab>1', ':BufferLineGoToBuffer 1<CR>')
 keymap.set('n', '<Tab>2', ':BufferLineGoToBuffer 2<CR>')
 keymap.set('n', '<Tab>3', ':BufferLineGoToBuffer 3<CR>')
@@ -18,9 +26,6 @@ keymap.set('n', '<Tab>7', ':BufferLineGoToBuffer 7<CR>')
 keymap.set('n', '<Tab>8', ':BufferLineGoToBuffer 8<CR>')
 keymap.set('n', '<Tab>9', ':BufferLineGoToBuffer 9<CR>')
 
---> Vista keymap.setpings <--
-keymap.set('n', '<leader>v', ':Vista nvim_lsp<CR>')
-
 --> Git fugitive <--
 keymap.set('n', '<leader>gs', '<cmd>Git<cr>', { desc = 'Git status' })
 keymap.set('n', '<leader>gw', '<cmd>Gwrite<cr>', { desc = 'Git add' })
@@ -29,12 +34,7 @@ keymap.set('n', '<leader>gd', '<cmd>Gdiffsplit<cr>', { desc = 'Git diff' })
 keymap.set('n', '<leader>gpl', '<cmd>Git pull<cr>', { desc = 'Git pull' })
 keymap.set('n', '<leader>gpu', '<cmd>15 split|term git push<cr>', { desc = 'Git push' })
 
---> Edit and reload nvim config file quickly
-keymap.set('n', '<leader>ev', '<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>', {
-  silent = true,
-  desc = 'open init.lua',
-})
-
+--> Reload nvim config
 keymap.set('n', '<leader>sv', function()
   vim.cmd [[
     update $MYVIMRC
@@ -113,7 +113,7 @@ local blink = function()
   )
 end
 
-keymap.set('n', '<leader>cb', blink)
+keymap.set('n', '<leader>cb', blink, { desc = ''})
 
 --> Sessions Key Binds <--
 keymap.set('n', '<leader>ss', '<cmd>SessionsSave <cr>', { silent = true, desc = 'Session save' })
