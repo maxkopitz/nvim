@@ -34,6 +34,7 @@ vim.cmd 'packadd packer.nvim'
 local packer = require 'packer'
 local packer_util = require 'packer.util'
 
+
 packer.startup {
   function(use)
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
@@ -391,6 +392,11 @@ packer.startup {
   config = {
     max_jobs = 16,
     compile_path = packer_util.join_paths(fn.stdpath 'data', 'site', 'lua', 'packer_compiled.lua'),
+    display = {
+      open_fn = function()
+        return packer_util.float({ border = 'rounded' })
+      end
+    },
   },
 }
 
