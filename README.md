@@ -22,15 +22,32 @@
   </a>
 </div>
 
+# Table of Contents 
+- [About](#about)
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+- [Installed Plugins](#installed-plugins)
+    - [Installed LSP Servers](#installed-lsp-servers)
+- [Key Mappings](#key-mappings)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [Inspirations](#inspirations)
+
+
 # About 
 
-The contents of this repo is my Nvim config.
+The contents of this repo is the neovim config I use daily.
 
-# Requirements
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
-# Installation 
+# Getting Started 
+### Requirements
+  - [ripgrep](https://github.com/BurntSushi/ripgrep)
+### Installation
 
-Todo, making my setup portable to MacOS, Linux, and Windows.
+``` bash
+wget https://github.com/maxkopitz/nvim-config/archive/master.zip
+
+```
 
 # Installed Plugins 
 
@@ -61,16 +78,20 @@ Todo, making my setup portable to MacOS, Linux, and Windows.
 - vscode-like pictograms to LSP [lsp-kind](https://github.com/onsails/lspkind.nvim).
 - [nvim-hls](https://github.com/kevinhwang91/nvim-hlslens#minimal-configuration)
 
-## Installed [LSP](https://microsoft.github.io/language-server-protocol/) servers 
+### Installed [LSP](https://microsoft.github.io/language-server-protocol/) servers 
 - [lua-lanuage-server](https://github.com/sumneko/lua-language-server).
 - [vim-lanauge-server](https://github.com/iamcco/vim-language-server).
 - [bash-lanauage-server](https://github.com/bash-lsp/bash-language-server)
 - [clangd](https://clangd.llvm.org/installation.html).
+
 # Key Mappings
 ``` lua 
 -- Edit leader in lua/core/globals.lua:45
 vim.g.mapleader =  ',' -- My leader key
 ```
+
+<details><summary>General Mappings</summary>
+
 ### General Mappings 
 ```lua
 -- Can be found in lua/core/mappings.lua
@@ -94,6 +115,10 @@ vim.g.mapleader =  ',' -- My leader key
 | `<leader>sv`   | Normal  | Reload nvim config |
 | `<leader>cb`   | Normal  | Blinks cursor, use if lost |
 
+</details>
+
+<details><summary>Bufferline Mappings</summary>
+
 ### Bufferline mappings 
 ```lua
 -- Can be found in lua/core/mappings.lua
@@ -109,6 +134,10 @@ vim.g.mapleader =  ',' -- My leader key
 | `<Tab>p`      | Normal  | Move to previous tab|
 | `<Tab>c`      | Normal  | Close current tab |
 | `<Tab><1-9>`  | Normal  | Switch to buffer 1-9 |
+
+</details>
+
+<details><summary>Quick Fix Mappings</summary>
 
 ### Quick Fix Mappings
 ```lua
@@ -127,14 +156,21 @@ vim.g.mapleader =  ',' -- My leader key
 | `]Q`     | Normal  | Last qf item |
 | `\x`     | Normal  | Close qf and location list |
 
-### Vista mappings 
+</details>
+
+<details><summary>Vista Mappings</summary>
+
+### Vista Mappings 
 ```lua
 -- Can be found in lua/core/mappings.lua
 ```
 | Shortcut    | Mode(s) | Description |
 | --------    | ----    | -----  |
-| '<leader>v' | Normal  | Opens vista |
+| '<leader>t' | Normal  | Opens vista |
 
+</details>
+
+<details><summary>Git Signs Mappings</summary>
 
 ### Git Signs Mappings
 ```lua
@@ -147,6 +183,10 @@ vim.g.mapleader =  ',' -- My leader key
 | `[c`     | Normal  | Go to previous hunk | 
 | `<leader>hp` | Normal Previus hunk | 
 | `<leader>hb` | Normal Previus hunk | 
+
+</details>
+
+<details><summary>Fugitive Mappings</summary>
 
 ### Fugitive Mappings 
 ```lua
@@ -161,6 +201,10 @@ vim.g.mapleader =  ',' -- My leader key
 | `<leader>gd`   | Normal  | Run `git diff`     | 
 | `<leader>gpl`  | Normal  | Run `git pull`     |
 | `<leader>gpu`  | Normal  | Run `git push`     |
+
+</details>
+
+<details><summary>LeaderF Mappings</summary>
 
  ### LeaderF Mappings 
 ```lua
@@ -178,7 +222,11 @@ vim.g.mapleader =  ',' -- My leader key
 | `<C-N>`      | LeaderF | Move the cursor downward in the result window| 
 | `<C-P>`      | LeaderF | Move the cursor upward in the result window|
 
- ### Open-browser Mappings 
+</details>
+
+<details><summary>Open-Browser Mappings</summary>
+
+ ### Open-Browser Mappings 
 ```lua
 -- Can be found in core/plugins.vim
 ```
@@ -186,13 +234,9 @@ vim.g.mapleader =  ',' -- My leader key
 | --------     | ----    | -----  |
 | `<leader>ob` | Normal  | Open URL in browser |
 
- ### Vista Mappings 
-```lua
--- Can be found in core/plugins.vim
-```
-| Shortcut    | Mode(s) | Description |
-| --------    | ----    | -----  |
-| `<Space>t`  | Normal  | Toggles vista|
+</details>
+
+<details><summary>Markdown-preview Mappings</summary>
 
  ### Markdown-preview Mappings 
 ```lua
@@ -203,6 +247,9 @@ vim.g.mapleader =  ',' -- My leader key
 | `<M-m>`    | Normal  | Markdown-preview |
 | `<M-S-m>`  | Normal  | Stop markdown-preview|
 
+</details>
+
+<details><summary>LSP Mappings</summary>
 
 ### LSP Mappings 
 ```lua
@@ -222,6 +269,11 @@ vim.g.mapleader =  ',' -- My leader key
 | `<space>wr`    | Normal  | Remove workspace folder |
 | `<space>wl`    | Normal  | List workspace folder |
 | `<space>f`     | Normal  | Fromat code | 
+
+</details>
+
+
+# Screenshots
 
 # Contributing 
 Create a PR. 
