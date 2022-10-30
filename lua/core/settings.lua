@@ -1,6 +1,7 @@
+vim.scriptencoding = 'utf-8'
+
 local options = vim.o
 local utils = require 'utils'
-
 -- General tab settings
 options.tabstop = 2
 options.softtabstop = 2

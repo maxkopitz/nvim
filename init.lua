@@ -16,7 +16,6 @@ end
 local core_conf_files = {
   { 'core.globals', 'lua' },
   { 'core.settings', 'lua' },
-  { 'settings.vim', 'vim' },
   { 'autocommands.vim', 'vim' },
   { 'plugins.vim', 'vim' },
   { 'core.mappings', 'lua' },
