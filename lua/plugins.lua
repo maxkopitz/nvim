@@ -390,8 +390,11 @@ packer.startup {
     }
 
     -- Used for after/ftplugin/json.lua 
+    use { 'https://github.com/phelipetls/jsonpath.nvim' }
+
     use {
-      'https://github.com/phelipetls/jsonpath.nvim'
+      'https://github.com/norcalli/nvim-colorizer.lua',
+      config = [[require('config.colorizer')]],
     }
 
   end,
