@@ -92,7 +92,8 @@ keymap.set('n', [[\x]], '<cmd>windo lclose <bar> cclose <cr>', {
 })
 
 --> Split window
-keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Split screen' })
+keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
+keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'Horizontal split' })
 
 --> Blink cursour <--
 --> https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/ <--
