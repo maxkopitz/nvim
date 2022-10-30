@@ -388,6 +388,12 @@ packer.startup {
       'natecraddock/sessions.nvim',
       config = [[require('config.workspaces')]],
     }
+
+    -- Used for after/ftplugin/json.lua 
+    use {
+      'https://github.com/phelipetls/jsonpath.nvim'
+    }
+
   end,
   config = {
     max_jobs = 16,
