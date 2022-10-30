@@ -57,9 +57,11 @@ packer.startup {
     use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'quangnguyen30192/cmp-nvim-ultisnips', after = { 'nvim-cmp', 'ultisnips' }, }
+
     use {
-      'quangnguyen30192/cmp-nvim-ultisnips',
-      after = { 'nvim-cmp', 'ultisnips' },
+      'williamboman/mason.nvim',
+      config = [[require('config.mason')]],
     }
 
     if vim.g.is_mac then
@@ -296,6 +298,8 @@ packer.startup {
       after = 'nvim-lspconfig',
       config = [[require('config.fidget-nvim')]],
     }
+
+
 
     --> Highlight URLs inside vim <--
     use {
