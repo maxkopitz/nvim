@@ -151,13 +151,15 @@ if utils.executable 'vscode-html-language-server' then
   lspconfig.eslint.setup {
     on_attach = custom_attach,
   }
+
 end
 
 if utils.executable 'typescript-language-server' then
-  lspconfig.tsserver.setup {}
+  lspconfig.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = custom_attach,
+  }
 end
---> CSS Modue Language Server <--
--- TODO npm install -g cssmodules-language-server
 
 --> C/C++ Language Server <--
 if utils.executable 'clangd' then
