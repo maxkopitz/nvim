@@ -57,7 +57,6 @@ packer.startup {
     use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-    use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
     use {
       'quangnguyen30192/cmp-nvim-ultisnips',
       after = { 'nvim-cmp', 'ultisnips' },
@@ -82,7 +81,7 @@ packer.startup {
 
     --> Themes <--
     use { 'EdenEast/nightfox.nvim' }
-    use { 'navarasu/onedark.nvim', opt = true }
+    -- use { 'navarasu/onedark.nvim', opt = true }
     use { 'sainnhe/edge', opt = true }
     use { 'sainnhe/sonokai', opt = true }
     use { 'sainnhe/gruvbox-material', opt = true }
@@ -130,12 +129,8 @@ packer.startup {
     }
 
     --> nvim-autoapirs : autopair plugin <--
-    use {
-      'windwp/nvim-autopairs',
-      config = function()
-        require('nvim-autopairs').setup {}
-      end,
-    }
+    use { 'windwp/nvim-autopairs' }
+    use { 'https://github.com/windwp/nvim-ts-autotag' }
 
     --> bufferline.nvim : bufferline for nvim <--
     use {

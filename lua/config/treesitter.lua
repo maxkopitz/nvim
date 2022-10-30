@@ -1,6 +1,15 @@
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
-  ensure_installed = { 'python', 'cpp', 'dockerfile', 'c', 'lua', 'rust', 'javascript' },
+  ensure_installed = {
+    'python',
+    'cpp',
+    'dockerfile',
+    'c',
+    'lua',
+    'rust',
+    'javascript',
+    'typescript'
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -12,3 +21,7 @@ require('nvim-treesitter.configs').setup {
     disable = { 'help' },
   },
 }
+
+require('nvim-autopairs').setup {}
+
+require('nvim-ts-autotag').setup()
