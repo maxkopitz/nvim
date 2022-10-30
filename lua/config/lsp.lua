@@ -3,6 +3,7 @@ local api = vim.api
 local keymap = vim.keymap
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
+local protocol = vim.lsp.protocol 
 
 local utils = require 'utils'
 
@@ -97,9 +98,37 @@ local custom_attach = function(client, bufnr)
   end
 end
 
-local capabilities = lsp.protocol.make_client_capabilities()
+local capabilities = protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
 
 --- BEGIN LANGUAGE SERVER DEFINTIONS --
 --
@@ -158,6 +187,8 @@ if utils.executable 'typescript-language-server' then
   lspconfig.tsserver.setup {
     capabilities = capabilities,
     on_attach = custom_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" },
   }
 end
 
@@ -234,11 +265,13 @@ if utils.executable 'lua-language-server' then
   }
 end
 
--- Change diagnostic signs.
-fn.sign_define('DiagnosticSignError', { text = '✗', texthl = 'DiagnosticSignError' })
-fn.sign_define('DiagnosticSignWarn', { text = '!', texthl = 'DiagnosticSignWarn' })
-fn.sign_define('DiagnosticSignInformation', { text = '', texthl = 'DiagnosticSignInfo' })
-fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+-- Diagnostic symbols in the sign column (gutter)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
 
 -- global config for diagnostic
 diagnostic.config {
@@ -247,13 +280,6 @@ diagnostic.config {
   signs = true,
   severity_sort = true,
 }
-
--- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
---   underline = false,
---   virtual_text = false,
---   signs = true,
---   update_in_insert = false,
--- })
 
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
 lsp.handlers['textDocument/hover'] = lsp.with(vim.lsp.handlers.hover, {
