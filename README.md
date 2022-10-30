@@ -133,7 +133,20 @@ vim.g.mapleader =  ',' -- My leader key
 ```
 | Shortcut    | Mode(s) | Description |
 | --------    | ----    | -----  |
-| '<leader>v' | Normal  | Opens vista
+| '<leader>v' | Normal  | Opens vista |
+
+
+### Git Signs Mappings
+```lua
+-- Can be found in lua/config/gitsigns.lua
+```
+
+| Shortcut | Mode(s) | Description |
+| -------- | ----    | -----  |
+| `]c`     | Normal  | Go to next hunk | 
+| `[c`     | Normal  | Go to previous hunk | 
+| `<leader>hp` | Normal Previus hunk | 
+| `<leader>hb` | Normal Previus hunk | 
 
 ### Fugitive Mappings 
 ```lua
