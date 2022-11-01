@@ -119,3 +119,17 @@ keymap.set('n', '<leader>cb', blink, { desc = ''})
 --> Sessions Key Binds <--
 keymap.set('n', '<leader>ss', '<cmd>SessionsSave <cr>', { silent = true, desc = 'Session save' })
 keymap.set('n', '<leader>sl', '<cmd>SessionsLoad <cr>', { silent = true, desc = 'Session load' })
+
+api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  group = api.nvim_create_augroup("restore_after_yank", { clear = true }),
+  callback = function()
+    vim.cmd([[
+      silent! normal! `y
+      silent! delmarks y
+    ]])
+  end,
+})
+
+-- Go to beginning of command in command-line mode
+keymap.set("c", "<C-A>", "<HOME>")
