@@ -122,3 +122,5 @@ if utils.executable 'rg' then
   options.grepprg = 'rg\\ --vimgrep\\ --no-heading\\ --smart-case'
   options.grepformat = '%f:%l:%c:%m'
 end
+
+options.clipboard = options.clipboard .. 'unnamedplus'
