@@ -37,7 +37,7 @@
 
 # About 
 
-The contents of this repo is the neovim config I use daily.
+The contents of this repo is the neovim config I use daily. I mainly write code in C++, JS/TS for webdev and use latex for school.
 
 # Getting Started 
 ### Requirements
@@ -49,7 +49,7 @@ wget https://github.com/maxkopitz/nvim-config/archive/master.zip
 
 ```
 
-# Installed Plugins 
+# Features 
 
 - Plugin Manager [Packer.nvim](https://github.com/wbthomason/packer.nvim).
 - Speed up loading Lua Modules [impatient.nvim](https://github.com/lewis6991/impatient.nvim).
@@ -258,7 +258,8 @@ vim.g.mapleader =  ',' -- My leader key
 | Shortcut       | Mode(s) | Description |
 | --------       | ----    | -----  |
 | `gd`           | Noraml  | Go to definition (LSP) |
-| `<C-]`         | Normal  | Signature help | 
+| `K`            | Normal  | Hover | 
+| `<C-k>`        | Normal  | Signature help | 
 | `<space>rn`    | Normal  | Variable rename | 
 | `gr`           | Normal  | Show references | 
 | `[d`           | Normal  | Previous diagnositc | 
