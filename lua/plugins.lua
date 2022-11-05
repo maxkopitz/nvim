@@ -388,7 +388,7 @@ packer.startup {
       config = [[require('config.workspaces')]],
     }
 
-    -- Used for after/ftplugin/json.lua 
+    -- Used for after/ftplugin/json.lua
     use { 'https://github.com/phelipetls/jsonpath.nvim' }
 
     use {
