@@ -7,7 +7,7 @@ keymap.set({ 'n', 'x' }, ';', ':')
 --> nvim tree keymap.setpings <--
 keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
 
---> BufferLine keymap.setpings <--
+--> (plugin) BufferLine keymap.setpings <--
 keymap.set('n', '<Tab>bb', ':BufferLinePick <CR>', { desc = 'Pick a buffer to open'})
 keymap.set('n', '<Tab>bc', ':BufferLinePickClose <CR>', { desc = 'Pick a buffer to close'})
 keymap.set('n', '<Tab>bn', ':BufferLineMoveNext <CR>', { desc = 'Move to next buffer'})
@@ -85,17 +85,17 @@ keymap.set('n', ']q', '<cmd>cnext<cr>zv', { silent = true, desc = 'next qf item'
 keymap.set('n', '[Q', '<cmd>cfirst<cr>zv', { silent = true, desc = 'first qf item' })
 keymap.set('n', ']Q', '<cmd>clast<cr>zv', { silent = true, desc = 'last qf item' })
 
---> Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190 <--
+--------------------- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190 <--
 keymap.set('n', [[\x]], '<cmd>windo lclose <bar> cclose <cr>', {
   silent = true,
   desc = 'close qf and location list',
 })
 
---> Split window
+--------------------- Split window ---------------------
 keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
 keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'Horizontal split' })
 
---> Blink cursour <--
+--------------------- Blink cursour <---------------------
 --> https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/ <--
 local timer = uv.new_timer()
 local blink = function()
@@ -116,7 +116,7 @@ end
 
 keymap.set('n', '<leader>cb', blink, { desc = ''})
 
---> Sessions Key Binds <--
+--------------------- (plugin) Sessions Key Binds ---------------------
 keymap.set('n', '<leader>ss', '<cmd>SessionsSave <cr>', { silent = true, desc = 'Session save' })
 keymap.set('n', '<leader>sl', '<cmd>SessionsLoad <cr>', { silent = true, desc = 'Session load' })
 
@@ -133,3 +133,22 @@ api.nvim_create_autocmd("TextYankPost", {
 
 -- Go to beginning of command in command-line mode
 keymap.set("c", "<C-A>", "<HOME>")
+
+------------------------ (plugin) markdown-preview binds-------------------
+keymap.set("n", "<M-m>", "<cmd>MarkdownPreview<cr>", { silent = true, desc = "Markdown preview start"})
+keymap.set("n", "<M-S-m>", "<cmd>MarkdownPreviewStop<cr>", { silent = true, desc = "Markdown preview stop"})
+
+
+------------------------ (plugin) LeaderF Binds-------------------
+  
+keymap.set("n", "<leader>ff", "<cmd>Leaderf file --popup<CR>", {silent = true, desc="Search files in popup window"})
+keymap.set("n", "<leader>fg", "<cmd>Leaderf rg --no-messages --popup<CR>", {silent = true, desc="Grep project files in popup window"})
+keymap.set("n", "<leader>fh", "<cmd>Leaderf help --popup<CR>", {silent = true, desc="Search vim help files"})
+keymap.set("n", "<leader>ft", "<cmd>Leaderf bufTag --popup<CR>", {silent = true, desc="Search tags in current buffer"})
+keymap.set("n", "<leader>fb", "<cmd>Leaderf buffer --popup<CR>", {silent = true, desc="Search buffers"})
+keymap.set("n", "<leader>fr", "<cmd>Leaderf mru --popup<CR>", {silent = true, desc="Search recent files"})
+keymap.set("n", "<leader>fl", "<cmd>Leaderf line --popup<CR>", {silent = true, desc="Search lines"})
+
+------------------------ (plugin) Vista Binds-------------------
+keymap.set("n", "<Space>t", "<cmd>Vista!!<CR>", {silent = true, desc="Toggle Vista"})
+

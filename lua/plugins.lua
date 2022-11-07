@@ -409,3 +409,136 @@ else
     vim.notify(msg, vim.log.levels.ERROR, { title = 'nvim-config' })
   end
 end
+
+------------------------------ neoformat settings -----------------------
+vim.g.neoformat_enabled_python = {'black', 'yapf'}
+vim.g.neoformat_cpp_clangformat = {
+ exe = 'clang-format',
+ args = {'--style="{IndentWidth: 4}"'}
+}
+vim.g.neoformat_c_clangformat = {
+ exe = 'clang-format',
+ args = {'--style="{IndentWidth: 4}"'}
+}
+
+vim.g.neoformat_enabled_cpp = {'clangformat'}
+vim.g.neoformat_enabled_c = {'clangformat'}
+
+vim.g.neoformat_enabled_css = {'prettier'}
+vim.g.neoformat_enabled_html = {'prettier'}
+vim.g.neoformat_enabled_javascript = {'prettier'}
+vim.g.neoformat_enabled_typescript = {'prettier'}
+vim.g.neoformat_enabled_json = {'prettier'}
+
+
+------------------------------vim-auto-save settings------------------------------
+vim.g.auto_save = 1
+
+vim.g.Lf_PopupColorscheme = 'gruvbox_material'
+
+-------------------------plasticboy/vim-markdown settings-------------------
+-- Disable header folding
+vim.g.vim_markdown_folding_disabled = 1
+
+-- Whether to use conceal feature in markdown
+vim.g.vim_markdown_conceal = 1
+
+-- Disable math tex conceal and syntax highlight
+vim.g.tex_conceal = ''
+vim.g.vim_markdown_math = 0
+
+-- Support front matter of various format
+vim.g.vim_markdown_frontmatter = 1  -- for YAML format
+vim.g.vim_markdown_toml_frontmatter = 1 -- for TOML format
+vim.g.vim_markdown_json_frontmatter = 1 -- for JSON format
+
+-- Let the TOC window autofit so that it doesn't take too much space
+vim.g.vim_markdown_toc_autofit = 1
+
+
+-------------------------UltiSnips settings-------------------
+-- Trigger configuration. Do not use <tab> if you use YouCompleteMe
+vim.g.UltiSnipsExpandTrigger = '<c-j>'
+
+-- Do not look for SnipMate snippets
+vim.g.UltiSnipsEnableSnipMate = 0
+
+-- Shortcut to jump forward and backward in tabstop positions
+vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
+vim.g.UltiSnipsJumpBackwardTrigger =  '<c-k>'
+
+-- Configuration for custom snippets directory, see
+-- https://jdhao.github.io/2019/04/17/neovim_snippet_s1/ for details.
+vim.g.UltiSnipsSnippetDirectories= {'UltiSnips', 'my_snippets'}
+
+
+------------------------markdown-preview settings-------------------
+-- Only setting this for suitable platforms
+if vim.g.is_win or vim.g.is_mac then
+  -- Do not close the preview tab when switching to other buffers
+  vim.g.mkdp_auto_close = 0
+end
+
+-----------------------------LeaderF settings---------------------
+-- Do not use cache file
+vim.g.Lf_UseCache = 0
+-- Refresh each time we call leaderf
+vim.g.Lf_UseMemoryCache = 0
+
+--Ignore certain files and directories when searching files
+vim.g.Lf_WildIgnore = {
+  dir = {'.git', '__pycache__', '.DS_Store'},
+   file = {'*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
+   '*.gif', '*.svg', '*.ico', '*.db', '*.tgz', '*.tar.gz', '*.gz',
+   '*.zip', '*.bin', '*.pptx', '*.xlsx', '*.docx', '*.pdf', '*.tmp',
+   '*.wmv', '*.mkv', '*.mp4', '*.rmvb', '*.ttf', '*.ttc', '*.otf',
+   '*.mp3', '*.aac'}
+}
+
+-- Do not show fancy icons for Linux server.
+if vim.g.is_linux then
+  vim.g.Lf_ShowDevIcons = 0
+end
+
+-- Only fuzzy-search files names
+vim.g.Lf_DefaultMode = 'FullPath'
+
+-- vim.g.Lf_WindowPosition = 'popup'
+
+-- vim.g.Lf_PreviewInPopup = 1
+
+-- Popup window settings
+local w = fn.float2nr(vim.o.columns * 0.8)
+if w > 140 then
+  vim.g.Lf_PopupWidth = 140
+else
+  vim.g.Lf_PopupWidth = w
+end
+
+vim.g.Lf_PopupPosition = {0, fn.float2nr((vim.o.columns - vim.g.Lf_PopupWidth)/2)}
+
+-- Do not use version control tool to list files under a directory since
+-- submodules are not searched by default.
+vim.g.Lf_UseVersionControlTool = 0
+
+-- Use rg as the default search tool
+vim.g.Lf_DefaultExternalTool = "rg"
+
+-- show dot files
+vim.g.Lf_ShowHidden = 1
+
+-- Disable default mapping
+vim.g.Lf_ShortcutF = ""
+vim.g.Lf_ShortcutB = ""
+
+-- set up working directory for git repository
+vim.g.Lf_WorkingDirectoryMode = 'a'
+
+vim.g.Lf_PopupColorscheme = 'gruvbox_material'
+
+--Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
+--items.
+vim.g.Lf_CommandMap = {['<C-J>'] = {'<C-N>'}, ['<C-K>'] = {'<C-P>'}}
+
+
+

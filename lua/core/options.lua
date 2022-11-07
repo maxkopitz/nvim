@@ -1,6 +1,6 @@
 local fn = vim.fn
 local api = vim.api
-local global = vim.g 
+local global = vim.g
 
 local utils = require 'utils'
 
@@ -75,7 +75,7 @@ if global.is_win then
 end
 
 ------------------------------------------------------------------------
---                         Settings                                   --
+--                         Option Settings                            --
 ------------------------------------------------------------------------
 vim.scriptencoding = 'utf-8'
 
@@ -200,4 +200,4 @@ if utils.executable 'rg' then
   o.grepformat = '%f:%l:%c:%m'
 end
 
-opt.clipboard:append {'unnamed', 'unnamedplus'}
+opt.clipboard:append {'unnamed', 'unnamedplus' }
