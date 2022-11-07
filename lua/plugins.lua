@@ -384,8 +384,8 @@ packer.startup {
       'https://github.com/norcalli/nvim-colorizer.lua',
       config = [[require('config.colorizer')]],
     }
-
   end,
+
   config = {
     max_jobs = 16,
     compile_path = packer_util.join_paths(fn.stdpath 'data', 'site', 'lua', 'packer_compiled.lua'),
