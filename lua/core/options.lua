@@ -1,9 +1,8 @@
 local fn = vim.fn
 local api = vim.api
-local global = global 
+local global = vim.g 
 
 local utils = require 'utils'
-
 
 -- Inspect something
 function _G.inspect(item)
