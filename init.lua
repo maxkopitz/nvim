@@ -19,6 +19,7 @@ local core_conf_files = {
   { 'autocommands.vim', 'vim' },
   { 'plugins.vim', 'vim' },
   { 'core.mappings', 'lua' },
+  { 'colorscheme', 'lua'},
 }
 
 for _, contents in ipairs(core_conf_files) do
