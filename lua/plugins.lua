@@ -272,7 +272,10 @@ packer.startup {
     end
 
     --> Auto format tools <--
-    use { 'sbdchd/neoformat', cmd = { 'Neoformat' } }
+    use {
+      'sbdchd/neoformat',
+      cmd = { 'Neoformat' },
+    }
 
     --> The missing auto-completion for cmdline! <--
     use {
