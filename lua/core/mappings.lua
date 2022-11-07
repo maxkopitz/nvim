@@ -2,6 +2,16 @@ local keymap = vim.keymap
 local api = vim.api
 local uv = vim.loop
 
+
+--Use short names for common plugin manager commands to simplify typing.
+--To use these shortcuts: first activate command line with `:`, then input the
+--short alias, e.g., `pi`, then press <space>, the alias will be expanded to
+--the full command automatically.
+--vim.cmd("utils#Cabbrev('pi', 'PackerInstall')")
+--vim.cmd("utils#Cabbrev('pud', 'PackerUpdate')")
+--vim.cmd("utils#Cabbrev('pc', 'PackerClean')")
+--vim.cmd("utils#Cabbrev('ps', 'PackerSync')")
+
 -->Save key strokes, no longer need shift to enter command mode <--
 keymap.set({ 'n', 'x' }, ';', ':')
 --> nvim tree keymap.setpings <--

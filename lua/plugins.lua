@@ -1,4 +1,5 @@
 local fn = vim.fn
+local api = vim.api
 local utils = require 'utils'
 
 -- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
@@ -411,24 +412,24 @@ else
 end
 
 ------------------------------ neoformat settings -----------------------
-vim.g.neoformat_enabled_python = {'black', 'yapf'}
+vim.g.neoformat_enabled_python = { 'black', 'yapf' }
 vim.g.neoformat_cpp_clangformat = {
- exe = 'clang-format',
- args = {'--style="{IndentWidth: 4}"'}
+  exe = 'clang-format',
+  args = { '--style="{IndentWidth: 4}"' }
 }
 vim.g.neoformat_c_clangformat = {
- exe = 'clang-format',
- args = {'--style="{IndentWidth: 4}"'}
+  exe = 'clang-format',
+  args = { '--style="{IndentWidth: 4}"' }
 }
 
-vim.g.neoformat_enabled_cpp = {'clangformat'}
-vim.g.neoformat_enabled_c = {'clangformat'}
+vim.g.neoformat_enabled_cpp = { 'clangformat' }
+vim.g.neoformat_enabled_c = { 'clangformat' }
 
-vim.g.neoformat_enabled_css = {'prettier'}
-vim.g.neoformat_enabled_html = {'prettier'}
-vim.g.neoformat_enabled_javascript = {'prettier'}
-vim.g.neoformat_enabled_typescript = {'prettier'}
-vim.g.neoformat_enabled_json = {'prettier'}
+vim.g.neoformat_enabled_css = { 'prettier' }
+vim.g.neoformat_enabled_html = { 'prettier' }
+vim.g.neoformat_enabled_javascript = { 'prettier' }
+vim.g.neoformat_enabled_typescript = { 'prettier' }
+vim.g.neoformat_enabled_json = { 'prettier' }
 
 
 ------------------------------vim-auto-save settings------------------------------
@@ -448,7 +449,7 @@ vim.g.tex_conceal = ''
 vim.g.vim_markdown_math = 0
 
 -- Support front matter of various format
-vim.g.vim_markdown_frontmatter = 1  -- for YAML format
+vim.g.vim_markdown_frontmatter = 1 -- for YAML format
 vim.g.vim_markdown_toml_frontmatter = 1 -- for TOML format
 vim.g.vim_markdown_json_frontmatter = 1 -- for JSON format
 
@@ -465,11 +466,11 @@ vim.g.UltiSnipsEnableSnipMate = 0
 
 -- Shortcut to jump forward and backward in tabstop positions
 vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
-vim.g.UltiSnipsJumpBackwardTrigger =  '<c-k>'
+vim.g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 -- Configuration for custom snippets directory, see
 -- https://jdhao.github.io/2019/04/17/neovim_snippet_s1/ for details.
-vim.g.UltiSnipsSnippetDirectories= {'UltiSnips', 'my_snippets'}
+vim.g.UltiSnipsSnippetDirectories = { 'UltiSnips', 'my_snippets' }
 
 
 ------------------------markdown-preview settings-------------------
@@ -487,12 +488,12 @@ vim.g.Lf_UseMemoryCache = 0
 
 --Ignore certain files and directories when searching files
 vim.g.Lf_WildIgnore = {
-  dir = {'.git', '__pycache__', '.DS_Store'},
-   file = {'*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
-   '*.gif', '*.svg', '*.ico', '*.db', '*.tgz', '*.tar.gz', '*.gz',
-   '*.zip', '*.bin', '*.pptx', '*.xlsx', '*.docx', '*.pdf', '*.tmp',
-   '*.wmv', '*.mkv', '*.mp4', '*.rmvb', '*.ttf', '*.ttc', '*.otf',
-   '*.mp3', '*.aac'}
+  dir = { '.git', '__pycache__', '.DS_Store' },
+  file = { '*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
+    '*.gif', '*.svg', '*.ico', '*.db', '*.tgz', '*.tar.gz', '*.gz',
+    '*.zip', '*.bin', '*.pptx', '*.xlsx', '*.docx', '*.pdf', '*.tmp',
+    '*.wmv', '*.mkv', '*.mp4', '*.rmvb', '*.ttf', '*.ttc', '*.otf',
+    '*.mp3', '*.aac' }
 }
 
 -- Do not show fancy icons for Linux server.
@@ -515,7 +516,7 @@ else
   vim.g.Lf_PopupWidth = w
 end
 
-vim.g.Lf_PopupPosition = {0, fn.float2nr((vim.o.columns - vim.g.Lf_PopupWidth)/2)}
+vim.g.Lf_PopupPosition = { 0, fn.float2nr((vim.o.columns - vim.g.Lf_PopupWidth) / 2) }
 
 -- Do not use version control tool to list files under a directory since
 -- submodules are not searched by default.
@@ -538,7 +539,100 @@ vim.g.Lf_PopupColorscheme = 'gruvbox_material'
 
 --Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
 --items.
-vim.g.Lf_CommandMap = {['<C-J>'] = {'<C-N>'}, ['<C-K>'] = {'<C-P>'}}
+vim.g.Lf_CommandMap = { ['<C-J>'] = { '<C-N>' }, ['<C-K>'] = { '<C-P>' } }
 
 
+----------------------------vimtex settings-----------------------------
+if (vim.g.is_win or vim.g.is_mac) and utils.executable('latex') then
+  --Hacks for inverse search to work semi-automatically,
+  --see https://jdhao.github.io/2021/02/20/inverse_search_setup_neovim_vimtex/.
+  -- function! s:write_server_name() abort
+  --   let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
+  --   call writefile([v:servername], nvim_server_file)
+  -- endfunction
 
+  -- augroup vimtex_common
+  --   autocmd!
+  --   autocmd FileType tex call s:write_server_name()
+  --   autocmd FileType tex nmap <buffer> <F9> <plug>(vimtex-compile)
+  -- augroup END
+
+  vim.g.vimtex_compiler_latexmk = {
+    build_dir = 'build',
+  }
+
+  -- TOC settings
+  vim.g.vimtex_toc_config = {
+    name = 'TOC',
+    layers = { 'content', 'todo', 'include' },
+    resize = 1,
+    split_width = 30,
+    todo_sorted = 0,
+    show_help = 1,
+    show_numbers = 1,
+    mode = 2,
+  }
+
+  -- Viewer settings for different platforms
+  if vim.g.is_win then
+    vim.g.vimtex_view_general_viewer = 'SumatraPDF'
+    vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+  end
+
+  if vim.g.is_mac then
+    --vim.g.vimtex_view_method = "skim"
+    vim.g.vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+    vim.g.vimtex_view_general_options = '-r @line @pdf @tex'
+
+    -- augroup vimtex_mac
+    -- autocmd!
+    -- autocmd User VimtexEventCompileSuccess call UpdateSkim()
+    -- augroup END
+
+    -- The following code is adapted from https://gist.github.com/skulumani/7ea00478c63193a832a6d3f2e661a536.
+    -- function! UpdateSkim() abort
+    -- let l:out = b:vimtex.out()
+    -- let l:src_file_path = expand('%:p')
+    -- let l:cmd = [g:vimtex_view_general_viewer, '-r']
+
+    -- if !empty(system('pgrep Skim'))
+    -- call extend(l:cmd, ['-g'])
+    -- endif
+
+    -- call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
+  end
+end
+
+------------------------vim-grammarous settings------------------------------
+if vim.g.is_mac then
+  vim.g['grammarous#languagetool_cmd'] = 'languagetool'
+  vim.g['grammarous#disabled_rules'] = {
+    ['*'] = { 'WHITESPACE_RULE', 'EN_QUOTES', 'ARROWS', 'SENTENCE_WHITESPACE',
+      'WORD_CONTAINS_UNDERSCORE', 'COMMA_PARENTHESIS_WHITESPACE',
+      'EN_UNPAIRED_BRACKETS', 'UPPERCASE_SENTENCE_START',
+      'ENGLISH_WORD_REPEAT_BEGINNING_RULE', 'DASH_RULE', 'PLUS_MINUS',
+      'PUNCTUATION_PARAGRAPH_END', 'MULTIPLICATION_SIGN', 'PRP_CHECKOUT',
+      'CAN_CHECKOUT', 'SOME_OF_THE', 'DOUBLE_PUNCTUATION', 'HELL',
+      'CURRENCY', 'POSSESSIVE_APOSTROPHE', 'ENGLISH_WORD_REPEAT_RULE',
+      'NON_STANDARD_WORD', 'AU', 'DATE_NEW_YEAR' },
+  }
+
+  api.nvim_create_augroup('grammarous_map', { clear = true})
+  api.nvim_create_autocmd('FileType', {
+    group = 'grammarous_map',
+    pattern = 'markdown',
+    callback = function()
+      vim.keymap.set('n', '<leader>x', '<Plug>(grammarous-close-info-window)', {})
+      vim.keymap.set('n', '<C-n>', '<Plug>(grammarous-move-to-next-error)', {})
+      vim.keymap.set('n', '<C-p>', '<Plug>(grammarous-move-to-previous-error)', {})
+    end,
+  })
+end
+
+--------------------------- vista settings ----------------------------------
+vim.g['vista#renderer#icons'] = { member = '', }
+vim.g.vista_default_executive = 'nvim_lsp'
+-- Do not echo message on command line
+vim.g.vista_echo_cursor = 0
+-- Stay in current window when vista window is opened
+vim.g.vista_stay_on_open = 0

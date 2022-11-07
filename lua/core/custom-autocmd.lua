@@ -111,3 +111,6 @@ api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
     vim.cmd 'call utils#Inside_git_repo()'
   end,
 })
+
+
+
