@@ -14,8 +14,7 @@ if nvim_ver ~= expected_ver then
 end
 
 local core_conf_files = {
-  { 'core.globals', 'lua' },
-  { 'core.settings', 'lua' },
+  { 'core.options', 'lua' },
   { 'autocommands.vim', 'vim' },
   { 'plugins.vim', 'vim' },
   { 'core.mappings', 'lua' },
