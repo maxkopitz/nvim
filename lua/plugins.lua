@@ -277,8 +277,7 @@ packer.startup {
     --> The missing auto-completion for cmdline! <--
     use {
       'gelguy/wilder.nvim',
-      opt = true,
-      setup = [[vim.cmd('packadd wilder.nvim')]],
+      config = [[require('config.wilder')]]
     }
 
     --> Standalone UI for nvim-lsp progress. Eye candy for the impatient. <--
