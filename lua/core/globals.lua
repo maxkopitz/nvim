@@ -20,8 +20,6 @@ vim.g.is_linux = (utils.has 'unix' and (not utils.has 'macunix')) and true or fa
 vim.g.is_mac = utils.has 'macunix' and true or false
 vim.g.logging_level = 'info'
 
-vim.cmd 'colorscheme nightfox'
-
 ------------------------------------------------------------------------
 --                         builtin variables                          --
 ------------------------------------------------------------------------
