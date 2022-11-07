@@ -3,7 +3,7 @@ local api = vim.api
 local keymap = vim.keymap
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
-local protocol = vim.lsp.protocol
+local protocol = vim.lsp.protocol 
 
 local utils = require 'utils'
 
@@ -54,8 +54,9 @@ local custom_attach = function(client, bufnr)
       end
 
       local cursor_pos = api.nvim_win_get_cursor(0)
-      if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
-          and #vim.diagnostic.get() > 0
+      if
+        (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+        and #vim.diagnostic.get() > 0
       then
         diagnostic.open_float(nil, float_opts)
       end
@@ -268,7 +269,7 @@ end
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
-  fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 
