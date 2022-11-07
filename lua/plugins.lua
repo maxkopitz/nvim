@@ -188,17 +188,6 @@ packer.startup {
     use { 'SirVer/ultisnips', event = 'InsertEnter' }
     use { 'honza/vim-snippets', after = 'ultisnips' }
 
-    --> neoscroll : betterscrolling <--
-    use {
-      'karb94/neoscroll.nvim',
-      event = 'VimEnter',
-      config = function()
-        vim.defer_fn(function()
-          require 'config.neoscroll'
-        end, 2000)
-      end,
-    }
-
     --> For only linux and MacOS <--
     if utils.executable 'tmux' then
       -- .tmux.conf syntax highlighting and setting check
