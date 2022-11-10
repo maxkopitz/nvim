@@ -636,3 +636,9 @@ vim.g.vista_default_executive = 'nvim_lsp'
 vim.g.vista_echo_cursor = 0
 -- Stay in current window when vista window is opened
 vim.g.vista_stay_on_open = 0
+
+----------------------------open-browser.vim settings-------------------
+if vim.g.is_win or vim.g.is_mac then
+  -- Disable netrw's gx mapping.
+   vim.g.netrw_nogx = 1
+end
