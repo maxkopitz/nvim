@@ -8,7 +8,7 @@ gs.setup {
     topdelete = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
     changedelete = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
   },
-  word_diff = true,
+  word_diff = false,
   on_attach = function(bufnr)
     local function map(mode, l, r, opts)
       opts = opts or {}
@@ -49,9 +49,9 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = '*',
   callback = function()
     vim.cmd [[
-      hi GitSignsChangeInline gui=reverse
-      hi GitSignsAddInline gui=reverse
-      hi GitSignsDeleteInline gui=reverse
+      hi GitSignsChangeInline guibg=fg guifg=bg
+      hi GitSignsAddInline guibg=fg guifg=bg
+      hi GitSignsDeleteInline guibg=fg guifg=bg
     ]]
   end,
 })
