@@ -35,57 +35,18 @@ vim.cmd 'packadd packer.nvim'
 local packer = require 'packer'
 local packer_util = require 'packer.util'
 
-
 packer.startup {
   function(use)
-    -- Packer can mange itself
+    ------------ Packer can mange itself ------------
     use { 'wbthomason/packer.nvim', opt = true }
 
-    -- Load first
+    ------------ Load first ------------
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
+    use { 'glepnir/dashboard-nvim', event = 'VimEnter', config = [[require('config.dashboard')]], }
 
-
-    --> Auto complete <--
-    use {
-      'onsails/lspkind-nvim',
-      event = 'VimEnter',
-    }
-    -- auto-completion engine
-    use {
-      'hrsh7th/nvim-cmp',
-      after = 'lspkind-nvim',
-      config = [[require('config.nvim-cmp')]],
-    }
-
-    -- nvim-cmp completion sources
-    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
-    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
-    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-
-
-    if vim.g.is_mac then
-      use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
-    end
-
-    use {
-      'p00f/clangd_extensions.nvim',
-      after = 'nvim-cmp',
-      config = [[require('lsp')]],
-    }
-
-    -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
-    use {
-      'williamboman/mason.nvim',
-      "williamboman/mason-lspconfig.nvim",
-      'neovim/nvim-lspconfig',
-      after = 'cmp-nvim-lsp',
-      config = [[require('lsp')]],
-    }
-
-
-    --> Themes <--
+    ------------ Themes ------------
     use { 'EdenEast/nightfox.nvim' }
     -- use { 'navarasu/onedark.nvim', opt = true }
     use { 'sainnhe/edge', opt = true }
@@ -98,215 +59,24 @@ packer.startup {
     use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
     use { 'tomasiser/vim-code-dark', opt = true }
 
-
-    --> nvim-tree : A file Explorer For Neovim <--
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      config = [[require('config.nvim-tree')]],
-    }
-
-    --> nvim-treesitter : Interface for tree-sitter in nvim <--
+    ------------ Treesitter ------------
     if vim.g.is_mac then
-      use {
-        'nvim-treesitter/nvim-treesitter',
-        event = 'BufEnter',
-        run = ':TSUpdate',
-        config = [[require('config.treesitter')]],
-      }
+      use { 'nvim-treesitter/nvim-treesitter', event = 'BufEnter', run = ':TSUpdate',
+        config = [[require('config.treesitter')]], }
     end
 
-    -- Super fast buffer jump
-    use {
-      'phaazon/hop.nvim',
-      event = 'VimEnter',
-      config = function()
-        vim.defer_fn(function()
-          require 'config.nvim_hop'
-        end, 2000)
-      end,
-    }
-
-    --> lualine : nvim statusline written in lua <--
-    use {
-      'nvim-lualine/lualine.nvim',
-      config = [[require('config.lualine')]],
-    }
-
-    --> nvim-autoapirs : autopair plugin <--
-    use { 'windwp/nvim-autopairs' }
-    use { 'https://github.com/windwp/nvim-ts-autotag' }
-
-    --> bufferline.nvim : bufferline for nvim <--
-    use {
-      'akinsho/bufferline.nvim',
-      event = 'VimEnter',
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      config = [[require('config.bufferline')]],
-    }
-
-    --> dashboard.nvim <--
-    use {
-      'glepnir/dashboard-nvim',
-      event = 'VimEnter',
-      config = [[require('config.dashboard')]],
-    }
-
-    --> notification plugin <--
-    use {
-      'rcarriga/nvim-notify',
-      event = 'BufEnter',
-      config = function()
-        vim.defer_fn(function()
-          require 'config.nvim-notify'
-        end, 2000)
-      end,
-    }
-
-    --> vista.vim <--
-    if utils.executable 'ctags' then
-      use {
-        'liuchengxu/vista.vim',
-        cmd = 'Vista',
-      }
-    end
-
-    --> Better escaping <--
-    use {
-      'jdhao/better-escape.vim',
-      event = 'InsertEnter',
-    }
-
-    --> Which key, know your keymappings <--
-    use {
-      'folke/which-key.nvim',
-      config = function()
-        vim.defer_fn(function()
-          require 'config.which-key'
-        end, 2000)
-      end,
-    }
-
-    -- Snippet engine and snippet template
-    use { 'SirVer/ultisnips', event = 'InsertEnter' }
-    use { 'honza/vim-snippets', after = 'ultisnips' }
-
-    --> For only linux and MacOS <--
-    if utils.executable 'tmux' then
-      -- .tmux.conf syntax highlighting and setting check
-      use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
-    end
-
-    use { 'ii14/emmylua-nvim', ft = 'lua' }
-
-    --> Git commands <--
-    use {
-      'tpope/vim-fugitive',
-      event = 'User InGitRepo',
-      config = [[require('config.fugitive')]],
-    }
-
-    --> Git commands <--
-    use {
-      'rbong/vim-flog',
-      requires = 'tpope/vim-fugitive',
-      cmd = { 'Flog' },
-    }
-
-    --> Git commands <--
-    use {
-      'christoomey/vim-conflicted',
-      requires = 'tpope/vim-fugitive',
-      cmd = { 'Conflicted' },
-    }
-
-    -- Show git change (change, delete, add) signs in vim sign column
-    use {
-      'lewis6991/gitsigns.nvim',
-      config = [[require('config.gitsigns')]],
-    }
-
-    -- Better git commit experience
-    use {
-      'rhysd/committia.vim',
-      opt = true,
-      setup = [[vim.cmd('packadd committia.vim')]],
-    }
-
-    use {
-      'ruifm/gitlinker.nvim',
-      requires = 'nvim-lua/plenary.nvim',
-      event = 'User InGitRepo',
-      config = [[require('config.git-linker')]],
-    }
-
-    -- Another markdown plugin
-    use {
-      'plasticboy/vim-markdown',
-      ft = { 'markdown' },
-    }
-
-    -- Faster footnote generation
-    use {
-      'vim-pandoc/vim-markdownfootnotes',
-      ft = { 'markdown' },
-    }
-
-    -- Vim tabular plugin for manipulate tabular, required by markdown plugins
-    use {
-      'godlygeek/tabular',
-      cmd = { 'Tabularize' },
-    }
-
-    -- Markdown previewing (only for Mac and Windows)
-    if vim.g.is_win or vim.g.is_mac then
-      use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && npm install',
-        ft = { 'markdown' },
-      }
-    end
-
-    --> adds various text objects <--
-    use { 'wellle/targets.vim', event = 'VimEnter' }
-
-    if vim.g.is_mac then
-      use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
-    end
-
-    --> Auto format tools <--
-    use {
-      'sbdchd/neoformat',
-      cmd = { 'Neoformat' },
-    }
-
-    --> The missing auto-completion for cmdline! <--
-    use {
-      'gelguy/wilder.nvim',
-      config = [[require('config.wilder')]]
-    }
-
-    --> Standalone UI for nvim-lsp progress. Eye candy for the impatient. <--
-    use {
-      'j-hui/fidget.nvim',
-      after = 'nvim-lspconfig',
-      config = [[require('config.fidget-nvim')]],
-    }
-
-
-
-    --> Highlight URLs inside vim <--
-    use {
-      'itchyny/vim-highlighturl',
-      event = 'VimEnter',
-    }
-
-    use {
-      'kevinhwang91/nvim-bqf',
-      ft = 'qf',
-      config = [[require('config.bqf')]],
-    }
-
+    ------------  Navigating (Telescope/Tree/Refactor) ------------
+    use { 'nvim-telescope/telescope.nvim', cmd = 'Telescope', requires = { { 'nvim-lua/plenary.nvim' } },
+      config = [[require('config.telescope')]], }
+    use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
+    use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
+      config = [[require('config.nvim-tree')]], }
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = "require('config.bqf'" }
+    use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' },
+      config = [[require('config.bufferline')]], }
+    use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]], }
+    use { 'kevinhwang91/nvim-hlslens', branch = 'main', keys = { { 'n', '*' }, { 'n', '#' }, { 'n', 'n' }, { 'n', 'N' } },
+      config = [[require('config.hlslens')]], } -- Show match number and index for searching
     -- File search, tag search and more
     if vim.g.is_win then
       use { 'Yggdroot/LeaderF', cmd = 'Leaderf' }
@@ -318,77 +88,95 @@ packer.startup {
       }
     end
 
-    --> telescope.nvim <--
-    use {
-      'nvim-telescope/telescope.nvim',
-      cmd = 'Telescope',
-      requires = { { 'nvim-lua/plenary.nvim' } },
-      config = [[require('config.telescope')]],
-    }
-    -- search emoji and other symbols
-    use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
 
-    -- For Windows and Mac, we can open an URL in the browser. For Linux, it may
-    -- not be possible since we maybe in a server which disables GUI.
+    ------------ LSP Base ------------
+    use {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
+      config = [[require('lsp')]],
+    }
+
+    ------------ LSP Cmp ------------
+    use { 'hrsh7th/nvim-cmp', config = [[require('config.nvim-cmp')]] } -- auto-completion engine
+    use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' } -- source for neovim Lua API.
+    use { 'hrsh7th/cmp-nvim-lsp', after = 'cmp-nvim-lua' } -- source for neovim's built-in language server client
+    use { 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' } -- source for buffer words.
+    use { 'hrsh7th/cmp-path', after = 'cmp-buffer' } -- source for filesystem paths
+    if vim.g.is_mac then
+      use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
+    end
+
+    ------------ LSP Addons ------------
+    use { 'p00f/clangd_extensions.nvim', after = 'nvim-cmp', config = [[require('lsp')]] }
+    use { 'onsails/lspkind-nvim' } -- VSCode like pictograms
+    use { 'ii14/emmylua-nvim', ft = 'lua' }
+    use { 'j-hui/fidget.nvim', after = 'nvim-lspconfig', config = [[require('config.fidget-nvim')]], } -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
+
+    ------------ General ------------
+    use { 'https://github.com/windwp/nvim-ts-autotag' }
+    use { 'rcarriga/nvim-notify', config = [[require('config.nvim-notify')]] }
+    use { 'gelguy/wilder.nvim', config = [[require('config.wilder')]] } -- The missing auto-completion for cmdline!
+    use { 'jdhao/better-escape.vim', event = 'InsertEnter', }
+    use { 'folke/which-key.nvim', event = 'BufWinEnter', config = "require('config.which-key')" }
+    use { 'wellle/targets.vim', event = 'VimEnter' }
+    use { 'itchyny/vim-highlighturl', event = 'VimEnter', }
+    use { 'akinsho/toggleterm.nvim', tag = '*', config = [[require('config.toggleterm')]], }
+    use { 'tpope/vim-commentary', event = 'VimEnter' }
+    use { '907th/vim-auto-save', event = 'InsertEnter' }
+    use { 'alvan/vim-closetag' }
+    use { 'machakann/vim-swap', event = 'VimEnter' } -- A Vim text editor plugin to swap delimited items
+    use { 'natecraddock/workspaces.nvim', 'natecraddock/sessions.nvim', config = [[require('config.workspaces')]], }
+    use { 'https://github.com/phelipetls/jsonpath.nvim' } -- Used for after/ftplugin/json.lua
+    use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
+
+    if utils.executable 'tmux' then
+      -- .tmux.conf syntax highlighting and setting check
+      use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
+    end
+
+    if utils.executable 'ctags' then
+      use { 'liuchengxu/vista.vim', cmd = 'Vista', }
+    end
+
     if vim.g.is_win or vim.g.is_mac then
-      -- open URL in browser
       use { 'tyru/open-browser.vim', event = 'VimEnter' }
     end
 
-    --> persistant terminals <--
-    use {
-      'akinsho/toggleterm.nvim',
-      tag = '*',
-      config = [[require('config.toggleterm')]],
-    }
 
-    -- Only use these plugin on Windows and Mac and when LaTeX is installed
-    if vim.g.is_win or vim.g.is_mac and utils.executable 'latex' then
-      use { 'lervag/vimtex', ft = { 'tex' } }
-    end
-    -- Comment plugin
-    use { 'tpope/vim-commentary', event = 'VimEnter' }
+    ------------ Snippet & language & syntax ------------
+    use { 'windwp/nvim-autopairs' }
+    use { 'SirVer/ultisnips', event = 'InsertEnter' }
+    use { 'honza/vim-snippets', after = 'ultisnips' }
 
-    -- Autosave files on certain events
-    use { '907th/vim-auto-save', event = 'InsertEnter' }
-
-    use { 'alvan/vim-closetag' }
-
-    -- Show match number and index for searching
-    use {
-      'kevinhwang91/nvim-hlslens',
-      branch = 'main',
-      keys = { { 'n', '*' }, { 'n', '#' }, { 'n', 'n' }, { 'n', 'N' } },
-      config = [[require('config.hlslens')]],
-    }
-
-    --> Show undo history visually <--
-    use { 'simnalamburt/vim-mundo', cmd = { 'MundoToggle', 'MundoShow' } }
-
-    --> A Vim text editor plugin to swap delimited items <--
-    use { 'machakann/vim-swap', event = 'VimEnter' }
-
-    --> Stylu
+    ------------ Auto format tools ------------
+    use { 'sbdchd/neoformat', cmd = { 'Neoformat' }, }
     use { 'ckipp01/stylua-nvim', run = 'cargo install stylua' }
 
-    --> Session and workspace management
-    use {
-      'natecraddock/workspaces.nvim',
-      config = [[require('config.workspaces')]],
-    }
+    ------------ Git commands ------------
+    use { 'tpope/vim-fugitive', event = 'User InGitRepo', config = [[require('config.fugitive')]], }
+    use { 'rbong/vim-flog', requires = 'tpope/vim-fugitive', cmd = { 'Flog' }, } -- Git commands
 
-    use {
-      'natecraddock/sessions.nvim',
-      config = [[require('config.workspaces')]],
-    }
+    use { 'christoomey/vim-conflicted', requires = 'tpope/vim-fugitive', cmd = { 'Conflicted' }, } -- TO CHANGE
+    use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]], } -- Show git change (change, delete, add) signs in vim sign column
+    use { 'rhysd/committia.vim', opt = true, setup = [[vim.cmd('packadd committia.vim')]], } -- Better git commit experience
+    use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim', event = 'User InGitRepo',
+      config = [[require('config.git-linker')]], }
 
-    -- Used for after/ftplugin/json.lua
-    use { 'https://github.com/phelipetls/jsonpath.nvim' }
+    ------------ Markdown & LaTex------------
+    use { 'plasticboy/vim-markdown', ft = { 'markdown' }, }
+    use { 'vim-pandoc/vim-markdownfootnotes', ft = { 'markdown' }, } -- Faster footnote generation
+    use { 'godlygeek/tabular', cmd = { 'Tabularize' }, } -- Vim tabular plugin for manipulate tabular, required by markdown plugins
+    if vim.g.is_win or vim.g.is_mac then
+      use { 'lervag/vimtex', ft = { 'tex' } }
+      use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', ft = { 'markdown' }, } -- Markdown previewing
+      if vim.g.is_mac then
+        use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
+      end
+    end
 
-    use {
-      'https://github.com/norcalli/nvim-colorizer.lua',
-      config = [[require('config.colorizer')]],
-    }
+
+
   end,
 
   config = {
