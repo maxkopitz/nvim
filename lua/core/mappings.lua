@@ -162,3 +162,5 @@ keymap.set("n", "<leader>fl", "<cmd>Leaderf line --popup<CR>", {silent = true, d
 ------------------------ (plugin) Vista Binds-------------------
 keymap.set("n", "<Space>t", "<cmd>Vista!!<CR>", {silent = true, desc="Toggle Vista"})
 
+------------------------ (plugin) openbrowser.vim-------------------
+keymap.set({"n", "x"}, "<leader>ob", "<Plug>(openbrowser-smart-search)", { desc ="open browser "})
