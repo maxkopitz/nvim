@@ -38,9 +38,14 @@ local packer_util = require 'packer.util'
 
 packer.startup {
   function(use)
-    use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
-
+    -- Packer can mange itself
     use { 'wbthomason/packer.nvim', opt = true }
+
+    -- Load first
+    use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
+    use { 'nvim-lua/plenary.nvim' }
+    use { 'kyazdani42/nvim-web-devicons' }
+
 
     --> Auto complete <--
     use {
@@ -58,12 +63,7 @@ packer.startup {
     use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-    use { 'quangnguyen30192/cmp-nvim-ultisnips', after = { 'nvim-cmp', 'ultisnips' }, }
 
-    use {
-      'williamboman/mason.nvim',
-      config = [[require('config.mason')]],
-    }
 
     if vim.g.is_mac then
       use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
@@ -72,15 +72,18 @@ packer.startup {
     use {
       'p00f/clangd_extensions.nvim',
       after = 'nvim-cmp',
-      config = [[require('config.lsp')]],
+      config = [[require('lsp')]],
     }
 
     -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
     use {
+      'williamboman/mason.nvim',
+      "williamboman/mason-lspconfig.nvim",
       'neovim/nvim-lspconfig',
       after = 'cmp-nvim-lsp',
-      config = [[require('config.lsp')]],
+      config = [[require('lsp')]],
     }
+
 
     --> Themes <--
     use { 'EdenEast/nightfox.nvim' }
@@ -95,7 +98,6 @@ packer.startup {
     use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
     use { 'tomasiser/vim-code-dark', opt = true }
 
-    use { 'kyazdani42/nvim-web-devicons' }
 
     --> nvim-tree : A file Explorer For Neovim <--
     use {
@@ -459,18 +461,18 @@ vim.g.vim_markdown_toc_autofit = 1
 
 -------------------------UltiSnips settings-------------------
 -- Trigger configuration. Do not use <tab> if you use YouCompleteMe
-vim.g.UltiSnipsExpandTrigger = '<c-j>'
+-- vim.g.UltiSnipsExpandTrigger = '<c-j>'
 
 -- Do not look for SnipMate snippets
-vim.g.UltiSnipsEnableSnipMate = 0
+-- vim.g.UltiSnipsEnableSnipMate = 0
 
 -- Shortcut to jump forward and backward in tabstop positions
-vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
-vim.g.UltiSnipsJumpBackwardTrigger = '<c-k>'
+-- vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
+-- vim.g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 -- Configuration for custom snippets directory, see
 -- https://jdhao.github.io/2019/04/17/neovim_snippet_s1/ for details.
-vim.g.UltiSnipsSnippetDirectories = { 'UltiSnips', 'my_snippets' }
+-- vim.g.UltiSnipsSnippetDirectories = { 'UltiSnips', 'my_snippets' }
 
 
 ------------------------markdown-preview settings-------------------
@@ -617,7 +619,7 @@ if vim.g.is_mac then
       'NON_STANDARD_WORD', 'AU', 'DATE_NEW_YEAR' },
   }
 
-  api.nvim_create_augroup('grammarous_map', { clear = true})
+  api.nvim_create_augroup('grammarous_map', { clear = true })
   api.nvim_create_autocmd('FileType', {
     group = 'grammarous_map',
     pattern = 'markdown',
@@ -640,5 +642,5 @@ vim.g.vista_stay_on_open = 0
 ----------------------------open-browser.vim settings-------------------
 if vim.g.is_win or vim.g.is_mac then
   -- Disable netrw's gx mapping.
-   vim.g.netrw_nogx = 1
+  vim.g.netrw_nogx = 1
 end

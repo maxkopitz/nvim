@@ -1,11 +1,18 @@
 local fn = vim.fn
 local api = vim.api
 local keymap = vim.keymap
-local lsp = vim.lsp
 local diagnostic = vim.diagnostic
-local protocol = vim.lsp.protocol 
+local protocol = vim.lsp.protocol
 
 local utils = require 'utils'
+
+local mason = require('mason')
+local masonlspconfig = require('mason-lspconfig')
+
+mason.setup {}
+masonlspconfig.setup {}
+
+local lsp = vim.lsp
 
 local custom_attach = function(client, bufnr)
   -- Mappings.
