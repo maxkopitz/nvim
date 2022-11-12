@@ -53,10 +53,10 @@ keymap.set('n', [[\d]], '<cmd>bprevious <bar> bdelete #<cr>', {
 })
 
 --> Switch windows <--
-keymap.set('n', '<Left>', '<c-w>h')
-keymap.set('n', '<Right>', '<C-W>l')
-keymap.set('n', '<Up>', '<C-W>k')
-keymap.set('n', '<Down>', '<C-W>j')
+keymap.set('n', '<Left>', '<c-w>h', { silent = true })
+keymap.set('n', '<Right>', '<C-W>l', { silent = true })
+keymap.set('n', '<Up>', '<C-W>k', { silent = true })
+keymap.set('n', '<Down>', '<C-W>j', { silent = true })
 
 --> Go to start and end of current line in insert mode <--
 
@@ -165,7 +165,8 @@ keymap.set("n", "<leader>ff", "<cmd>Leaderf file --popup<CR>", { silent = true, 
 keymap.set("n", "<leader>fg", "<cmd>Leaderf rg --no-messages --popup<CR>",
   { silent = true, desc = "Grep project files in popup window" })
 keymap.set("n", "<leader>fh", "<cmd>Leaderf help --popup<CR>", { silent = true, desc = "Search vim help files" })
-keymap.set("n", "<leader>ft", "<cmd>Leaderf bufTag --popup<CR>", { silent = true, desc = "Search tags in current buffer" })
+keymap.set("n", "<leader>ft", "<cmd>Leaderf bufTag --popup<CR>",
+  { silent = true, desc = "Search tags in current buffer" })
 keymap.set("n", "<leader>fb", "<cmd>Leaderf buffer --popup<CR>", { silent = true, desc = "Search buffers" })
 keymap.set("n", "<leader>fr", "<cmd>Leaderf mru --popup<CR>", { silent = true, desc = "Search recent files" })
 keymap.set("n", "<leader>fl", "<cmd>Leaderf line --popup<CR>", { silent = true, desc = "Search lines" })
