@@ -131,7 +131,6 @@ packer.startup {
     use { 'alvan/vim-closetag' }
     use { 'machakann/vim-swap', event = 'VimEnter' } -- A Vim text editor plugin to swap delimited items
     use { 'https://github.com/phelipetls/jsonpath.nvim' } -- Used for after/ftplugin/json.lua
-    use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
     use { 'vuki656/package-info.nvim', event = "BufEnter package.json", config = "require('config.package-info')" }
     use { 'declancm/cinnamon.nvim', config = "require('config.cinnamon')" }
     use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = Core.plugins.rooter.patterns end }
@@ -151,15 +150,17 @@ packer.startup {
 
 
     ------------ Snippet & language & syntax ------------
-    use { 'windwp/nvim-autopairs' }
+    use { 'windwp/nvim-autopairs', after= {'nvim-treesitter', 'nvim-cmp'}, config = "require('config.autopairs')"}
     use { 'SirVer/ultisnips', event = 'InsertEnter' }
     use { 'honza/vim-snippets', after = 'ultisnips' }
-
-    ------------ Auto format tools ------------
+    use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
     use { 'sbdchd/neoformat', cmd = { 'Neoformat' }, }
     use { 'ckipp01/stylua-nvim', run = 'cargo install stylua' }
 
-    ------------ Git commands ------------
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │     Git commands                                         │
+--  ╰──────────────────────────────────────────────────────────╯
     use { 'tpope/vim-fugitive', event = 'User InGitRepo', config = [[require('config.fugitive')]], }
     use { 'rbong/vim-flog', requires = 'tpope/vim-fugitive', cmd = { 'Flog' }, } -- Git commands
 
