@@ -15,9 +15,10 @@ end
 
 local core_conf_files = {
   { 'core.options', 'lua' },
+  { 'core.config', 'lua'},
   { 'autocommands.vim', 'vim' },
   { 'core.mappings', 'lua' },
-  { 'plugins', 'lua' },
+  { 'core.plugins', 'lua' },
   { 'colorscheme', 'lua'},
 }
 

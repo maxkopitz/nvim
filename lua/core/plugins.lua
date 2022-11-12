@@ -130,10 +130,12 @@ packer.startup {
     use { '907th/vim-auto-save', event = 'InsertEnter' }
     use { 'alvan/vim-closetag' }
     use { 'machakann/vim-swap', event = 'VimEnter' } -- A Vim text editor plugin to swap delimited items
-    use { 'natecraddock/workspaces.nvim', 'natecraddock/sessions.nvim', config = [[require('config.workspaces')]], }
     use { 'https://github.com/phelipetls/jsonpath.nvim' } -- Used for after/ftplugin/json.lua
     use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
-
+    use { 'vuki656/package-info.nvim', event = "BufEnter package.json", config = "require('config.package-info')" }
+    use { 'declancm/cinnamon.nvim', config = "require('config.cinnamon')" }
+    use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = Core.plugins.rooter.patterns end }
+    use { 'Shatur/neovim-session-manager', config = "require('config.session-manager')" }
     if utils.executable 'tmux' then
       -- .tmux.conf syntax highlighting and setting check
       use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
