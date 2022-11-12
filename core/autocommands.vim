@@ -1,3 +1,4 @@
+" TODO: Refactor to lua
 " More accurate syntax highlighting? (see `:h syn-sync`)
 augroup accurate_syn_highlight
   autocmd!

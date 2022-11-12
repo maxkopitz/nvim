@@ -1,3 +1,4 @@
+" TODO: Refactor to lua
 " Create command alias safely, see https://stackoverflow.com/q/3878692/6064933
 " The following two functions are taken from answer below on SO:
 " https://stackoverflow.com/a/10708687/6064933
