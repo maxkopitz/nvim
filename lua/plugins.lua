@@ -64,8 +64,9 @@ packer.startup {
       use { 'nvim-treesitter/nvim-treesitter', event = 'BufEnter', run = ':TSUpdate',
         config = [[require('config.treesitter')]], }
     end
-
+-- TODO 
     ------------  Navigating (Telescope/Tree/Refactor) ------------
+    use { 'jdhao/better-escape.vim', event = 'InsertEnter', }
     use { 'nvim-telescope/telescope.nvim', cmd = 'Telescope', requires = { { 'nvim-lua/plenary.nvim' } },
       config = [[require('config.telescope')]], }
     use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
@@ -87,7 +88,6 @@ packer.startup {
         run = ':LeaderfInstallCExtension',
       }
     end
-
 
     ------------ LSP Base ------------
     use {
@@ -117,12 +117,15 @@ packer.startup {
     use { 'https://github.com/windwp/nvim-ts-autotag' }
     use { 'rcarriga/nvim-notify', config = [[require('config.nvim-notify')]] }
     use { 'gelguy/wilder.nvim', config = [[require('config.wilder')]] } -- The missing auto-completion for cmdline!
-    use { 'jdhao/better-escape.vim', event = 'InsertEnter', }
     use { 'folke/which-key.nvim', event = 'BufWinEnter', config = "require('config.which-key')" }
     use { 'wellle/targets.vim', event = 'VimEnter' }
     use { 'itchyny/vim-highlighturl', event = 'VimEnter', }
     use { 'akinsho/toggleterm.nvim', tag = '*', config = [[require('config.toggleterm')]], }
-    use { 'tpope/vim-commentary', event = 'VimEnter' }
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
+    use { 'LudoPinelli/comment-box.nvim' }
+    -- TODO: Check this out https://github.com/dhruvasagar/vim-table-mode
+    -- https://github.com/mg979/vim-visual-multi
+    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] }
     use { '907th/vim-auto-save', event = 'InsertEnter' }
     use { 'alvan/vim-closetag' }
     use { 'machakann/vim-swap', event = 'VimEnter' } -- A Vim text editor plugin to swap delimited items
