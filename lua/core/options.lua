@@ -78,92 +78,44 @@ end
 --                         Option Settings                            --
 ------------------------------------------------------------------------
 vim.scriptencoding = 'utf-8'
-
 local o = vim.o
 local opt = vim.opt
 
--- General tab settings
-o.tabstop = 2
-o.softtabstop = 2
-o.shiftwidth = 2
-o.expandtab = true
-
--- Minimum lines to keep above and below cursor when scrolling
-o.scrolloff = 3
-
--- Disable creating swapfiles,
--- see https://stackoverflow.com/q/821902/6064933
-o.swapfile = false
-
--- Show line number and relative line number
-o.number = true
-o.relativenumber = true
-
--- File and script encoding settings for vim
-o.fileencoding = 'utf-8'
+o.tabstop = 2 -- Insert 2 spaces for a tab
+o.softtabstop = 2 -- Insert 2 spaces for a tab
+o.shiftwidth = 2 -- Change a number of space characeters inseted for indentation
+o.expandtab = true -- Use spaces instead of tabs
+o.scrolloff = 8 -- Always keep space when scrolling to bottom/top edge
+o.swapfile = false -- Swap not needed 
+o.number = true -- Shows current line number
+o.relativenumber = true -- Enables relative number
+o.fileencoding = 'utf-8' -- The encoding written to file
 o.fileencodings = 'ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1'
-
--- Split window below/right when creating horizontal/vertical windows
-o.splitbelow = true
-o.splitright = true
-
--- Ask for confirmation when handling unsaved or read-only files
-o.confirm = true
-
--- Do not use visual and errorbells
-o.visualbell = true
-o.errorbells = true
-
--- The number of command and search history to keep
-o.history = 500
-
--- Persistent undo even after you close a file and re-open it
-o.undofile = true
-
--- Enable true color support. Do not set this option if your terminal does not
--- support true colors! For a comprehensive list of terminals supporting true
--- colors, see https://github.com/termstandard/colors and https://gist.github.com/XVilka/8346728.
-o.termguicolors = true
-
--- Ignore case in general, but become case-sensitive when uppercase is present
-o.ignorecase = true
-o.smartcase = true
-
--- Break line at predefined characters
-o.linebreak = true
-
--- Use mouse to select and resize windows, etc.
--- Enable mouse in several mode
-o.mouse = 'nic'
-
--- Set the behaviour of mouse
-o.mousemodel = 'popup'
-
--- Character to show before the lines that have been soft-wrapped
-o.showbreak = '↪'
-
--- Set matching pairs of characters and highlight matching brackets
--- TODO figure this out
+o.splitbelow = true -- Horizontal splits will automatically be to the bottom
+o.splitright = true -- Vertical splits will automatically be to the right
+o.confirm = true -- Ask for confirmation when handling unsaved or read-only files
+o.visualbell = true -- Do not use visualbells 
+o.errorbells = true -- Do not use errorbells
+o.history = 500 -- The number of command and search history to keep
+o.undofile = true -- Persistent undo even after you close a file and re-open it
+o.termguicolors = true -- Enable true color support. 
+o.ignorecase = true -- Needed for smartcase
+o.smartcase = true -- Uses case in search
+o.linebreak = true -- Break line at predefined characters
+o.mouse = 'nic' --- Enable mouse
+o.mousemodel = 'popup' -- Set the behaviour of mouse
+o.showbreak = '↪' -- Character to show before the lines that have been soft-wrapped
+-- TODO: figure this out
 -- options.matchpairs.append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
-vim.cmd 'set mps+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》'
-
--- Auto-write the file based on some condition
-o.autowrite = true
-o.wrap = false
+vim.cmd 'set mps+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》' -- Set matching pairs of characters and highlight matching brackets
+o.autowrite = true -- Auto-write the file based on some condition
+o.wrap = false -- Display long lines as just one line
 o.ruler = false
-
--- Disable showing current mode on command line since statusline plugins can show it.
-o.noshowmode = true
-
--- List all matches and complete till longest common string
-o.wildmode = 'list:longest'
-
--- Text after this column number is not highlighted
-o.synmaxcol = 200
+o.noshowmode = true -- Disable showing current mode on command line since statusline plugins can show it.
+o.wildmode = 'list:longest' -- List all matches and complete till longest common string
+o.synmaxcol = 200 -- Text after this column number is not highlighted
 o.nostartofline = true
-
--- Virtual edit is useful for visual block edit
-o.virtualedit = 'block'
+o.virtualedit = 'block' -- Virtual edit is useful for visual block edit
 
 -- Set up cursor color and shape in various mode, ref:
 -- https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-color-in-the-terminal
