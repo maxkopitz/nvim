@@ -96,4 +96,4 @@ augroup LargeFile
 augroup END
 
 " Load auto-command defined in Lua
-lua require("core.custom-autocmd")
+lua require("core.autocmd")
