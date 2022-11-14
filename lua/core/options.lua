@@ -86,7 +86,7 @@ o.softtabstop = 2 -- Insert 2 spaces for a tab
 o.shiftwidth = 2 -- Change a number of space characeters inseted for indentation
 o.expandtab = true -- Use spaces instead of tabs
 o.scrolloff = 8 -- Always keep space when scrolling to bottom/top edge
-o.swapfile = false -- Swap not needed 
+o.swapfile = false -- Swap not needed
 o.number = true -- Shows current line number
 o.relativenumber = true -- Enables relative number
 o.fileencoding = 'utf-8' -- The encoding written to file
@@ -94,11 +94,11 @@ o.fileencodings = 'ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1'
 o.splitbelow = true -- Horizontal splits will automatically be to the bottom
 o.splitright = true -- Vertical splits will automatically be to the right
 o.confirm = true -- Ask for confirmation when handling unsaved or read-only files
-o.visualbell = true -- Do not use visualbells 
+o.visualbell = true -- Do not use visualbells
 o.errorbells = true -- Do not use errorbells
 o.history = 500 -- The number of command and search history to keep
 o.undofile = true -- Persistent undo even after you close a file and re-open it
-o.termguicolors = true -- Enable true color support. 
+o.termguicolors = true -- Enable true color support.
 o.ignorecase = true -- Needed for smartcase
 o.smartcase = true -- Uses case in search
 o.linebreak = true -- Break line at predefined characters
@@ -117,10 +117,14 @@ o.synmaxcol = 200 -- Text after this column number is not highlighted
 o.nostartofline = true
 o.virtualedit = 'block' -- Virtual edit is useful for visual block edit
 
+o.foldcolumn     = "0"
+o.foldnestmax    = 0
+o.foldlevel      = 99 --- Using ufo provider need a large value
+o.foldlevelstart = 99 --- Expand all folds by default
 -- Set up cursor color and shape in various mode, ref:
 -- https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-color-in-the-terminal
-o.guicursor = 'n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20'
-o.signcolumn = 'auto:2'
+o.guicursor      = 'n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20'
+o.signcolumn     = 'auto:2'
 
 -- diff options
 o.diffopt = 'vertical,' -- show diff in vertical position
@@ -137,7 +141,7 @@ o.diffopt = o.diffopt .. 'internal,indent-heuristic,algorithm:histogram'
 -- choice, IMHO.
 -- Disable showing intro message (:intro)
 
-opt.shortmess:append {S = true, I = true}
+opt.shortmess:append { S = true, I = true }
 
 -- Show hostname, full path of file and last-mod time on the window title. The
 -- meaning of the format str for strftime can be found in
@@ -152,4 +156,4 @@ if utils.executable 'rg' then
   o.grepformat = '%f:%l:%c:%m'
 end
 
-opt.clipboard:append {'unnamed', 'unnamedplus' }
+opt.clipboard:append { 'unnamed', 'unnamedplus' }
