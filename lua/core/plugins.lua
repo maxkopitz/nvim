@@ -36,6 +36,7 @@ local packer = require 'packer'
 local packer_util = require 'packer.util'
 
 -- TODO: Make Open brwoser work on all plugin repos
+-- FIX: Sessions
 packer.startup {
   function(use)
     ------------ Packer can mange itself ------------
@@ -108,6 +109,11 @@ packer.startup {
       use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
     end
 
+    ----------- DAP ------------
+    use { 'theHamsta/nvim-dap-virtual-text' }
+    use { 'rcarriga/nvim-dap-ui' }
+    use { 'mfussenegger/nvim-dap', config = "require('config.dap')" }
+
     ------------ LSP Addons ------------
     use { 'p00f/clangd_extensions.nvim', after = 'nvim-cmp', config = [[require('lsp')]] }
     use { 'onsails/lspkind-nvim' } -- VSCode like pictograms
@@ -135,6 +141,8 @@ packer.startup {
     use { 'declancm/cinnamon.nvim', config = "require('config.cinnamon')" }
     use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = Core.plugins.rooter.patterns end }
     use { 'Shatur/neovim-session-manager', config = "require('config.session-manager')" }
+    use { 'sunjon/shade.nvim', config = function() require("shade").setup(); require("shade").toggle(); end }
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', config = "require('config.nvim-ufo')" }
     if utils.executable 'tmux' then
       -- .tmux.conf syntax highlighting and setting check
       use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
@@ -150,7 +158,7 @@ packer.startup {
 
 
     ------------ Snippet & language & syntax ------------
-    use { 'windwp/nvim-autopairs', after= {'nvim-treesitter', 'nvim-cmp'}, config = "require('config.autopairs')"}
+    use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('config.autopairs')" }
     use { 'SirVer/ultisnips', event = 'InsertEnter' }
     use { 'honza/vim-snippets', after = 'ultisnips' }
     use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
@@ -158,9 +166,9 @@ packer.startup {
     use { 'ckipp01/stylua-nvim', run = 'cargo install stylua' }
 
 
---  ╭──────────────────────────────────────────────────────────╮
---  │     Git commands                                         │
---  ╰──────────────────────────────────────────────────────────╯
+    --  ╭──────────────────────────────────────────────────────────╮
+    --  │     Git commands                                         │
+    --  ╰──────────────────────────────────────────────────────────╯
     use { 'tpope/vim-fugitive', event = 'User InGitRepo', config = [[require('config.fugitive')]], }
     use { 'rbong/vim-flog', requires = 'tpope/vim-fugitive', cmd = { 'Flog' }, } -- Git commands
 
@@ -173,13 +181,13 @@ packer.startup {
     ------------ Markdown & LaTex------------
     use { 'plasticboy/vim-markdown', ft = { 'markdown' }, }
     use { 'vim-pandoc/vim-markdownfootnotes', ft = { 'markdown' }, } -- Faster footnote generation
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', ft = { 'markdown' }, } -- Markdown previewing
     use { 'godlygeek/tabular', cmd = { 'Tabularize' }, } -- Vim tabular plugin for manipulate tabular, required by markdown plugins
-    if vim.g.is_win or vim.g.is_mac then
+    if utils.executable('latex') then
       use { 'lervag/vimtex', ft = { 'tex' } }
-      use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', ft = { 'markdown' }, } -- Markdown previewing
-      if vim.g.is_mac then
-        use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
-      end
+    end
+    if vim.g.is_mac or vim.g.is_win then
+      use { 'rhysd/vim-grammarous', ft = { 'markdown' } }
     end
 
 
