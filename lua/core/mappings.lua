@@ -175,5 +175,4 @@ keymap.set({ "n", "x" }, "<leader>ob", "<Plug>(openbrowser-smart-search)", { des
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ (plugin) comment box                                     │
 --  ╰──────────────────────────────────────────────────────────╯
-keymap.set("n", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
-keymap.set("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", silent)
+keymap.set({"n", "v"}, "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", { silent = true, desc = "Box coment"})
