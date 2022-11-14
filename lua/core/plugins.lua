@@ -131,7 +131,7 @@ packer.startup {
     use { 'alvan/vim-closetag' }
     use { 'machakann/vim-swap', event = 'VimEnter' } -- A Vim text editor plugin to swap delimited items
     use { 'https://github.com/phelipetls/jsonpath.nvim' } -- Used for after/ftplugin/json.lua
-    use { 'vuki656/package-info.nvim', event = "BufEnter package.json", config = "require('config.package-info')" }
+    -- use { 'vuki656/package-info.nvim', requires = "MunifTanjim/nui.nvim", config = "require('config.package-info')" }
     use { 'declancm/cinnamon.nvim', config = "require('config.cinnamon')" }
     use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = Core.plugins.rooter.patterns end }
     use { 'Shatur/neovim-session-manager', config = "require('config.session-manager')" }
