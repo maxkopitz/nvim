@@ -35,7 +35,6 @@ cmp.setup {
     { name = 'ultisnips' }, -- For ultisnips user.
     { name = 'path' }, -- for path completion
     { name = 'buffer', keyword_length = 2 }, -- for buffer word completion
-    { name = 'omni' },
     { name = 'emoji', insert = true }, -- emoji completion
   },
   completion = {
