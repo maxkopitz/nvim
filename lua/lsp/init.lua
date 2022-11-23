@@ -170,7 +170,9 @@ else
 end
 
 
--- Assuming this covers all vscode-langserers-extracted
+--  ╭──────────────────────────────────────────────────────────╮
+--  │ WEB DEV LSP                                              │
+--  ╰──────────────────────────────────────────────────────────╯
 if utils.executable 'vscode-html-language-server' then
   --> HTML Language server <--
   lspconfig.html.setup {
@@ -199,7 +201,14 @@ if utils.executable 'typescript-language-server' then
   }
 end
 
---> C/C++ Language Server <--
+if utils.executable('tailwindcss-language-server') then
+  lspconfig.tailwindcss.setup {
+
+  }
+end
+--  ╭──────────────────────────────────────────────────────────╮
+--  │  C/C++ Language Server                                   │
+--  ╰──────────────────────────────────────────────────────────╯
 if utils.executable 'clangd' then
   lspconfig.clangd.setup {
     on_attach = custom_attach,
