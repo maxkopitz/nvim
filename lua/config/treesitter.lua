@@ -23,6 +23,4 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('nvim-autopairs').setup {}
-
 require('nvim-ts-autotag').setup()

@@ -35,7 +35,7 @@ vim.cmd 'packadd packer.nvim'
 local packer = require 'packer'
 local packer_util = require 'packer.util'
 
--- TODO: Make Open brwoser work on all plugin repos
+-- TODO: Make Open Browser work on all plugin repos
 -- FIX: Sessions
 packer.startup {
   function(use)
@@ -58,8 +58,6 @@ packer.startup {
     use { 'NTBBloodbath/doom-one.nvim', opt = true }
     use { 'sainnhe/everforest', opt = true }
     use { 'rebelot/kanagawa.nvim', opt = true }
-    use { 'catppuccin/nvim', as = 'catppuccin', opt = true }
-    use { 'tomasiser/vim-code-dark', opt = true }
 
     ------------ Treesitter ------------
     if vim.g.is_mac then
