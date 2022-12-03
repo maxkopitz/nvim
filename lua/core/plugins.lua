@@ -121,7 +121,9 @@ packer.startup {
     use { 'j-hui/fidget.nvim', after = 'nvim-lspconfig', config = [[require('config.fidget-nvim')]], } -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
 
     ------------ General ------------
-    use { 'https://github.com/windwp/nvim-ts-autotag' }
+    if vim.g.is_mac then
+      use { 'https://github.com/windwp/nvim-ts-autotag' }
+    end
     use { 'rcarriga/nvim-notify', config = [[require('config.nvim-notify')]] }
     use { 'gelguy/wilder.nvim', config = [[require('config.wilder')]] } -- The missing auto-completion for cmdline!
     use { 'folke/which-key.nvim', event = 'BufWinEnter', config = "require('config.which-key')" }
@@ -158,7 +160,9 @@ packer.startup {
 
 
     ------------ Snippet & language & syntax ------------
-    use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('config.autopairs')" }
+    if vim.g.is_mac then
+      use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('config.autopairs')" }
+    end
     use { 'SirVer/ultisnips', event = 'InsertEnter' }
     use { 'honza/vim-snippets', after = 'ultisnips' }
     use { 'https://github.com/norcalli/nvim-colorizer.lua', config = [[require('config.colorizer')]], }
