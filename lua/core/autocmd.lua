@@ -3,11 +3,11 @@ local api = vim.api
 local utils = require 'utils'
 
 -- Resize all windows when we resize the terminal
-api.nvim_create_autocmd('VimResized', {
-  group = api.nvim_create_augroup('win_autoresize', { clear = true }),
-  desc = 'autoresize windows on resizing operation',
-  command = 'wincmd =',
-})
+-- api.nvim_create_autocmd('VimResized', {
+--   group = api.nvim_create_augroup('win_autoresize', { clear = true }),
+--   desc = 'autoresize windows on resizing operation',
+--   command = 'wincmd =',
+-- })
 
 -- Auto-generate packer_compiled.lua file
 api.nvim_create_autocmd({ 'BufWritePost' }, {
@@ -50,37 +50,6 @@ api.nvim_create_autocmd({ 'FocusGained', 'CursorHold' }, {
     if fn.getcmdwintype() == '' then
       vim.cmd 'checktime'
     end
-  end,
-})
-
--- Terminal Settings
-
-api.nvim_create_autocmd('TermOpen', {
-  pattern = '*',
-  group = api.nvim_create_augroup('term_settings', { clear = true }),
-  callback = function()
-    vim.cmd 'setlocal norelativenumber nonumber'
-    vim.cmd 'startinsert'
-  end,
-})
-
--- Do not use smart case in command line mode, extracted from https://vi.stackexchange.com/a/16511/15292.
-api.nvim_create_augroup('dynamic_smartcase', { clear = true })
-
-api.nvim_create_autocmd('CmdLineEnter', {
-  pattern = ':',
-  group = 'dynamic_smartcase',
-  callback = function()
-    vim.cmd 'set nosmartcase'
-  end,
-})
-
-api.nvim_create_autocmd('CmdLineLeave', {
-  pattern = ':',
-  group = 'dynamic_smartcase',
-  callback = function()
-    vim.cmd 'set smartcase'
-    -- vim.notify("leaving") just playing around, this is ran maybe too often
   end,
 })
 
