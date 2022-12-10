@@ -83,3 +83,11 @@ api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
 
 
 
+-- TODO: I want an auto CMD to prevent toggleterm to be overriden
+api.nvim_create_autocmd({'BufEnter'}, {
+  pattern = '*',
+  group = api.nvim_create_augroup('Prevent_Override', { clear = true }),
+  callback = function()
+  end,
+})
+
