@@ -14,20 +14,14 @@ if nvim_ver ~= expected_ver then
 end
 
 local core_conf_files = {
-  { 'core.options', 'lua' },
-  { 'core.config', 'lua'},
-  { 'autocommands.vim', 'vim' },
-  { 'core.mappings', 'lua' },
-  { 'core.plugins', 'lua' },
-  { 'colorscheme', 'lua'},
+   'core.options',
+   'core.config',
+   'core.autocmd', 
+   'core.mappings', 
+   'core.plugins', 
+   'colorscheme',
 }
 
 for _, contents in ipairs(core_conf_files) do
-  if contents[2] == 'vim' then
-    local path = string.format('%s/core/%s', vim.fn.stdpath 'config', contents[1])
-    local source_cmd = 'source ' .. path
-    vim.cmd(source_cmd)
-  else
-    require(contents[1])
-  end
+    require(contents)
 end

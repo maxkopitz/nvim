@@ -15,11 +15,6 @@ masonlspconfig.setup {}
 local lsp = vim.lsp
 
 local custom_attach = function(client, bufnr)
-  print(client)
-  print(client)
-  print(client)
-  print(client)
-  print(client)
   -- Mappings.
   local map = function(mode, l, r, opts)
     opts = opts or {}
