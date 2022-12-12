@@ -1,4 +1,6 @@
 local keymap = vim.keymap
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
 local api = vim.api
 local uv = vim.loop
 

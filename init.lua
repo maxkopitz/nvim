@@ -14,12 +14,12 @@ if nvim_ver ~= expected_ver then
 end
 
 local core_conf_files = {
-   'core.options',
-   'core.config',
-   'core.autocmd', 
-   'core.mappings', 
-   'core.plugins', 
-   'colorscheme',
+    'core.options',
+    'core.config',
+    'core.autocmd', 
+    'core.keymaps', 
+    'core.plugins', 
+    'colorscheme',
 }
 
 for _, contents in ipairs(core_conf_files) do
