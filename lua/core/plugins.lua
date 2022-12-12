@@ -62,7 +62,7 @@ packer.startup {
     ------------ Treesitter ------------
     if vim.g.is_mac then
       use { 'nvim-treesitter/nvim-treesitter', event = 'BufEnter', run = ':TSUpdate',
-        config = [[require('config.treesitter')]], }
+        config = [[require('config.treesitter')]], requires = {"nvim-treesitter/playground"} }
     end
 
     ------------  Navigating (Telescope/Tree/Refactor) ------------
