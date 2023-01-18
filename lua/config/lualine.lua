@@ -8,4 +8,3 @@ require('lualine').setup {
     section_separators = '',
   },
 }
-print('hi')

@@ -36,7 +36,7 @@ require('packer').startup(function(use)
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
-    config = [[require('config.treesitter')]],
+    config = [[require('config.nvim-treesitter')]],
   }
 
   use { -- Additional text objects via treesitter

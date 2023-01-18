@@ -2,8 +2,8 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
 require 'core.settings'
 require 'core.autocmd'
@@ -89,7 +89,10 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  clangd = {},
+  clangd = {
+    cmd = { 'clangd' },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  },
   gopls = {},
   pylsp = {
     settings = {
@@ -104,13 +107,15 @@ local servers = {
         },
       },
     },
+    cmd = { 'pylsp' },
+    filetypes = { 'python' },
     flags = {
       debounce_text_changes = 200,
     },
   },
   tsserver = {
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-    cmd = { "typescript-language-server", "--stdio" },
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
   },
   html = {
     filetypes = { 'html', 'htmldjango' },
@@ -118,12 +123,15 @@ local servers = {
   cssls = {},
   eslint = {},
   sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
     },
   },
   bashls = {},
+  tailwindcss = {},
 }
 
 -- Setup neovim lua configuration
@@ -131,6 +139,7 @@ require('neodev').setup()
 --
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
@@ -148,7 +157,10 @@ mason_lspconfig.setup_handlers {
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = servers[server_name],
+      settings = servers[server_name].settings,
+      cmd = servers[server_name].cmd,
+      filetypes = servers[server_name].filetypes,
+      flags = servers[server_name].flags,
     }
   end,
 }
