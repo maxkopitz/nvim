@@ -5,6 +5,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
+require 'core.config'
 require 'core.settings'
 require 'core.autocmd'
 require 'core.keymappings'
@@ -78,6 +79,7 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, { desc = 'Fromat current buffer with LSP' })
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
@@ -88,51 +90,7 @@ end
 --
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  clangd = {
-    cmd = { 'clangd' },
-    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-  },
-  gopls = {},
-  pylsp = {
-    settings = {
-      pylsp = {
-        plugins = {
-          pylint = { enabled = true, executable = 'pylint' },
-          pyflakes = { enabled = false },
-          pycodestyle = { enabled = false },
-          jedi_completion = { fuzzy = true },
-          pyls_isort = { enabled = true },
-          pylsp_mypy = { enabled = true },
-        },
-      },
-    },
-    cmd = { 'pylsp' },
-    filetypes = { 'python' },
-    flags = {
-      debounce_text_changes = 200,
-    },
-  },
-  tsserver = {
-    cmd = { 'typescript-language-server', '--stdio' },
-    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
-  },
-  html = {
-    filetypes = { 'html', 'htmldjango' },
-  },
-  cssls = {},
-  eslint = {},
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-      },
-    },
-  },
-  bashls = {},
-  tailwindcss = {},
-}
+
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -149,7 +107,7 @@ require('mason').setup()
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = vim.tbl_keys(Core.lsp_servers),
 }
 
 mason_lspconfig.setup_handlers {
@@ -157,10 +115,10 @@ mason_lspconfig.setup_handlers {
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = servers[server_name].settings,
-      cmd = servers[server_name].cmd,
-      filetypes = servers[server_name].filetypes,
-      flags = servers[server_name].flags,
+      settings = Core.lsp_servers[server_name].settings,
+      cmd = Core.lsp_servers[server_name].cmd,
+      filetypes = Core.lsp_servers[server_name].filetypes,
+      flags = Core.lsp_servers[server_name].flags,
     }
   end,
 }
