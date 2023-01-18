@@ -48,3 +48,8 @@ tags
 java-debug/
 vscode-java-test/
 .nvim/session
+
+tags
+test.sh
+nvim
+plugin/packer_compiled.lua
