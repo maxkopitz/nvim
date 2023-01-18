@@ -1,14 +1,22 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
---
 
+-- Inspect something
+function _G.inspect(item)
+  vim.pretty_print(item)
+end
+
+vim.scriptencoding = 'utf-8'
+
+-- Disables vim tutor
+vim.g.loaded_tutor_mode_plugin = 1
 
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
-
+vim.o.relativenumber = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
