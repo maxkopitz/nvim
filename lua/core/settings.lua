@@ -40,3 +40,11 @@ vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+vim.o.swapfile = false
+vim.o.autowrite = true
+
+vim.o.ignorecase = true
+vim.o.confirm = true
+
+vim.g.did_install_default_menus = 1 -- do not load menu
