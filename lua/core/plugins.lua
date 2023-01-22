@@ -26,6 +26,7 @@ require('packer').startup(function(use)
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
+    config = [[require('config.lsp')]],
   }
 
   use { -- Autocompletion
@@ -56,12 +57,12 @@ require('packer').startup(function(use)
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'lewis6991/gitsigns.nvim'
+  use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]], }
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent_blankline')]] } -- Add indentation guides even on blank lines
+  use { 'numToStr/Comment.nvim', config = [[require('config.comment')]] } -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)

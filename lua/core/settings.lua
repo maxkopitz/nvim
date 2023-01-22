@@ -1,5 +1,4 @@
--- [[ Setting options ]]
--- See `:help vim.o`
+
 
 -- Inspect something
 function _G.inspect(item)
@@ -8,10 +7,14 @@ end
 
 vim.scriptencoding = 'utf-8'
 
--- Disables vim tutor
-vim.g.loaded_tutor_mode_plugin = 1
+vim.g.loaded_tutor_mode_plugin = 1 -- Disables vim tutor
 
+vim.g.did_install_default_menus = 1 -- do not load menu
+
+-- [[ Setting options ]]
+-- See `:help vim.o`
 -- Set highlight on search
+
 vim.o.hlsearch = false
 
 -- Make line numbers default
@@ -47,4 +50,3 @@ vim.o.autowrite = true
 vim.o.ignorecase = true
 vim.o.confirm = true
 
-vim.g.did_install_default_menus = 1 -- do not load menu
