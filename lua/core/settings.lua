@@ -15,6 +15,7 @@ vim.g.did_install_default_menus = 1 -- do not load menu
 -- See `:help vim.o`
 -- Set highlight on search
 
+vim.o.tabstop = 2 -- Insert 2 spaces for a tab
 vim.o.hlsearch = false
 
 -- Make line numbers default

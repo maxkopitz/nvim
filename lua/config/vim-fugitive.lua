@@ -6,4 +6,4 @@ vim.keymap.set('n', '<leader>gpl', '<cmd>Git pull<cr>', { desc = 'Git pull' })
 vim.keymap.set('n', '<leader>gpu', '<cmd>15 split|term git push<cr>', { desc = 'Git push' })
 
 -- convert git to Git in command line mode
-vim.fn['utils#Cabbrev']('git', 'Git')
+--vim.fn['utils#Cabbrev']('git', 'Git')

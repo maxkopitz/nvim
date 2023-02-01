@@ -55,7 +55,7 @@ require('packer').startup(function(use)
   }
 
   -- Git related plugins
-  use 'tpope/vim-fugitive'
+  use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
   use 'tpope/vim-rhubarb'
   use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
@@ -96,10 +96,4 @@ if is_bootstrap then
   return
 end
 
--- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
-})
+

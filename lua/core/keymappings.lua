@@ -22,6 +22,11 @@ vim.keymap.set('n', [[\d]], '<cmd>bprevious <bar> bdelete #<cr>', {
   desc = 'delete buffer',
 })
 
+-- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
+vim.keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
+  silent = true,
+  desc = "close qf and location list",
+})
 --> Split windows <--
 vim.keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
 vim.keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'Horizontal split' })
@@ -39,3 +44,26 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │ Blink cursour                                            │
+--  ╰──────────────────────────────────────────────────────────╯
+--  https://www.reddit.com/r/neovim/comments/y5jqpz/i_made_a_snippet_to_blink_your_cursor_so_that_you/ <--
+local timer = vim.loop.new_timer()
+local blink = function()
+  local cnt, blink_times = 0, 8
+  timer:start(
+    0,
+    100,
+    vim.schedule_wrap(function()
+      vim.cmd 'set cursorcolumn! cursorline!'
+
+      cnt = cnt + 1
+      if cnt == blink_times then
+        timer:stop()
+      end
+    end)
+  )
+end
+
+vim.keymap.set('n', '<leader>cb', blink, { desc = '' })
