@@ -53,7 +53,11 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
-
+  use {
+      "windwp/nvim-autopairs",
+      config = [[require("config.nvim-autopairs")]]
+  }
+  use { "windwp/nvim-ts-autotag" }
   -- Git related plugins
   use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
   use 'tpope/vim-rhubarb'
