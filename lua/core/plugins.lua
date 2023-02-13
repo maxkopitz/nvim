@@ -25,6 +25,8 @@ require('packer').startup(function(use)
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
+      -- For formatting
+      'jose-elias-alvarez/null-ls.nvim',
     },
     config = [[require('config.lsp')]],
   }
@@ -58,6 +60,8 @@ require('packer').startup(function(use)
       config = [[require("config.nvim-autopairs")]]
   }
   use { "windwp/nvim-ts-autotag" }
+
+  use{'MunifTanjim/prettier.nvim', config = [[require('config.prettier')]]}
   -- Git related plugins
   use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
   use 'tpope/vim-rhubarb'

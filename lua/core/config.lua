@@ -9,7 +9,7 @@ Core = {
   pyright = {},
   tsserver = {
     cmd = { 'typescript-language-server', '--stdio' },
-    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'typescript.tsx' },
   },
   html = {
     filetypes = { 'html', 'htmldjango' },
