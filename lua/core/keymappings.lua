@@ -8,13 +8,13 @@ vim.keymap.set('n', '<Up>', '<C-W>k', { silent = true })
 vim.keymap.set('n', '<Down>', '<C-W>j', { silent = true })
 
 --> Quit all opened buffers <--
-vim.keymap.set('n', '<leader>Q', '<cmd>qa!<cr>', { silent = true, desc = 'quit nvim' })
+vim.keymap.set('n', '<Leader>Q', '<cmd>qa!<cr>', { silent = true, desc = 'quit nvim' })
 
 --> Shortcut for faster save and quit <--
-vim.keymap.set('n', '<leader>w', '<cmd>update<cr>', { silent = true, desc = 'save buffer' })
+vim.keymap.set('n', '<Leader>w', '<cmd>update<cr>', { silent = true, desc = 'save buffer' })
 
 --> Saves the file if modified and quit <--
-vim.keymap.set('n', '<leader>q', '<cmd>x<cr>', { silent = true, desc = 'quit current window' })
+vim.keymap.set('n', '<Leader>q', '<cmd>x<cr>', { silent = true, desc = 'quit current window' })
 
 --> Delete a buffer, without closing the window, see https://stackoverflow.com/q/4465095/6064933 <--
 vim.keymap.set('n', [[\d]], '<cmd>bprevious <bar> bdelete #<cr>', {
