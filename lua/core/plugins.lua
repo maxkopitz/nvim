@@ -1,3 +1,4 @@
+local utils = require('utils')
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -12,6 +13,9 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use { 'kyazdani42/nvim-web-devicons' }
+
+  -------------- Themes  --------------
+  use { 'navarasu/onedark.nvim' } -- Theme inspired by Atom
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -33,15 +37,30 @@ require('packer').startup(function(use)
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
   }
+  use { "hrsh7th/cmp-path", after = "nvim-cmp" }
+  use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
+  use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
 
-  -- Navigation
+  -------------- Navigation --------------
   use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' },
     config = [[require('config.bufferline')]], }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
     config = [[require('config.nvim-tree')]], }
   use { 'jdhao/better-escape.vim', event = 'InsertEnter', }
+  -- Fuzzy Finder (files, lsp, etc)
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' },
+    config = [[require('config.telescope')]] }
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  -- Better Quick Fix
+  use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = "require('config.bqf')" }
+  use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]], }
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -55,6 +74,7 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
+
   use {
     "windwp/nvim-autopairs",
     config = [[require("config.nvim-autopairs")]]
@@ -62,33 +82,33 @@ require('packer').startup(function(use)
   use { "windwp/nvim-ts-autotag" }
 
   use { 'MunifTanjim/prettier.nvim', config = [[require('config.prettier')]] }
-  -- Git related plugins
+
+  -------------- Git related plugins --------------
   use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
   use 'tpope/vim-rhubarb'
   use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]], }
   use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent_blankline')]] } -- Add indentation guides even on blank lines
   use { 'numToStr/Comment.nvim', config = [[require('config.comment')]] } -- "gc" to comment visual regions/lines
+
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-  -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' },
-    config = [[require('config.telescope')]] }
+  -- Spruce up the command bar
+  use { 'gelguy/wilder.nvim', config = "require('config.wilder')" }
 
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
-  -- Better Quick Fix
-  use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = "require('config.bqf')" }
-
+  -------------- General Plugins --------------
+  use { '907th/vim-auto-save', event = 'InsertEnter' }
+  -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+  --
   use { 'folke/which-key.nvim', event = 'BufWinEnter', config = "require('config.which-key')" }
 
-  -- Spruce up the command bar
-  use { 'gelguy/wilder.nvim', config = "require('config.wilder')"}
+  if utils.executable 'tmux' then
+    -- .tmux.conf syntax highlighting and setting check
+    use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
+  end
 
-  -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+
+  -------------- Custom Plugins ---------------
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
     plugins(use)

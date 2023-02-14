@@ -46,3 +46,4 @@ vim.api.nvim_create_autocmd("VimResized", {
   desc = "autoresize windows on resizing operation",
   command = "wincmd =",
 })
+

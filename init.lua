@@ -20,7 +20,9 @@ end
 require 'core.config'
 require 'core.settings'
 require 'core.autocmd'
-require 'core.keymappings'
 require 'core.plugins'
+require 'core.keymappings'
+
+vim.keymap.set('n', '<Leader>q', '<cmd>x<cr>', { silent = true, desc = 'quit current window' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
