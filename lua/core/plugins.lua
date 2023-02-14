@@ -56,12 +56,12 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
   use {
-      "windwp/nvim-autopairs",
-      config = [[require("config.nvim-autopairs")]]
+    "windwp/nvim-autopairs",
+    config = [[require("config.nvim-autopairs")]]
   }
   use { "windwp/nvim-ts-autotag" }
 
-  use{'MunifTanjim/prettier.nvim', config = [[require('config.prettier')]]}
+  use { 'MunifTanjim/prettier.nvim', config = [[require('config.prettier')]] }
   -- Git related plugins
   use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
   use 'tpope/vim-rhubarb'
@@ -79,7 +79,7 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
+  use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = "require('config.bqf')" }
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -103,5 +103,3 @@ if is_bootstrap then
   print '=================================='
   return
 end
-
-

@@ -45,6 +45,24 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
+
+--> Go to start and end of current line in insert mode <--
+
+vim.keymap.set('i', '<C-A>', '<HOME>')
+vim.keymap.set('i', '<C-E>', '<END>')
+
+--> Navigation in the location and quickfix list
+vim.keymap.set('n', '[l', '<cmd>lprevious<cr>zv', { silent = true, desc = 'previous location item' })
+vim.keymap.set('n', ']l', '<cmd>lnext<cr>zv', { silent = true, desc = 'next location item' })
+
+vim.keymap.set('n', '[L', '<cmd>lfirst<cr>zv', { silent = true, desc = 'first location item' })
+vim.keymap.set('n', ']L', '<cmd>llast<cr>zv', { silent = true, desc = 'last location item' })
+
+vim.keymap.set('n', '[q', '<cmd>cprevious<cr>zv', { silent = true, desc = 'previous qf item' })
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>zv', { silent = true, desc = 'next qf item' })
+
+vim.keymap.set('n', '[Q', '<cmd>cfirst<cr>zv', { silent = true, desc = 'first qf item' })
+vim.keymap.set('n', ']Q', '<cmd>clast<cr>zv', { silent = true, desc = 'last qf item' })
 --  ╭──────────────────────────────────────────────────────────╮
 --  │ Blink cursour                                            │
 --  ╰──────────────────────────────────────────────────────────╯

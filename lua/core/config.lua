@@ -16,7 +16,7 @@ Core = {
   },
   cssls = {},
   eslint = {},
-  sumneko_lua = {
+  lua_ls= {
     settings = {
       Lua = {
         workspace = { checkThirdParty = false },
