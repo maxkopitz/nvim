@@ -92,7 +92,11 @@ require('packer').startup(function(use)
   use { 'numToStr/Comment.nvim', config = [[require('config.comment')]] } -- "gc" to comment visual regions/lines
 
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-
+  use {
+    'ruifm/gitlinker.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = [[require('config.git-linker')]],
+  }
   -- Spruce up the command bar
   use { 'gelguy/wilder.nvim', config = "require('config.wilder')" }
 
