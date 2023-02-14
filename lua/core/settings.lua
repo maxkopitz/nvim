@@ -52,4 +52,4 @@ vim.o.ignorecase = true
 vim.o.confirm = true
 
 vim.grepprg = 'rg\\ --vimgrep\\ --no-heading\\ --smart-case'
-vim.grepprg.grepformat = '%f:%l:%c:%m'
+vim.grepformat = '%f:%l:%c:%m'
