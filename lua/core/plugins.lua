@@ -16,6 +16,7 @@ require('packer').startup(function(use)
 
   -------------- Themes  --------------
   use { 'navarasu/onedark.nvim' } -- Theme inspired by Atom
+  use { 'folke/tokyonight.nvim' }
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',

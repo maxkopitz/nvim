@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd('VimEnter DirChanged', {
 
 -- Auto-generate packer_compiled.lua file
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  pattern = '*/nvim/lua/config/plugins.lua',
+  pattern = '*/nvim/lua/core/plugins.lua',
   group = vim.api.nvim_create_augroup('packer_auto_compile', { clear = true }),
   callback = function(ctx)
     local cmd = 'source ' .. ctx.file
@@ -46,4 +46,3 @@ vim.api.nvim_create_autocmd("VimResized", {
   desc = "autoresize windows on resizing operation",
   command = "wincmd =",
 })
-
