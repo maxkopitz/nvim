@@ -37,6 +37,10 @@ if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
         echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >> "$HOME/.bash_profile"
     fi
+
+    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_ZSH_SHELL" = true ]]; then
+        echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >> "$HOME/.zshrc"
+    if 
 else
     echo "Nvim is already installed. Skip installing it."
 fi
