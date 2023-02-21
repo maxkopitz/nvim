@@ -13,7 +13,7 @@ require('nvim-treesitter.configs').setup {
     'help',
     'vim',
     'html',
-    'css'
+    'css',
   },
   autotag = {
     enable = true,

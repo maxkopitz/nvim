@@ -1,4 +1,4 @@
-local utils = require('utils')
+local utils = require 'utils'
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -44,24 +44,39 @@ require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     },
   }
-  use { "hrsh7th/cmp-path", after = "nvim-cmp" }
-  use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
-  use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
+
+  use {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = [[require('config.copilot')]],
+  }
+  use {
+    'zbirenbaum/copilot-cmp',
+    requires = { 'zbirenbaum/copilot.lua' },
+    after = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup {
+        suggestion = { enable = false },
+        panel = { enable = false },
+      }
+    end,
+  }
+  use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
 
   -------------- Navigation --------------
-  use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' },
-    config = [[require('config.bufferline')]], }
-  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
-    config = [[require('config.nvim-tree')]], }
-  use { 'jdhao/better-escape.vim', event = 'InsertEnter', }
+  use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' }, config = [[require('config.bufferline')]] }
+  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }, config = [[require('config.nvim-tree')]] }
+  use { 'jdhao/better-escape.vim', event = 'InsertEnter' }
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' },
-    config = [[require('config.telescope')]] }
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('config.telescope')]] }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
   -- Better Quick Fix
   use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = "require('config.bqf')" }
-  use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]], }
+  use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]] }
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -77,15 +92,15 @@ require('packer').startup(function(use)
   }
 
   use {
-    "windwp/nvim-autopairs",
-    config = [[require("config.nvim-autopairs")]]
+    'windwp/nvim-autopairs',
+    config = [[require("config.nvim-autopairs")]],
   }
-  use { "windwp/nvim-ts-autotag" }
+  use { 'windwp/nvim-ts-autotag' }
 
   use { 'MunifTanjim/prettier.nvim', config = [[require('config.prettier')]] }
 
   -------------- Git related plugins --------------
-  use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]], }
+  use { 'tpope/vim-fugitive', config = [[require('config.vim-fugitive')]] }
   use 'tpope/vim-rhubarb'
   use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
@@ -111,7 +126,6 @@ require('packer').startup(function(use)
     -- .tmux.conf syntax highlighting and setting check
     use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
   end
-
 
   -------------- Custom Plugins ---------------
   local has_plugins, plugins = pcall(require, 'custom.plugins')

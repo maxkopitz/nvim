@@ -24,21 +24,21 @@ bufferline.setup {
       return ''
     end,
     offsets = {
-       {
-         filetype = 'NvimTree',
-         text = 'Filetype',
-         padding = 1
-       },
-         filetype = "vista",
-         text = 'Vista',
-         padding = 1
+      {
+        filetype = 'NvimTree',
+        text = 'Filetype',
+        padding = 1,
+      },
+      filetype = 'vista',
+      text = 'Vista',
+      padding = 1,
     },
     custom_filter = function(bufnr)
       -- if the result is false, this buffer will be shown, otherwise, this
       -- buffer will be hidden.
 
       -- filter out filetypes you don't want to see
-      local exclude_ft = { "qf", "fugitive", "git", "checkhealth" }
+      local exclude_ft = { 'qf', 'fugitive', 'git', 'checkhealth' }
       local cur_ft = vim.bo[bufnr].filetype
       local should_filter = vim.tbl_contains(exclude_ft, cur_ft)
 

@@ -23,9 +23,9 @@ vim.keymap.set('n', [[\d]], '<cmd>bprevious <bar> bdelete #<cr>', {
 })
 
 -- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
-vim.keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
+vim.keymap.set('n', [[\x]], '<cmd>windo lclose <bar> cclose <cr>', {
   silent = true,
-  desc = "close qf and location list",
+  desc = 'close qf and location list',
 })
 --> Split windows <--
 vim.keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
@@ -44,7 +44,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
 
 --> Go to start and end of current line in insert mode <--
 

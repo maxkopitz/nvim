@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-
 -- Auto-create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',
@@ -41,8 +40,8 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 })
 
 -- Resize all windows when we resize the terminal
-vim.api.nvim_create_autocmd("VimResized", {
-  group = vim.api.nvim_create_augroup("win_autoresize", { clear = true }),
-  desc = "autoresize windows on resizing operation",
-  command = "wincmd =",
+vim.api.nvim_create_autocmd('VimResized', {
+  group = vim.api.nvim_create_augroup('win_autoresize', { clear = true }),
+  desc = 'autoresize windows on resizing operation',
+  command = 'wincmd =',
 })

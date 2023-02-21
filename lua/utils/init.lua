@@ -28,11 +28,11 @@ end
 
 -- Check if we are inside a Git repo.
 function M.Inside_git_repo()
-  local res = vim.fn.system('git rev-parse --is-inside-work-tree')
+  local res = vim.fn.system 'git rev-parse --is-inside-work-tree'
   if vim.fn.match(res, 'true') == 1 then
     return false
   else
-    vim.cmd("doautocmd User InGitRepo")
+    vim.cmd 'doautocmd User InGitRepo'
     return true
   end
 end
