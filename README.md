@@ -2,7 +2,7 @@
   <h1>Nvim Config</h1>
   <a href="https://github.com/neovim/neovim/releases/tag/stable">
     <img 
-      src="https://img.shields.io/badge/Neovim-0.8.1-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" 
+      src="https://img.shields.io/badge/Neovim-0.8.3-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" 
       alt="Neovim minimum version"/>
   </a>
   <a>
@@ -24,16 +24,6 @@
 
 # Table of Contents 
 - [About](#about)
-- [Getting Started](#getting-started)
-  - [Requirements](#requirements)
-  - [Installation](#installation)
-- [Installed Plugins](#installed-plugins)
-    - [Installed LSP Servers](#installed-lsp-servers)
-- [Key Mappings](#key-mappings)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [Inspirations](#inspirations)
-
 
 # About 
 
