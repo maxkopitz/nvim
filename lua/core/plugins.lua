@@ -66,11 +66,14 @@ require('packer').startup(function(use)
   use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
 
   -------------- Navigation --------------
-  use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' }, config = [[require('config.bufferline')]] }
-  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }, config = [[require('config.nvim-tree')]] }
+  use { 'akinsho/bufferline.nvim', event = 'VimEnter', requires = { 'kyazdani42/nvim-web-devicons' },
+    config = [[require('config.bufferline')]] }
+  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
+    config = [[require('config.nvim-tree')]] }
   use { 'jdhao/better-escape.vim', event = 'InsertEnter' }
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('config.telescope')]] }
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' },
+    config = [[require('config.telescope')]] }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
   -- Better Quick Fix
@@ -125,6 +128,8 @@ require('packer').startup(function(use)
     -- .tmux.conf syntax highlighting and setting check
     use { 'tmux-plugins/vim-tmux', ft = { 'tmux' } }
   end
+
+  use { "akinsho/toggleterm.nvim", tag = '*', config = "require('config.toggleterm')" }
 
   -------------- Custom Plugins ---------------
   local has_plugins, plugins = pcall(require, 'custom.plugins')
