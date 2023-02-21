@@ -84,3 +84,25 @@ local blink = function()
 end
 
 vim.keymap.set('n', '<leader>cb', blink, { desc = '' })
+
+---- BUFFERLINE
+vim.keymap.set('n', '<Tab>bb', ':BufferLinePick <CR>', { desc = 'Pick a buffer to open' })
+vim.keymap.set('n', '<Tab>bc', ':BufferLinePickClose <CR>', { desc = 'Pick a buffer to close' })
+vim.keymap.set('n', '<Tab>bn', ':BufferLineMoveNext <CR>', { desc = 'Move to next buffer' })
+vim.keymap.set('n', '<Tab>bp', ':BufferLineMovePrev <CR>', { desc = 'Move to previous buffer' })
+vim.keymap.set('n', '<Tab>t', ':tabnew <CR>', { desc = 'Create a new tab' })
+vim.keymap.set('n', '<Tab>n', ':tabnext <CR>', { desc = 'Move to next tab' })
+vim.keymap.set('n', '<Tab>p', ':tabprevious <CR>', { desc = 'Move to previous tab' })
+vim.keymap.set('n', '<Tab>c', ':tabclose <CR>', { desc = 'Closes current tab' })
+vim.keymap.set('n', '<Tab>1', ':BufferLineGoToBuffer 1<CR>')
+vim.keymap.set('n', '<Tab>2', ':BufferLineGoToBuffer 2<CR>')
+vim.keymap.set('n', '<Tab>3', ':BufferLineGoToBuffer 3<CR>')
+vim.keymap.set('n', '<Tab>4', ':BufferLineGoToBuffer 4<CR>')
+vim.keymap.set('n', '<Tab>5', ':BufferLineGoToBuffer 5<CR>')
+vim.keymap.set('n', '<Tab>6', ':BufferLineGoToBuffer 6<CR>')
+vim.keymap.set('n', '<Tab>7', ':BufferLineGoToBuffer 7<CR>')
+vim.keymap.set('n', '<Tab>8', ':BufferLineGoToBuffer 8<CR>')
+vim.keymap.set('n', '<Tab>9', ':BufferLineGoToBuffer 9<CR>')
+
+--- NVIM TREE
+vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
