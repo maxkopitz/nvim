@@ -10,33 +10,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Auto-create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = '*',
-  group = vim.api.nvim_create_augroup('auto_create_dir', { clear = true }),
-  callback = function(ctx)
-    local dir = vim.fn.fnamemodify(ctx.file, ':p:h')
-    utils.may_create_dir(dir)
+-- create directories when needed, when saving a file
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+  callback = function(event)
+    local file = vim.loop.fs_realpath(event.match) or event.match
+
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+    local backup = vim.fn.fnamemodify(file, ":p:~:h")
+    backup = backup:gsub("[/\\]", "%%")
+    vim.go.backupext = backup
   end,
 })
-
 vim.api.nvim_create_autocmd('VimEnter DirChanged', {
   callback = function()
     utils.Inside_git_repo()
   end,
   group = vim.api.nvim_create_augroup('git_repo_check', { clear = true }),
   pattern = '*',
-})
-
--- Auto-generate packer_compiled.lua file
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  pattern = '*/nvim/lua/core/plugins.lua',
-  group = vim.api.nvim_create_augroup('packer_auto_compile', { clear = true }),
-  callback = function(ctx)
-    local cmd = 'source ' .. ctx.file
-    vim.cmd(cmd)
-    vim.cmd 'PackerCompile'
-  end,
 })
 
 -- Resize all windows when we resize the terminal

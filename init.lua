@@ -20,9 +20,25 @@ end
 require 'core.config'
 require 'core.settings'
 require 'core.autocmd'
-require 'core.plugins'
 require 'core.keymappings'
 
+-- bootstrap lazy.nvim!
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=main", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
+require("plugins")
+
+require('onedark').load()
 vim.keymap.set('n', '<Leader>q', '<cmd>x<cr>', { silent = true, desc = 'quit current window' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
