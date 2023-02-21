@@ -58,5 +58,5 @@ return function(opts)
     },
   }, {})
   -- require("lazy").setup(default_plugins, opts)
-  require('lazy').setup('plugins.lazy', opts)
+  require('lazy').setup('plugins', opts)
 end
