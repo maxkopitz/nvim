@@ -20,6 +20,11 @@
       src="https://img.shields.io/github/stars/maxkopitz/nvim-config" 
       alt="Repository count of stars" />
   </a>
+  <a href="https://github.com/neovim/neovim/releases/tag/stable">
+    <img 
+      src="https://tokei.rs/b1/github/maxkopitz/nvim-config" 
+      alt="Neovim minimum version"/>
+  </a>
 </div>
 
 # Table of Contents 

@@ -1,5 +1,4 @@
 return {
-  'kyazdani42/nvim-web-devicons',
   {
     'jdhao/better-escape.vim',
     event = 'InsertEnter',
@@ -87,15 +86,6 @@ return {
   -- .tmux.conf syntax highlighting and setting check
   { 'tmux-plugins/vim-tmux', ft = { 'tmux' } },
   {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    opts = {
-      open_mapping = [[<c-\>]],
-      hide_numbers = true,
-
-    }
-  },
-  {
     'lukas-reineke/indent-blankline.nvim',
     opts = {
   char = '┊',
@@ -104,4 +94,5 @@ return {
     }
   }, -- Add indentation guides even on blank lines
 
+  { "iamcco/markdown-preview.nvim", build = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
 }
