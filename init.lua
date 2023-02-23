@@ -25,7 +25,6 @@ require 'core.keymappings'
 require 'core.lazy' {}
 
 require('onedark').load()
-require 'utils.terminals'
 
 vim.keymap.set('n', '<Leader>q', '<cmd>x<cr>', { silent = true, desc = 'quit current window' })
 -- The line beneath this is called `modeline`. See `:help modeline`
