@@ -26,5 +26,6 @@ Core = {
     },
     bashls = {},
     tailwindcss = {},
+    rust_analyzer = {}
   },
 }
