@@ -1,4 +1,12 @@
 return {
+  {
+    "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  config = function()
+    require("copilot").setup({})
+  end,
+
+  },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
