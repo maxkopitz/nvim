@@ -55,3 +55,5 @@ vim.grepprg = 'rg\\ --vimgrep\\ --no-heading\\ --smart-case'
 vim.grepformat = '%f:%l:%c:%m'
 
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+
+vim.g.loaded_remote_plugins = 0
