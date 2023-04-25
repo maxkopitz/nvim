@@ -6,7 +6,6 @@ return {
     disable_netrw = false,
     hijack_cursor = false,
     sort_by = 'name',
-    open_on_setup = false,
     open_on_tab = false,
     update_cwd = false,
     view = {
