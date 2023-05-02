@@ -1,15 +1,12 @@
 return {
   { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
-
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-    opts = {
+    build = ":TSUpdate",
+    config = function() require'nvim-treesitter.configs'.setup {
       ensure_installed = {
         'c',
         'cpp',
@@ -17,8 +14,8 @@ return {
         'lua',
         'python',
         'rust',
+        'javascript',
         'typescript',
-        'help',
         'vim',
         'html',
         'css',
@@ -37,6 +34,7 @@ return {
           node_decremental = '<c-backspace>',
         },
       },
+      auto_install = true,
       textobjects = {
         select = {
           enable = true,
@@ -80,7 +78,9 @@ return {
             ['<leader>A'] = '@parameter.inner',
           },
         },
+        additional_vim_regex_highlighting = true,
       },
-    },
+    }
+  end
   },
 }
