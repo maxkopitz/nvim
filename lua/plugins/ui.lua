@@ -103,6 +103,8 @@ return {
       show_current_context = false,
     }
   },
-
+  -- icons
   { 'kyazdani42/nvim-web-devicons', lazy = true },
+  -- ui components
+  { "MunifTanjim/nui.nvim", lazy = true },
 }
