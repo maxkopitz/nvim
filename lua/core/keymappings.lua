@@ -105,9 +105,9 @@ vim.keymap.set('n', '<Tab>8', ':BufferLineGoToBuffer 8<CR>')
 vim.keymap.set('n', '<Tab>9', ':BufferLineGoToBuffer 9<CR>')
 
 --- NVIM TREE
-vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc="Toggle nvim tree"})
 -- GIT LINKER
-vim.api.nvim_set_keymap('n', '<leader>gb', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>gb', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', {silent = true, desc="Git browser"})
 
 -- GIT FUGITIVE
 vim.keymap.set('n', '<leader>gs', '<cmd>Git<cr>', { desc = 'Git status' })
@@ -128,7 +128,7 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 end
 
-vim.api.nvim_set_keymap('n', '<leader>lt', "<cmd>lua require('utils.terminals').project_info_toggle()<CR>", {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ld', "<cmd>lua require('utils.terminals').dockerinfo_lazy()<CR>", {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>lt', "<cmd>lua require('utils.terminals').project_info_toggle()<CR>", {silent = true, desc="Open tokei stats"})
+vim.api.nvim_set_keymap('n', '<leader>ld', "<cmd>lua require('utils.terminals').dockerinfo_lazy()<CR>", {silent = true, desc= "Lazy Docker"})
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
