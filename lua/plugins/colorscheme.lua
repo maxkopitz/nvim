@@ -3,13 +3,10 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = true,
-    config = function()
-      require('tokyonight').setup {
-        style = 'moon'
-      }
-    end
+    opt = {
+      style = 'moon'
+    }
   },
-
   -- catppuccin
   {
     'catppuccin/nvim',
