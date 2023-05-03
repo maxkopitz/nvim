@@ -3,7 +3,11 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = true,
-    opts = { style = 'moon' },
+    config = function()
+      require('tokyonight').setup {
+        style = 'moon'
+      }
+    end
   },
 
   -- catppuccin
@@ -13,5 +17,4 @@ return {
     name = 'catppuccin',
   },
   { 'navarasu/onedark.nvim', lazy = true },
-  { 'folke/tokyonight.nvim', lazy = true },
 }
