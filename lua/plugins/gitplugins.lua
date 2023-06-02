@@ -5,6 +5,7 @@ return {
   'tpope/vim-rhubarb',
   {
     'lewis6991/gitsigns.nvim',
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
         add = { text = '+' },
@@ -15,11 +16,6 @@ return {
       },
     }
   },
-  {
-    'numToStr/Comment.nvim',
-  }, -- "gc" to comment visual regions/lines
-
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   {
     'ruifm/gitlinker.nvim',
     dependencies = 'nvim-lua/plenary.nvim',

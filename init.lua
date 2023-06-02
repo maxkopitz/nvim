@@ -8,7 +8,7 @@ vim.g.maplocalleader = ','
 local utils = require 'utils'
 
 --> Checks for correct nvim veriosn <--
-local expected_ver = '0.9.0'
+local expected_ver = '0.9.1'
 local nvim_ver = utils.get_nvim_version()
 
 if nvim_ver ~= expected_ver then
