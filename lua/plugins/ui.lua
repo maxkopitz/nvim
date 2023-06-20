@@ -30,7 +30,7 @@ return {
         end,
         offsets = {
           {
-            filetype = 'NvimTree',
+            filetype = 'neo-tree',
             text = 'Filetype',
             padding = 1,
           },
