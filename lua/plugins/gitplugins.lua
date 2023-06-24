@@ -5,7 +5,7 @@ return {
   'tpope/vim-rhubarb',
   {
     'lewis6991/gitsigns.nvim',
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       signs = {
         add = { text = '+' },
@@ -14,7 +14,7 @@ return {
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
-    }
+    },
   },
   {
     'ruifm/gitlinker.nvim',

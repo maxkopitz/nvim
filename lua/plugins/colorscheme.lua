@@ -4,8 +4,8 @@ return {
     'folke/tokyonight.nvim',
     lazy = true,
     opt = {
-      style = 'moon'
-    }
+      style = 'moon',
+    },
   },
   -- catppuccin
   {

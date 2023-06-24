@@ -1,11 +1,10 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  config = function()
-    require("copilot").setup({})
-  end,
-
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    config = function()
+      require('copilot').setup {}
+    end,
   },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -37,7 +36,7 @@ return {
 
   {
     'zbirenbaum/copilot-cmp',
-    dependencies = {'zbirenbaum/copilot.lua'},
+    dependencies = { 'zbirenbaum/copilot.lua' },
     config = function()
       require('copilot_cmp').setup {
         suggestion = { enable = false },
@@ -48,5 +47,5 @@ return {
   { 'hrsh7th/cmp-path' },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-omni' },
-  { 'jose-elias-alvarez/null-ls.nvim' }
+  { 'jose-elias-alvarez/null-ls.nvim' },
 }

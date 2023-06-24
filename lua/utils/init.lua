@@ -1,7 +1,7 @@
 local fn = vim.fn
 local M = {}
 
-M.root_patterns = { ".git", "lua" }
+M.root_patterns = { '.git', 'lua' }
 function M.executable(name)
   if fn.executable(name) > 0 then
     return true
@@ -46,11 +46,11 @@ end
 function M.get_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
+  path = path ~= '' and vim.loop.fs_realpath(path) or nil
   ---@type string[]
   local roots = {}
   if path then
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
         return vim.uri_to_fname(ws.uri)

@@ -5,8 +5,7 @@ return {
     config = function()
       local wilder = require 'wilder'
 
-      wilder.setup({ modes = { ':', '/', '?' } }, { next_key = '<Tab>' }, { previous_key = '<S-Tab>' },
-        { accept_key = '<C-y>' }, { reject_key = '<C-e>' })
+      wilder.setup({ modes = { ':', '/', '?' } }, { next_key = '<Tab>' }, { previous_key = '<S-Tab>' }, { accept_key = '<C-y>' }, { reject_key = '<C-e>' })
 
       -- https://github.com/gelguy/wilder.nvim/issues/109
       -- Issue with python_difflib_sorter had to manually run :UpdateRemoteplugin

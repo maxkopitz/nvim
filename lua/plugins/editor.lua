@@ -7,37 +7,37 @@ return {
     opts = {
       open_mapping = [[\\]],
       hide_numbers = true,
-    }
+    },
   },
   -- file explorer
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
+    'nvim-neo-tree/neo-tree.nvim',
+    cmd = 'Neotree',
     keys = {
       {
-        "<leader>fe",
+        '<leader>fe',
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("utils").get_root() })
+          require('neo-tree.command').execute { toggle = true, dir = require('utils').get_root() }
         end,
-        desc = "Explorer NeoTree (root dir)",
+        desc = 'Explorer NeoTree (root dir)',
       },
       {
-        "<leader>fE",
+        '<leader>fE',
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+          require('neo-tree.command').execute { toggle = true, dir = vim.loop.cwd() }
         end,
-        desc = "Explorer NeoTree (cwd)",
+        desc = 'Explorer NeoTree (cwd)',
       },
     },
     deactivate = function()
-      vim.cmd([[Neotree close]])
+      vim.cmd [[Neotree close]]
     end,
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
       if vim.fn.argc() == 1 then
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
-        if stat and stat.type == "directory" then
-          require("neo-tree")
+        if stat and stat.type == 'directory' then
+          require 'neo-tree'
         end
       end
     end,
@@ -49,26 +49,26 @@ return {
       },
       window = {
         mappings = {
-          ["<space>"] = "none",
+          ['<space>'] = 'none',
         },
       },
       default_component_configs = {
         indent = {
           indent_size = 1,
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
+          expander_collapsed = '',
+          expander_expanded = '',
+          expander_highlight = 'NeoTreeExpander',
         },
       },
     },
     config = function(_, opts)
-      require("neo-tree").setup(opts)
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "*lazygit",
+      require('neo-tree').setup(opts)
+      vim.api.nvim_create_autocmd('TermClose', {
+        pattern = '*lazygit',
         callback = function()
-          if package.loaded["neo-tree.sources.git_status"] then
-            require("neo-tree.sources.git_status").refresh()
+          if package.loaded['neo-tree.sources.git_status'] then
+            require('neo-tree.sources.git_status').refresh()
           end
         end,
       })
@@ -79,18 +79,18 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     verison = false,
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       {
-        "nvim-treesitter/nvim-treesitter-textobjects",
+        'nvim-treesitter/nvim-treesitter-textobjects',
         init = function()
           -- PERF: no need to load the plugin, if we only need its queries for mini.ai
-          local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
-          local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+          local plugin = require('lazy.core.config').spec.plugins['nvim-treesitter']
+          local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
           local enabled = false
           if opts.textobjects then
-            for _, mod in ipairs({ "move", "select", "swap", "lsp_interop" }) do
+            for _, mod in ipairs { 'move', 'select', 'swap', 'lsp_interop' } do
               if opts.textobjects[mod] and opts.textobjects[mod].enable then
                 enabled = true
                 break
@@ -98,7 +98,7 @@ return {
             end
           end
           if not enabled then
-            require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+            require('lazy.core.loader').disable_rtp_plugin 'nvim-treesitter-textobjects'
           end
         end,
       },
@@ -180,7 +180,7 @@ return {
       },
     },
     config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
+      if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
         local added = {}
         opts.ensure_installed = vim.tbl_filter(function(lang)
@@ -191,38 +191,38 @@ return {
           return true
         end, opts.ensure_installed)
       end
-      require("nvim-treesitter.configs").setup(opts)
+      require('nvim-treesitter.configs').setup(opts)
     end,
   },
   -- Whichkey
   {
     'folke/which-key.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
-      plugins = { spelling = true},
+      plugins = { spelling = true },
       defaults = {
-        mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["gz"] = { name = "+surround" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader><tab>"] = { name = "+tabs" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>c"] = { name = "+code" },
-        ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>gh"] = { name = "+hunks" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+windows" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
+        mode = { 'n', 'v' },
+        ['g'] = { name = '+goto' },
+        ['gz'] = { name = '+surround' },
+        [']'] = { name = '+next' },
+        ['['] = { name = '+prev' },
+        ['<leader><tab>'] = { name = '+tabs' },
+        ['<leader>b'] = { name = '+buffer' },
+        ['<leader>c'] = { name = '+code' },
+        ['<leader>f'] = { name = '+file/find' },
+        ['<leader>g'] = { name = '+git' },
+        ['<leader>gh'] = { name = '+hunks' },
+        ['<leader>q'] = { name = '+quit/session' },
+        ['<leader>s'] = { name = '+search' },
+        ['<leader>u'] = { name = '+ui' },
+        ['<leader>w'] = { name = '+windows' },
+        ['<leader>x'] = { name = '+diagnostics/quickfix' },
       },
     },
     config = function(_, opts)
-      local wk = require("which-key")
+      local wk = require 'which-key'
       wk.setup(opts)
       wk.register(opts.defaults)
     end,
-  }
+  },
 }

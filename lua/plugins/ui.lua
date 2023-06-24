@@ -19,7 +19,7 @@ return {
         right_trunc_marker = '',
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-        truncate_names = true,  -- whether or not tab names should be truncated
+        truncate_names = true, -- whether or not tab names should be truncated
         tab_size = 18,
         diagnostics = 'nvim_lsp', --[[ | "nvim_lsp" | "coc", ]]
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -70,11 +70,11 @@ return {
   -- statusline
   {
     'nvim-lualine/lualine.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = function()
       return {
         options = {
-          theme = "auto",
+          theme = 'auto',
           globalstatus = true,
           icons_enabled = false,
           component_separators = '|',
@@ -87,24 +87,24 @@ return {
           lualine_c = { 'filename' },
           lualine_x = { 'encoding', 'fileformat', 'filetype' },
           lualine_y = { 'progress' },
-          lualine_z = { 'location' }
+          lualine_z = { 'location' },
         },
       }
-    end
+    end,
   },
   -- indent guides for Neovim
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = { "BufReadPost", "BufNewFile" },
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       char = '┊',
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+      filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' },
       show_trailing_blankline_indent = false,
       show_current_context = false,
-    }
+    },
   },
   -- icons
   { 'kyazdani42/nvim-web-devicons', lazy = true },
   -- ui components
-  { "MunifTanjim/nui.nvim", lazy = true },
+  { 'MunifTanjim/nui.nvim', lazy = true },
 }
