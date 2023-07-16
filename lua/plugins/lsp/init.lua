@@ -1,10 +1,9 @@
 return {
   {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    config = function()
-      require('copilot').setup {}
-    end,
+    'j-hui/fidget.nvim',
+    tag = 'legacy'
+
+
   },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
