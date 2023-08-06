@@ -33,3 +33,17 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- This is too smart
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+vim.keymap.set('n', '<Leader>w', '<cmd>update<cr>', { silent = true, desc = 'save buffer' })
+
+-->Save key strokes, no longer need shift to enter command mode <--
+vim.keymap.set({ 'n', 'x' }, ';', ':')
+
+--> Switch windows <--
+vim.keymap.set('n', '<Left>', '<c-w>h', { silent = true })
+vim.keymap.set('n', '<Right>', '<C-W>l', { silent = true })
+vim.keymap.set('n', '<Up>', '<C-W>k', { silent = true })
+vim.keymap.set('n', '<Down>', '<C-W>j', { silent = true })
+
+--> Split windows <--
+vim.keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
+vim.keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'Horizontal split' })
