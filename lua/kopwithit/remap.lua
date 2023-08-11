@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -20,6 +23,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -47,3 +51,6 @@ vim.keymap.set('n', '<Down>', '<C-W>j', { silent = true })
 --> Split windows <--
 vim.keymap.set('n', [[<leader>\]], '<cmd>vsplit <cr>', { silent = true, desc = 'Veritcal split' })
 vim.keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'Horizontal split' })
+
+vim.keymap.set("n", "<leader>mb", "<cmd>!make<CR>", { silent = true })
+vim.keymap.set("n", "<leader>mc", "<cmd>!make clean<CR>", { silent = true })
