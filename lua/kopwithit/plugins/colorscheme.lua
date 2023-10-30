@@ -1,7 +1,7 @@
 return {
-   'rose-pine/neovim', 
+   'rose-pine/neovim',
    name = 'rose-pine',
-   config = function() 
+   config = function()
      require('kopwithit.utils').ColorMyPencils()
   end,
 }
