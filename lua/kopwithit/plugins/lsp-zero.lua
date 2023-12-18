@@ -3,6 +3,7 @@ return {
   branch = 'v2.x',
   dependencies = {
     -- LSP Support
+    {'github/copilot.vim'},
     {'neovim/nvim-lspconfig'},             -- Required
     {'williamboman/mason.nvim'},           -- Optional
     {'williamboman/mason-lspconfig.nvim'}, -- Optional
