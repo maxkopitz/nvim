@@ -1,4 +1,4 @@
-return {
+local dap = {
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
@@ -37,3 +37,4 @@ return {
     },
   },
 }
+return {}
