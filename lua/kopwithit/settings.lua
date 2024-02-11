@@ -30,3 +30,4 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 vim.opt.colorcolumn = "80"
+vim.opt.conceallevel = 0
