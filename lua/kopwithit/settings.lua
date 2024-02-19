@@ -13,9 +13,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
+vim.opt.incsearch = true vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8 -- Always keep space when scrolling to bottom/top edge
 vim.opt.signcolumn = "yes"
@@ -30,6 +28,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 vim.opt.colorcolumn = "80"
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 1
 
 vim.g.neoformat_try_node_exe = 1
