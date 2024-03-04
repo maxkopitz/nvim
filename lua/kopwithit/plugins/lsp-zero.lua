@@ -3,8 +3,6 @@ return {
     branch = 'v3.x',
     dependencies = {
         -- LSP Support
-        { 'zbirenbaum/copilot.lua' },
-        { 'zbirenbaum/copilot-cmp' },
         { 'neovim/nvim-lspconfig' },             -- Required
         { 'williamboman/mason.nvim' },           -- Optional
         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
@@ -31,18 +29,11 @@ return {
             }
         })
 
-        require('copilot').setup({
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-        })
-        require('copilot_cmp').setup()
-
         local cmp = require('cmp')
         local cmp_format = lsp_zero.cmp_format()
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         cmp.setup({
             sources = {
-                { name = 'copilot' },
                 { name = 'nvim_lsp' },
             },
             formatting = cmp_format,
