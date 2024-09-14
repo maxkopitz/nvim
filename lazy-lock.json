@@ -4,7 +4,7 @@
   "better-escape.vim": { "branch": "master", "commit": "6b16a45a839727977277f6ab11bded63e9ed86bb" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
-  "lazy.nvim": { "branch": "main", "commit": "cea5920abb202753004440f94ec39bcf2927e02e" },
+  "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "87701af045b3032515776abeb47eb8c2ddb5e679" },
   "lualine.nvim": { "branch": "master", "commit": "0a5a66803c7407767b799067986b4dc3036e1983" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
