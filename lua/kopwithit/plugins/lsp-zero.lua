@@ -19,7 +19,6 @@ return {
                 'tsserver',
                 'eslint',
                 'lua_ls',
-                'pylsp',
             },
             handlers = {
                 lsp_zero.default_setup,
