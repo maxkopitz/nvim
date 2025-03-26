@@ -1,9 +1,5 @@
 return {
     {
-        'nvim-treesitter/nvim-treesitter-textobjects'
-
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
@@ -13,12 +9,14 @@ return {
                     "typescript",
                     "c",
                     "cpp",
+                    "python",
                     "lua",
                     "rust",
+                    "lua",
                     "markdown",
                     "markdown_inline",
                 },
-                auto_install = true,
+                auto_install = false,
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = { "markdown" },
@@ -79,8 +77,5 @@ return {
                 },
             }
         end,
-    },
-    {
-        "nvim-treesitter/playground"
     },
 }

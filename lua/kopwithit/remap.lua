@@ -35,7 +35,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- This is too smart
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader><shift>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set('n', '<Leader>w', '<cmd>update<cr>', { silent = true, desc = 'save buffer' })
 
@@ -54,3 +54,8 @@ vim.keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'H
 
 vim.keymap.set("n", "<leader>mb", "<cmd>!make<CR>", { silent = true })
 vim.keymap.set("n", "<leader>mc", "<cmd>!make clean<CR>", { silent = true })
+
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
+
