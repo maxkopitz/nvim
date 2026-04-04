@@ -27,9 +27,8 @@ vim.keymap.set("n", "q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -55,7 +54,6 @@ vim.keymap.set('n', [[<leader>|]], '<cmd>split <cr>', { silent = true, desc = 'H
 vim.keymap.set("n", "<leader>mb", "<cmd>!make<CR>", { silent = true })
 vim.keymap.set("n", "<leader>mc", "<cmd>!make clean<CR>", { silent = true })
 
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", ":.lua<CR>")
-vim.keymap.set("v", "<space>x", ":lua<CR>")
-
+vim.keymap.set("n", "<leader><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+vim.keymap.set("v", "<leader>x", ":lua<CR>")
